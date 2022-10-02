@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:starlight/providers/providers.dart';
+import 'package:starlight/services/auth_services.dart';
 import 'package:starlight/views/sign_in/widgets/card_sign_in.dart';
 
 class LayoutSignIn extends StatelessWidget {
@@ -7,8 +10,8 @@ class LayoutSignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    // final inputDecoration = StarlightInputStyles(size: size);
-
+    final authServices = Provider.of<AuthServices>(context);
+    final userState = Provider.of<UserState>(context);
     return Stack(children: [
       Positioned(
         top: 30,
@@ -24,7 +27,11 @@ class LayoutSignIn extends StatelessWidget {
       ),
       Positioned(
         top: 120,
-        child: CardSignIn(size: size),
+        child: ChangeNotifierProvider(
+          create: (_) =>
+              SignInProvider(authServices: authServices, userState: userState),
+          child: CardSignIn(size: size),
+        ),
       ),
     ]);
   }

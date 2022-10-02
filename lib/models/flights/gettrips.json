@@ -13,19 +13,6 @@
     "price": 183
   },
   {
-    "id": "0876219174070241",
-    "Airline": "Viva Aerobus",
-    "type": "redondo",
-    "from": "AUS",
-    "to": "LAX",
-    "Departure": "25 Jun 2019",
-    "Arrival": "25 Jun 2019",
-    "depTime": "3:05 AM",
-    "arrTime": "4:05 AM",
-    "flighTime": 60,
-    "price": 183
-  },
-  {
     "id": "6795908536750427",
     "Airline": "Viva Aerobus",
     "type": "redondo",

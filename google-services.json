@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "215491214676",
+    "firebase_url": "https://starlight-flights-default-rtdb.firebaseio.com",
+    "project_id": "starlight-flights",
+    "storage_bucket": "starlight-flights.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:215491214676:android:78a48539d30c251991dcc1",
+        "android_client_info": {
+          "package_name": "com.example.starlight"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "215491214676-3qdljrcot3kc8l3clmmsd3dg4co9r194.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.starlight",
+            "certificate_hash": "a73fab7411baa543683d26dfc5a3c06b747bebd4"
+          }
+        },
+        {
+          "client_id": "215491214676-i1pqddrd2fphojci7b83sdpke6etivup.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsXjft_FDGmBIwlV1Snbh_tnmVq6DKoHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "215491214676-i1pqddrd2fphojci7b83sdpke6etivup.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,8 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:starlight/models/flights.dart';
 
 class SignUpProvider extends ChangeNotifier {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -27,9 +23,9 @@ class SignUpProvider extends ChangeNotifier {
   }
 
   _saveTempData(BuildContext context) async {
-    final awa =
-        await DefaultAssetBundle.of(context).loadString("assets/trips.json");
-    final flights = flightsFromMap(awa);
-    print(flights[0]);
+    // final awa =
+    //     await DefaultAssetBundle.of(context).loadString("assets/trips.json");
+    // final flights = flightsFromMap(awa);
+    // print(flights[0]);
   }
 }

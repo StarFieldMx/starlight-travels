@@ -10,12 +10,12 @@ class StarLightFlow extends StatelessWidget {
   Widget build(context) {
     return AutoTabsScaffold(
       bottomNavigationBuilder: starLightBottomNav,
-      routes: _awa(),
+      routes: _pageRoutes(),
     );
   }
 }
 
-List<PageRouteInfo<dynamic>> _awa() {
+List<PageRouteInfo<dynamic>> _pageRoutes() {
   return const [
     HomeView(),
     MyTripsView(),

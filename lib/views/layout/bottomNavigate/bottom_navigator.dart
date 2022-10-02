@@ -6,10 +6,10 @@ Widget starLightBottomNav(BuildContext _, TabsRouter tabsRouter) {
     currentIndex: tabsRouter.activeIndex,
     onTap: tabsRouter.setActiveIndex,
     items: const [
-      BottomNavigationBarItem(label: 'Users', icon: Icon(Icons.home)),
-      BottomNavigationBarItem(label: 'Posts', icon: Icon(Icons.chat_bubble)),
+      BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
       BottomNavigationBarItem(
-          label: 'Settings', icon: Icon(Icons.verified_user_outlined)),
+          label: 'Viajes', icon: Icon(Icons.airplanemode_active_rounded)),
+      BottomNavigationBarItem(label: 'Perfil', icon: Icon(Icons.person_pin)),
     ],
   );
 }

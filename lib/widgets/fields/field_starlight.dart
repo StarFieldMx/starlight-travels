@@ -4,7 +4,7 @@ import 'package:starlight/styles/starlight_colors.dart';
 class FieldFormStarlight extends StatelessWidget {
   const FieldFormStarlight({
     Key? key,
-    required this.validator,
+    this.validator,
     this.onChanged,
     required this.keyboardType,
     required this.decoration,
@@ -18,7 +18,7 @@ class FieldFormStarlight extends StatelessWidget {
   final String? initialValue;
   final TextEditingController? controller;
   final bool isEnabled;
-  final String? Function(String?) validator;
+  final String? Function(String?)? validator;
   final bool canExpand;
   final TextInputType keyboardType;
   final bool obscureText;

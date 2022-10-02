@@ -35,13 +35,15 @@ class _LayoutSignSelectState extends State<LayoutSignSelect> {
     return DefaultTabController(
       length: 3,
       initialIndex: 1,
-      child: Scaffold(
-        appBar: AppBar(
-          bottom: upperTab,
-          toolbarHeight: 0,
+      child: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: upperTab,
+            toolbarHeight: 0,
+          ),
+          backgroundColor: StarLightColors.starPrimaryBlue,
+          body: isSignIn ? const LayoutSignIn() : const LayoutSignUp(),
         ),
-        backgroundColor: StarLightColors.starPrimaryBlue,
-        body: isSignIn ? const LayoutSignIn() : const LayoutSignUp(),
       ),
     );
   }

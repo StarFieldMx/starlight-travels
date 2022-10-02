@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:starlight/providers/sign_in_provider.dart';
 // STYLES
 import 'package:starlight/styles/starlight_inputs.dart';
 // WIDGETS
@@ -15,24 +17,63 @@ class FormSignIn extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final inputDecoration = StarlightInputStyles(size: size);
-    GlobalKey<FormState> key = GlobalKey<FormState>();
+    final signInProvider = Provider.of<SignInProvider>(context);
     return FormStructure(
-      formKey: key,
+      formKey: signInProvider.formKey,
       childrens: [
-        const EmailField(
-          initialValue: '',
+        EmailField(
+          controller: signInProvider.emailController,
           // ! Implement provider
         ),
         PasswordField(
           inputDecoration: inputDecoration,
-          labelText: "Ingresa tu contraseña", initialValue: '',
+          controller: signInProvider.passwordController,
+          labelText: "Ingresa tu contraseña",
           // ! Implement provider
         ),
         PrimaryButton(
           labelText: "SignIn",
-          onTap: () {},
+          onTap: () => signInProvider.tryLogin(),
         ),
+        const _GoogleSignIn(),
       ],
+    );
+  }
+}
+
+class _GoogleSignIn extends StatelessWidget {
+  const _GoogleSignIn();
+
+  @override
+  Widget build(BuildContext context) {
+    final signInProvider = Provider.of<SignInProvider>(context);
+    return Center(
+      child: GestureDetector(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Container(
+              height: 30.0,
+              width: 30.0,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/google.png'), fit: BoxFit.cover),
+                shape: BoxShape.circle,
+              ),
+            ),
+            const Text(
+              'Sign in with Google',
+              style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+          ],
+        ),
+        onTap: () {
+          signInProvider.loginWithGoogle();
+        },
+      ),
     );
   }
 }
