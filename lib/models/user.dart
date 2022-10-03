@@ -54,4 +54,5 @@ class UserStarlight {
         "photoURL": photoUrl,
         "uid": uid,
       };
+  String toJson() => json.encode(toMap());
 }

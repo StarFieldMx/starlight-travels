@@ -1,10 +1,18 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:starlight/router/guards/guards.dart';
 import 'package:starlight/views/home/home_page.dart';
 import 'package:starlight/views/main_views.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route,View',
   routes: <AutoRoute>[
+    AutoRoute(
+      path: 'main',
+      name: "MainViewRoute",
+      page: MainView,
+      guards: [AuthGuard],
+      initial: true,
+    ),
     starLightFlowInvited,
     starLightFlow,
     AutoRoute(

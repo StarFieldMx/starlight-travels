@@ -28,8 +28,10 @@ class LayoutSignIn extends StatelessWidget {
       Positioned(
         top: 120,
         child: ChangeNotifierProvider(
-          create: (_) =>
-              SignInProvider(authServices: authServices, userState: userState),
+          create: (_) => SignInProvider(
+              authServices: authServices,
+              userState: userState,
+              context: context),
           child: CardSignIn(size: size),
         ),
       ),

@@ -17,7 +17,7 @@ class FormSignIn extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final inputDecoration = StarlightInputStyles(size: size);
-    final signInProvider = Provider.of<SignInProvider>(context);
+    final signInProvider = Provider.of<SignInProvider>(context, listen: false);
     return FormStructure(
       formKey: signInProvider.formKey,
       childrens: [

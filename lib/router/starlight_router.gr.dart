@@ -16,13 +16,24 @@ import 'package:flutter/material.dart' as _i4;
 
 import '../views/home/home_page.dart' as _i2;
 import '../views/main_views.dart' as _i1;
+import 'guards/guards.dart' as _i5;
 
 class AppRouter extends _i3.RootStackRouter {
-  AppRouter([_i4.GlobalKey<_i4.NavigatorState>? navigatorKey])
-      : super(navigatorKey);
+  AppRouter({
+    _i4.GlobalKey<_i4.NavigatorState>? navigatorKey,
+    required this.authGuard,
+  }) : super(navigatorKey);
+
+  final _i5.AuthGuard authGuard;
 
   @override
   final Map<String, _i3.PageFactory> pagesMap = {
+    MainViewRoute.name: (routeData) {
+      return _i3.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i1.MainView(),
+      );
+    },
     StarLightFlowInvited.name: (routeData) {
       return _i3.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -78,8 +89,13 @@ class AppRouter extends _i3.RootStackRouter {
         _i3.RouteConfig(
           '/#redirect',
           path: '/',
-          redirectTo: '/flow',
+          redirectTo: 'main',
           fullMatch: true,
+        ),
+        _i3.RouteConfig(
+          MainViewRoute.name,
+          path: 'main',
+          guards: [authGuard],
         ),
         _i3.RouteConfig(
           StarLightFlowInvited.name,
@@ -128,6 +144,18 @@ class AppRouter extends _i3.RootStackRouter {
           path: 'sign_in',
         ),
       ];
+}
+
+/// generated route for
+/// [_i1.MainView]
+class MainViewRoute extends _i3.PageRouteInfo<void> {
+  const MainViewRoute()
+      : super(
+          MainViewRoute.name,
+          path: 'main',
+        );
+
+  static const String name = 'MainViewRoute';
 }
 
 /// generated route for
