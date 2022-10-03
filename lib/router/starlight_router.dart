@@ -1,23 +1,52 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/empty_router_widgets.dart';
-// import 'package:starlight/router/guards/guards.dart';
 import 'package:starlight/views/home/home_page.dart';
-import 'package:starlight/views/layout/starlight_flow.dart';
 import 'package:starlight/views/main_views.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route,View',
   routes: <AutoRoute>[
+    starLightFlowInvited,
     starLightFlow,
+    AutoRoute(
+      path: 'sign_in',
+      name: "LayoutSignSelectRoute",
+      page: LayoutSignSelect,
+      // guards: [SignInGuard],
+      // initial: true,
+    ),
   ],
 )
 class $AppRouter {}
 
-const starLightFlow = AutoRoute(
+const starLightFlowInvited = AutoRoute(
   path: '/flow',
-  name: "StarLightFlow",
+  name: "StarLightFlowInvited",
   initial: true,
-  page: StarLightFlow,
+  page: StarLightFlowInvited,
+  children: [
+    AutoRoute(
+      path: 'home',
+      name: 'HomeView',
+      page: HomePageView,
+    ),
+    AutoRoute(
+      path: 'my_trips',
+      name: 'MyTripsViewInvited',
+      page: MyTripsViewInvited,
+    ),
+    AutoRoute(
+      path: 'profile_route',
+      name: 'MyProfileViewRouteInvited',
+      page: ProfileViewInvited,
+    ),
+  ],
+);
+
+const starLightFlow = AutoRoute(
+  path: '/flow_user',
+  name: "StarLightFlowUser",
+  initial: true,
+  page: StarLightFlowInvited,
   children: [
     AutoRoute(
       path: 'home',
@@ -27,26 +56,12 @@ const starLightFlow = AutoRoute(
     AutoRoute(
       path: 'my_trips',
       name: 'MyTripsView',
-      page: MyTripsView,
+      page: MyTripsViewUser,
     ),
     AutoRoute(
-        path: 'profile_route',
-        name: 'MyProfileViewRoute',
-        page: EmptyRouterPage,
-        children: [
-          AutoRoute(
-            path: 'profile',
-            name: 'MyProfileView',
-            page: ProfileView,
-            initial: true,
-          ),
-          AutoRoute(
-            path: 'sign_in',
-            name: "LayoutSignSelectRoute",
-            page: LayoutSignSelect,
-            // guards: [SignInGuard],
-            // initial: true,
-          ),
-        ]),
+      path: 'profile_route',
+      name: 'MyProfileView',
+      page: MyProfileView,
+    ),
   ],
 );

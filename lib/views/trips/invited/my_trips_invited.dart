@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:starlight/router/starlight_router.gr.dart';
 
 import '../../widgets/buttons/primary_button.dart';
 
-class MyTripsView extends StatelessWidget {
-  const MyTripsView({Key? key}) : super(key: key);
+class MyTripsViewInvited extends StatelessWidget {
+  const MyTripsViewInvited({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class MyTripsView extends StatelessWidget {
         PrimaryButton(
             labelText: "Go to sign_in",
             onTap: () {
-              context.router.pushNamed("sign_in");
+              context.router.pushNamed('sign_in');
             })
       ],
     ));

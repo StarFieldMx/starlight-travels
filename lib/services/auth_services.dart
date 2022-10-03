@@ -33,7 +33,7 @@ class AuthServices extends ChangeNotifier {
     return decodeResponse.toString();
   }
 
-  Future<String?> login(String email, String password) async {
+  Future<Map<String, dynamic>> login(String email, String password) async {
     final Map<String, dynamic> authData = {
       'email': email,
       'password': password,
@@ -46,16 +46,14 @@ class AuthServices extends ChangeNotifier {
     if (decodeResponse.containsKey('idToken')) {
       // TODO: Guardarlo en un lugar seguro
       await storage.write(key: 'token', value: decodeResponse['idToken']);
-      return null;
+
+      return decodeResponse;
     } else {
-      return decodeResponse['error']['message'];
+      return decodeResponse;
     }
   }
 
   Future<UserStarlight?> signInWithGoogle() async {
-    String name;
-    String email;
-    String imageUrl;
     final GoogleSignInAccount? googleSignInAccount =
         await googleSignIn.signIn();
     final GoogleSignInAuthentication? googleSignInAuthentication =
@@ -73,13 +71,6 @@ class AuthServices extends ChangeNotifier {
     assert(user?.email != null);
     assert(user?.displayName != null);
     assert(user?.photoURL != null);
-    name = user?.displayName ?? '';
-    email = user?.email ?? '';
-    imageUrl = user?.photoURL ?? '';
-    // Checar solo devuelve el primer nombre (Frausto)
-    if (name.contains(" ")) {
-      name = name.substring(0, name.indexOf(" "));
-    }
     final isValid = user != null ? !user.isAnonymous : false;
     assert(isValid);
     assert(await user?.getIdToken() != null);

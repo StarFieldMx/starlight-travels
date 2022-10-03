@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starlight/models/user.dart';
 import 'package:starlight/providers/user_state.dart';
 import 'package:starlight/services/auth_services.dart';
 
@@ -21,8 +22,8 @@ class SignInProvider extends ChangeNotifier {
     if (!isValidForm()) return;
     final response =
         await authServices.login(emailController.text, passwordController.text);
-    if (response == null) {
-      _successResponse();
+    if (!response.containsKey('error')) {
+      _successResponse(response);
     } else {
       //  * HAS ERROR
       print(response);
@@ -39,5 +40,14 @@ class SignInProvider extends ChangeNotifier {
     isLoading = false;
   }
 
-  void _successResponse() {}
+  void _successResponse(Map<String, dynamic> value) {
+    final Map<String, dynamic> cleanMap = {};
+    if (value.containsKey('kind')) {
+      value.remove('kind');
+      cleanMap.addAll(value);
+    } else {
+      cleanMap.addAll(value);
+    }
+    userState.user = UserStarlight.fromMap(cleanMap);
+  }
 }

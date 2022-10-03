@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/views/layout/bottomNavigate/bottom_navigator.dart';
 
-class StarLightFlowInvited extends StatelessWidget {
-  const StarLightFlowInvited({Key? key}) : super(key: key);
+class StarLightFlowUser extends StatelessWidget {
+  const StarLightFlowUser({Key? key}) : super(key: key);
 
   @override
   Widget build(context) {
@@ -18,7 +18,7 @@ class StarLightFlowInvited extends StatelessWidget {
 List<PageRouteInfo<dynamic>> _pageRoutes() {
   return const [
     HomeView(),
-    MyTripsViewInvited(),
-    MyProfileViewRouteInvited(),
+    MyTripsView(),
+    MyProfileView(),
   ];
 }
