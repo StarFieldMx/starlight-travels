@@ -54,6 +54,7 @@ class AuthServices extends ChangeNotifier {
   }
 
   Future<UserStarlight?> signInWithGoogle() async {
+    signOutGoogle();
     final GoogleSignInAccount? googleSignInAccount =
         await googleSignIn.signIn();
     final GoogleSignInAuthentication? googleSignInAuthentication =
@@ -77,7 +78,17 @@ class AuthServices extends ChangeNotifier {
     final _idToken = await user?.getIdToken();
     final User currentUser = await _auth.currentUser!;
     assert(user?.uid == currentUser.uid);
-    return userFromString(user.toString());
+    storage.write(key: 'token', value: _idToken);
+    final userStarlight = UserStarlight(
+      email: user?.email ?? '',
+      displayName: user?.displayName,
+      emailVerified: user?.emailVerified ?? false,
+      phoneNumber: user?.phoneNumber,
+      photoUrl: user?.photoURL,
+      uid: user?.uid,
+    );
+    await storage.write(key: 'user', value: userStarlight.toJson().toString());
+    return userStarlight;
   }
 
   void signOutGoogle() async {

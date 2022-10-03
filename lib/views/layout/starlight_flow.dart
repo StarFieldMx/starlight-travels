@@ -17,7 +17,7 @@ class StarLightFlowInvited extends StatelessWidget {
 
 List<PageRouteInfo<dynamic>> _pageRoutes() {
   return const [
-    HomeView(),
+    HomeViewInvited(),
     MyTripsViewInvited(),
     MyProfileViewRouteInvited(),
   ];

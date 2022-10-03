@@ -6,13 +6,6 @@ import 'package:starlight/views/main_views.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route,View',
   routes: <AutoRoute>[
-    AutoRoute(
-      path: 'main',
-      name: "MainViewRoute",
-      page: MainView,
-      guards: [AuthGuard],
-      initial: true,
-    ),
     starLightFlowInvited,
     starLightFlow,
     AutoRoute(
@@ -20,6 +13,13 @@ import 'package:starlight/views/main_views.dart';
       name: "LayoutSignSelectRoute",
       page: LayoutSignSelect,
       // guards: [SignInGuard],
+      // initial: true,
+    ),
+    AutoRoute(
+      path: 'main',
+      name: "MainViewRoute",
+      page: MainView,
+      guards: [AuthGuard],
       // initial: true,
     ),
   ],
@@ -34,7 +34,7 @@ const starLightFlowInvited = AutoRoute(
   children: [
     AutoRoute(
       path: 'home',
-      name: 'HomeView',
+      name: 'HomeViewInvited',
       page: HomePageView,
     ),
     AutoRoute(
@@ -54,7 +54,7 @@ const starLightFlow = AutoRoute(
   path: '/flow_user',
   name: "StarLightFlowUser",
   initial: true,
-  page: StarLightFlowInvited,
+  page: StarLightFlowUser,
   children: [
     AutoRoute(
       path: 'home',

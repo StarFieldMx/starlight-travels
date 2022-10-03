@@ -37,12 +37,12 @@ class SignInProvider extends ChangeNotifier {
     final userResponse = await authServices.signInWithGoogle();
     if (userResponse != null) {
       userState.user = userResponse;
-      // Implement change view state of trips
+      _successResponse();
     }
     isLoading = false;
   }
 
   void _successResponse() {
-    userState.login(context);
+    userState.login();
   }
 }

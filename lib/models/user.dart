@@ -9,14 +9,14 @@ class UserStarlight {
   UserStarlight({
     required this.email,
     this.displayName,
-    this.emailVerified,
+    this.emailVerified = false,
     this.phoneNumber,
     this.photoUrl,
     this.uid,
   });
   String email;
   String? displayName;
-  String? emailVerified;
+  bool emailVerified;
   String? phoneNumber;
   String? photoUrl;
   String? uid;
@@ -24,7 +24,7 @@ class UserStarlight {
   UserStarlight copyWith({
     required String email,
     String? displayName,
-    String? emailVerified,
+    bool emailVerified = false,
     String? phoneNumber,
     String? photoUrl,
     String? uid,
@@ -32,7 +32,7 @@ class UserStarlight {
       UserStarlight(
         displayName: displayName ?? this.displayName,
         email: email,
-        emailVerified: emailVerified ?? this.emailVerified,
+        emailVerified: emailVerified,
         phoneNumber: phoneNumber ?? this.phoneNumber,
         photoUrl: photoUrl ?? this.photoUrl,
         uid: uid ?? this.uid,

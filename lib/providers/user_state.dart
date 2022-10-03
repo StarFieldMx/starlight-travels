@@ -7,6 +7,7 @@ import 'package:starlight/models/user.dart';
 
 class UserState extends ChangeNotifier {
   final storage = const FlutterSecureStorage();
+  late final BuildContext context;
   UserState() {
     _initializeUser();
   }
@@ -22,20 +23,20 @@ class UserState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void login(BuildContext context) {
+  void login() {
     _initializeUser();
     context.router.replaceNamed('main');
   }
 
   void _initializeUser() async {
-    // storage.deleteAll();
     final String? rawUser = await storage.read(key: 'user');
     final String? token = await storage.read(key: 'token');
     final UserStarlight tempUser;
+    if (token != null) _token = token;
     if (rawUser != null && token != null) {
       tempUser = userFromString(rawUser);
       _user = tempUser;
-      _token = token;
+      context.router.replaceNamed('main');
     }
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:starlight/providers/user_state.dart';
 import 'package:starlight/styles/starlight_colors.dart';
 
 class LayoutHomeView extends StatelessWidget {
@@ -6,6 +8,8 @@ class LayoutHomeView extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
+    final userState = Provider.of<UserState>(context, listen: false);
+    userState.context = context;
     final upperTab = [
       GestureDetector(
         child: const Icon(Icons.hotel, size: 25),

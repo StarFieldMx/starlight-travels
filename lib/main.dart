@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 import 'package:starlight/providers/providers.dart';
 import 'package:starlight/router/guards/guards.dart';
 import 'package:starlight/router/starlight_router.gr.dart';
@@ -18,30 +19,36 @@ void main() async {
       projectId: "starlight-flights",
     ),
   );
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(
-      create: (_) => FlightsServices(),
-    ),
-    ChangeNotifierProvider(
-      create: (_) => AuthServices(),
-    ),
-    ChangeNotifierProvider(
-      create: (_) => UserState(),
-      lazy: false,
-    ),
-  ], child: const MyApp()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _starLightRouter = AppRouter(authGuard: AuthGuard(context: context));
+    final _starLightRouter = AppRouter(authGuard: AuthGuard());
     final theme = ThemeDataStarLight(context: context);
-    return MaterialApp.router(
-      theme: theme.starDark,
-      routeInformationParser: _starLightRouter.defaultRouteParser(),
-      routerDelegate: _starLightRouter.delegate(),
+    return MultiProvider(
+      providers: provider(),
+      child: MaterialApp.router(
+        theme: theme.starDark,
+        routeInformationParser: _starLightRouter.defaultRouteParser(),
+        routerDelegate: _starLightRouter.delegate(),
+      ),
     );
+  }
+
+  List<SingleChildWidget> provider() {
+    return [
+      ChangeNotifierProvider(
+        create: (_) => FlightsServices(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => AuthServices(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => UserState(),
+      ),
+    ];
   }
 }
