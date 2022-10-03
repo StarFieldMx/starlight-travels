@@ -12,13 +12,13 @@ class UserState extends ChangeNotifier {
     _initializeUser();
   }
   String _token = '';
-  late final UserStarlight _user;
+  UserStarlight? _user;
 
-  UserStarlight get user => _user;
+  UserStarlight? get user => _user;
   String get token => _token;
   bool get authentication => _token.isNotEmpty;
 
-  set user(UserStarlight value) {
+  set user(UserStarlight? value) {
     _user = value;
     notifyListeners();
   }
