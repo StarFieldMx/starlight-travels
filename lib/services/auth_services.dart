@@ -97,7 +97,7 @@ class AuthServices extends ChangeNotifier {
     await googleSignIn.signOut();
     // googleSignIn.disconnect();
     logOut();
-    context.router.replace(const StarLightFlowInvited());
+    context.router.replaceNamed('main');
   }
 
   void logOut() {

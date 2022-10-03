@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:starlight/models/user.dart';
+import 'package:starlight/router/starlight_router.gr.dart';
 
 class UserState extends ChangeNotifier {
   final storage = const FlutterSecureStorage();
@@ -25,7 +26,6 @@ class UserState extends ChangeNotifier {
 
   void login() {
     _initializeUser();
-    context!.router.replaceNamed('main');
   }
 
   void _initializeUser() async {
@@ -38,5 +38,9 @@ class UserState extends ChangeNotifier {
       _user = tempUser;
       context!.router.replaceNamed('main');
     }
+  }
+
+  void logOut() {
+    _token = '';
   }
 }
