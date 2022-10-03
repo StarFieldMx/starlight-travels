@@ -54,7 +54,6 @@ class AuthServices extends ChangeNotifier {
   }
 
   Future<UserStarlight?> signInWithGoogle() async {
-    signOutGoogle();
     final GoogleSignInAccount? googleSignInAccount =
         await googleSignIn.signIn();
     final GoogleSignInAuthentication? googleSignInAuthentication =
