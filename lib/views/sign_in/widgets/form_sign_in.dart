@@ -17,9 +17,11 @@ class FormSignIn extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final inputDecoration = StarlightInputStyles(size: size);
-    final signInProvider = Provider.of<SignInProvider>(context, listen: false);
+    final signInProvider = Provider.of<SignInProvider>(context);
+    final signInProviderOff =
+        Provider.of<SignInProvider>(context, listen: false);
     return FormStructure(
-      formKey: signInProvider.formKey,
+      formKey: signInProviderOff.formKey,
       childrens: [
         EmailField(
           controller: signInProvider.emailController,
@@ -33,7 +35,8 @@ class FormSignIn extends StatelessWidget {
         ),
         PrimaryButton(
           labelText: "SignIn",
-          onTap: () => signInProvider.tryLogin(),
+          isLoading: signInProvider.isLoading,
+          onTap: () => signInProviderOff.tryLogin(),
         ),
         const _GoogleSignIn(),
       ],
@@ -49,6 +52,11 @@ class _GoogleSignIn extends StatelessWidget {
     final signInProvider = Provider.of<SignInProvider>(context);
     return Center(
       child: GestureDetector(
+        onTap: signInProvider.isLoading
+            ? null
+            : () {
+                signInProvider.loginWithGoogle();
+              },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -70,9 +78,6 @@ class _GoogleSignIn extends StatelessWidget {
             ),
           ],
         ),
-        onTap: () {
-          signInProvider.loginWithGoogle();
-        },
       ),
     );
   }

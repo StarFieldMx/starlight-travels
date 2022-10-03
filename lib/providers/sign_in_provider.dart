@@ -22,9 +22,11 @@ class SignInProvider extends ChangeNotifier {
 
   void tryLogin() async {
     if (!isValidForm()) return;
+    isLoading = true;
     final response =
         await authServices.login(emailController.text, passwordController.text);
     if (response == null) {
+      isLoading = false;
       _successResponse();
     } else {
       //  * HAS ERROR

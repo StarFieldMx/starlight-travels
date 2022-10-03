@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:starlight/models/user.dart';
+
+import '../router/starlight_router.gr.dart';
 
 class AuthServices extends ChangeNotifier {
   final _baseUrl = "identitytoolkit.googleapis.com";
@@ -90,9 +93,11 @@ class AuthServices extends ChangeNotifier {
     return userStarlight;
   }
 
-  void signOutGoogle() async {
+  void signOutGoogle(BuildContext context) async {
     await googleSignIn.signOut();
+    // googleSignIn.disconnect();
     logOut();
+    context.router.replace(const StarLightFlowInvited());
   }
 
   void logOut() {
