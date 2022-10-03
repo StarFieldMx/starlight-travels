@@ -7,7 +7,7 @@ import 'package:starlight/models/user.dart';
 
 class UserState extends ChangeNotifier {
   final storage = const FlutterSecureStorage();
-  late final BuildContext context;
+  BuildContext? context;
   UserState() {
     _initializeUser();
   }
@@ -25,7 +25,7 @@ class UserState extends ChangeNotifier {
 
   void login() {
     _initializeUser();
-    context.router.replaceNamed('main');
+    context!.router.replaceNamed('main');
   }
 
   void _initializeUser() async {
@@ -36,7 +36,7 @@ class UserState extends ChangeNotifier {
     if (rawUser != null && token != null) {
       tempUser = userFromString(rawUser);
       _user = tempUser;
-      context.router.replaceNamed('main');
+      context!.router.replaceNamed('main');
     }
   }
 }

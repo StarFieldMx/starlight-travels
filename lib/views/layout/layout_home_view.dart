@@ -1,15 +1,23 @@
+import 'dart:async';
+
+import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:starlight/providers/user_state.dart';
 import 'package:starlight/styles/starlight_colors.dart';
 
-class LayoutHomeView extends StatelessWidget {
+class LayoutHomeView extends StatefulWidget {
   const LayoutHomeView({super.key, required this.child});
   final Widget child;
+
+  @override
+  State<LayoutHomeView> createState() => _LayoutHomeViewState();
+}
+
+class _LayoutHomeViewState extends State<LayoutHomeView>
+    with AfterLayoutMixin<LayoutHomeView> {
   @override
   Widget build(BuildContext context) {
-    final userState = Provider.of<UserState>(context, listen: false);
-    userState.context = context;
     final upperTab = [
       GestureDetector(
         child: const Icon(Icons.hotel, size: 25),
@@ -30,10 +38,17 @@ class LayoutHomeView extends StatelessWidget {
         slivers: [
           _CustomAppBar(upperTab),
           SliverSafeArea(
-              sliver: SliverList(delegate: SliverChildListDelegate([child])))
+              sliver:
+                  SliverList(delegate: SliverChildListDelegate([widget.child])))
         ],
       ),
     );
+  }
+
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context) {
+    final userState = Provider.of<UserState>(context, listen: false);
+    userState.context ??= context;
   }
 }
 
