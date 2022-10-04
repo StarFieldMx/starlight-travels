@@ -1,6 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:starlight/providers/user_state.dart';
 import 'package:starlight/services/auth_services.dart';
+import 'package:starlight/services/notification_service.dart';
 
 class SignInProvider extends ChangeNotifier {
   final AuthServices authServices;
@@ -20,6 +23,7 @@ class SignInProvider extends ChangeNotifier {
   }
 
   void tryLogin(BuildContext context) async {
+    FocusScope.of(context).requestFocus(FocusNode());
     if (!isValidForm()) return;
     isLoading = true;
     final response =
@@ -28,8 +32,7 @@ class SignInProvider extends ChangeNotifier {
       isLoading = false;
       _successResponse(context);
     } else {
-      //  * HAS ERROR
-      print(response);
+      NotificationsService.showSnackbar(response);
     }
   }
 

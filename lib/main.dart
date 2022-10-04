@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: provider(),
       child: MaterialApp.router(
+        scaffoldMessengerKey: NotificationsService.messengerKey,
         theme: theme.starDark,
         routeInformationParser: starLightRouter.defaultRouteParser(),
         routerDelegate: starLightRouter.delegate(),
