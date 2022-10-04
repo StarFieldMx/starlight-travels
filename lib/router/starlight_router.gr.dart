@@ -16,10 +16,15 @@ import 'package:flutter/material.dart' as _i4;
 
 import '../views/home/home_page.dart' as _i2;
 import '../views/main_views.dart' as _i1;
+import 'guards/guards.dart' as _i5;
 
 class AppRouter extends _i3.RootStackRouter {
-  AppRouter([_i4.GlobalKey<_i4.NavigatorState>? navigatorKey])
-      : super(navigatorKey);
+  AppRouter({
+    _i4.GlobalKey<_i4.NavigatorState>? navigatorKey,
+    required this.authGuard,
+  }) : super(navigatorKey);
+
+  final _i5.AuthGuard authGuard;
 
   @override
   final Map<String, _i3.PageFactory> pagesMap = {
@@ -32,7 +37,7 @@ class AppRouter extends _i3.RootStackRouter {
     StarLightFlowUser.name: (routeData) {
       return _i3.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i1.StarLightFlowInvited(),
+        child: const _i1.StarLightFlowUser(),
       );
     },
     LayoutSignSelectRoute.name: (routeData) {
@@ -41,7 +46,13 @@ class AppRouter extends _i3.RootStackRouter {
         child: const _i1.LayoutSignSelect(),
       );
     },
-    HomeView.name: (routeData) {
+    MainViewRoute.name: (routeData) {
+      return _i3.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i1.MainView(),
+      );
+    },
+    HomeViewInvited.name: (routeData) {
       return _i3.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i2.HomePageView(),
@@ -57,6 +68,12 @@ class AppRouter extends _i3.RootStackRouter {
       return _i3.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.ProfileViewInvited(),
+      );
+    },
+    HomeView.name: (routeData) {
+      return _i3.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i2.HomePageView(),
       );
     },
     MyTripsView.name: (routeData) {
@@ -86,7 +103,7 @@ class AppRouter extends _i3.RootStackRouter {
           path: '/flow',
           children: [
             _i3.RouteConfig(
-              HomeView.name,
+              HomeViewInvited.name,
               path: 'home',
               parent: StarLightFlowInvited.name,
             ),
@@ -127,6 +144,11 @@ class AppRouter extends _i3.RootStackRouter {
           LayoutSignSelectRoute.name,
           path: 'sign_in',
         ),
+        _i3.RouteConfig(
+          MainViewRoute.name,
+          path: 'main',
+          guards: [authGuard],
+        ),
       ];
 }
 
@@ -144,7 +166,7 @@ class StarLightFlowInvited extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.StarLightFlowInvited]
+/// [_i1.StarLightFlowUser]
 class StarLightFlowUser extends _i3.PageRouteInfo<void> {
   const StarLightFlowUser({List<_i3.PageRouteInfo>? children})
       : super(
@@ -169,15 +191,27 @@ class LayoutSignSelectRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.HomePageView]
-class HomeView extends _i3.PageRouteInfo<void> {
-  const HomeView()
+/// [_i1.MainView]
+class MainViewRoute extends _i3.PageRouteInfo<void> {
+  const MainViewRoute()
       : super(
-          HomeView.name,
+          MainViewRoute.name,
+          path: 'main',
+        );
+
+  static const String name = 'MainViewRoute';
+}
+
+/// generated route for
+/// [_i2.HomePageView]
+class HomeViewInvited extends _i3.PageRouteInfo<void> {
+  const HomeViewInvited()
+      : super(
+          HomeViewInvited.name,
           path: 'home',
         );
 
-  static const String name = 'HomeView';
+  static const String name = 'HomeViewInvited';
 }
 
 /// generated route for
@@ -202,6 +236,18 @@ class MyProfileViewRouteInvited extends _i3.PageRouteInfo<void> {
         );
 
   static const String name = 'MyProfileViewRouteInvited';
+}
+
+/// generated route for
+/// [_i2.HomePageView]
+class HomeView extends _i3.PageRouteInfo<void> {
+  const HomeView()
+      : super(
+          HomeView.name,
+          path: 'home',
+        );
+
+  static const String name = 'HomeView';
 }
 
 /// generated route for

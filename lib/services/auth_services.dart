@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:starlight/models/user.dart';
+
+import '../router/starlight_router.gr.dart';
 
 class AuthServices extends ChangeNotifier {
   final _baseUrl = "identitytoolkit.googleapis.com";
@@ -33,7 +36,7 @@ class AuthServices extends ChangeNotifier {
     return decodeResponse.toString();
   }
 
-  Future<Map<String, dynamic>> login(String email, String password) async {
+  Future<String?> login(String email, String password) async {
     final Map<String, dynamic> authData = {
       'email': email,
       'password': password,
@@ -42,14 +45,14 @@ class AuthServices extends ChangeNotifier {
     final url = Uri.https(_baseUrl, _endpintURLLogin, {'key': _firebaseToken});
     final response = await http.post(url, body: json.encode(authData));
     final Map<String, dynamic> decodeResponse = json.decode(response.body);
-    print(decodeResponse);
     if (decodeResponse.containsKey('idToken')) {
+      final UserStarlight tempUser = UserStarlight.fromMap(decodeResponse);
       // TODO: Guardarlo en un lugar seguro
       await storage.write(key: 'token', value: decodeResponse['idToken']);
-
-      return decodeResponse;
+      await storage.write(key: 'user', value: tempUser.toJson().toString());
+      return null;
     } else {
-      return decodeResponse;
+      return decodeResponse['error']['message'];
     }
   }
 
@@ -77,12 +80,24 @@ class AuthServices extends ChangeNotifier {
     final _idToken = await user?.getIdToken();
     final User currentUser = await _auth.currentUser!;
     assert(user?.uid == currentUser.uid);
-    return userFromString(user.toString());
+    storage.write(key: 'token', value: _idToken);
+    final userStarlight = UserStarlight(
+      email: user?.email ?? '',
+      displayName: user?.displayName,
+      emailVerified: user?.emailVerified ?? false,
+      phoneNumber: user?.phoneNumber,
+      photoUrl: user?.photoURL,
+      uid: user?.uid,
+    );
+    await storage.write(key: 'user', value: userStarlight.toJson().toString());
+    return userStarlight;
   }
 
-  void signOutGoogle() async {
+  void signOutGoogle(BuildContext context) async {
     await googleSignIn.signOut();
+    // googleSignIn.disconnect();
     logOut();
+    context.router.replaceNamed('main');
   }
 
   void logOut() {

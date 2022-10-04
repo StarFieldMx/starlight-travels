@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:starlight/router/guards/guards.dart';
 import 'package:starlight/views/home/home_page.dart';
 import 'package:starlight/views/main_views.dart';
 
@@ -14,6 +15,13 @@ import 'package:starlight/views/main_views.dart';
       // guards: [SignInGuard],
       // initial: true,
     ),
+    AutoRoute(
+      path: 'main',
+      name: "MainViewRoute",
+      page: MainView,
+      guards: [AuthGuard],
+      // initial: true,
+    ),
   ],
 )
 class $AppRouter {}
@@ -26,7 +34,7 @@ const starLightFlowInvited = AutoRoute(
   children: [
     AutoRoute(
       path: 'home',
-      name: 'HomeView',
+      name: 'HomeViewInvited',
       page: HomePageView,
     ),
     AutoRoute(
@@ -46,7 +54,7 @@ const starLightFlow = AutoRoute(
   path: '/flow_user',
   name: "StarLightFlowUser",
   initial: true,
-  page: StarLightFlowInvited,
+  page: StarLightFlowUser,
   children: [
     AutoRoute(
       path: 'home',
