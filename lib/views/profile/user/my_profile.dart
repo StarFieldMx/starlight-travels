@@ -14,6 +14,7 @@ class MyProfileView extends StatelessWidget {
 
     return Center(
         child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text('Profile User'),
         PrimaryButton(

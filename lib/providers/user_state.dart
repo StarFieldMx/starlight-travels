@@ -24,7 +24,8 @@ class UserState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void login() {
+  void login(BuildContext newContext) {
+    context = newContext;
     _initializeUser();
   }
 

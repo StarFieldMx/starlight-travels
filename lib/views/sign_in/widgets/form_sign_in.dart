@@ -36,7 +36,7 @@ class FormSignIn extends StatelessWidget {
         PrimaryButton(
           labelText: "SignIn",
           isLoading: signInProvider.isLoading,
-          onTap: () => signInProviderOff.tryLogin(),
+          onTap: () => signInProviderOff.tryLogin(context),
         ),
         const _GoogleSignIn(),
       ],
@@ -55,7 +55,7 @@ class _GoogleSignIn extends StatelessWidget {
         onTap: signInProvider.isLoading
             ? null
             : () {
-                signInProvider.loginWithGoogle();
+                signInProvider.loginWithGoogle(context);
               },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

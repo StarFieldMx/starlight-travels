@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:starlight/providers/user_state.dart';
 import 'package:starlight/services/auth_services.dart';
@@ -20,31 +19,31 @@ class SignInProvider extends ChangeNotifier {
     return formKey.currentState?.validate() ?? false;
   }
 
-  void tryLogin() async {
+  void tryLogin(BuildContext context) async {
     if (!isValidForm()) return;
     isLoading = true;
     final response =
         await authServices.login(emailController.text, passwordController.text);
     if (response == null) {
       isLoading = false;
-      _successResponse();
+      _successResponse(context);
     } else {
       //  * HAS ERROR
       print(response);
     }
   }
 
-  void loginWithGoogle() async {
+  void loginWithGoogle(BuildContext context) async {
     isLoading = true;
     final userResponse = await authServices.signInWithGoogle();
     if (userResponse != null) {
       userState.user = userResponse;
-      _successResponse();
+      _successResponse(context);
     }
     isLoading = false;
   }
 
-  void _successResponse() {
-    userState.login();
+  void _successResponse(BuildContext context) {
+    userState.login(context);
   }
 }
