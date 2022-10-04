@@ -8,8 +8,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:starlight/models/user.dart';
 
-import '../router/starlight_router.gr.dart';
-
 class AuthServices extends ChangeNotifier {
   final _baseUrl = "identitytoolkit.googleapis.com";
   final _firebaseToken = "AIzaSyBsXjft_FDGmBIwlV1Snbh_tnmVq6DKoHM";

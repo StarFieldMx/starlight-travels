@@ -43,5 +43,6 @@ class UserState extends ChangeNotifier {
 
   void logOut() {
     _token = '';
+    user = null;
   }
 }

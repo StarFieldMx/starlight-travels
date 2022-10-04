@@ -53,6 +53,9 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(
         create: (_) => UserState(),
       ),
+      ChangeNotifierProvider(
+        create: (_) => HomeServices(),
+      ),
     ];
   }
 }
