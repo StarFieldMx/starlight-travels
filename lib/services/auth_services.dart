@@ -1,18 +1,15 @@
-import 'dart:convert';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:starlight/models/user.dart';
+import 'package:starlight/services/http_reponse.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AuthServices extends ChangeNotifier {
-  final _baseUrl = "identitytoolkit.googleapis.com";
-  final _firebaseToken = "AIzaSyBsXjft_FDGmBIwlV1Snbh_tnmVq6DKoHM";
-  final _endpintURLLogin = "/v1/accounts:signInWithPassword";
-  final _endpintURLRegister = "/v1/accounts:signUp";
+  final _endpintURLLogin = dotenv.env['ENDPURLLOGIN'];
+  final _endpintURLRegister = dotenv.env['ENDPURLREGISTER'];
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   User? googleUser;
@@ -21,17 +18,21 @@ class AuthServices extends ChangeNotifier {
   final storage = const FlutterSecureStorage();
   // Login and Register
 
-  Future<String?> createUser(String email, String password) async {
+  Future<String?> createUser(
+      {required String email,
+      required String password,
+      required String name,
+      required String lastName}) async {
     final Map<String, dynamic> authData = {
       'email': email,
       "password": password,
       'returnSecureToken': false
     };
-    final url =
-        Uri.https(_baseUrl, _endpintURLRegister, {'key': _firebaseToken});
-    final data = json.encode(authData);
-    final resp = await http.post(url, body: data);
-    final Map<String, dynamic> decodeResponse = json.decode(resp.body);
+    final Map<String, dynamic> decodeResponse =
+        await HttpReponse.getAuthReponse(
+      authData,
+      _endpintURLRegister!,
+    );
     return decodeResponse.toString();
   }
 
@@ -41,9 +42,11 @@ class AuthServices extends ChangeNotifier {
       'password': password,
       'returnSecureToken': true
     };
-    final url = Uri.https(_baseUrl, _endpintURLLogin, {'key': _firebaseToken});
-    final response = await http.post(url, body: json.encode(authData));
-    final Map<String, dynamic> decodeResponse = json.decode(response.body);
+    final Map<String, dynamic> decodeResponse =
+        await HttpReponse.getAuthReponse(
+      authData,
+      _endpintURLLogin!,
+    );
     if (decodeResponse.containsKey('idToken')) {
       final UserStarlight tempUser = UserStarlight.fromMap(decodeResponse);
       // TODO: Guardarlo en un lugar seguro
@@ -76,10 +79,10 @@ class AuthServices extends ChangeNotifier {
     final isValid = user != null ? !user.isAnonymous : false;
     assert(isValid);
     assert(await user?.getIdToken() != null);
-    final _idToken = await user?.getIdToken();
-    final User googleUser = await _auth.currentUser!;
+    final idToken = await user?.getIdToken();
+    final User googleUser = _auth.currentUser!;
     assert(user?.uid == googleUser.uid);
-    storage.write(key: 'token', value: _idToken);
+    storage.write(key: 'token', value: idToken);
     final userStarlight = UserStarlight(
       email: user?.email ?? '',
       displayName: user?.displayName,
