@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:starlight/main_test.dart';
 import 'package:starlight/providers/user_state.dart';
 import 'package:starlight/services/auth_services.dart';
 import 'package:starlight/widgets/buttons/primary_button.dart';
@@ -11,12 +12,12 @@ class MyProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     final authServices = Provider.of<AuthServices>(context, listen: false);
     final userState = Provider.of<UserState>(context, listen: false);
-
+    // return PaymentScreen2();
     return Center(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('Profile User'),
+        const Text('Profile User'),
         PrimaryButton(
           labelText: 'labelText',
           onTap: () {

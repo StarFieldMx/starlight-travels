@@ -16,6 +16,7 @@ class HomePageView extends StatelessWidget {
   Widget build(BuildContext context) {
     final homeServices = Provider.of<HomeServices>(context);
     final userState = Provider.of<UserState>(context);
+    Provider.of<UserState>(context, listen: false).context = context;
     bool hasUser = userState.user == null ? false : true;
     final size = MediaQuery.of(context).size;
     if (homeServices.isLoading) {
