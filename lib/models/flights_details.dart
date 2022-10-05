@@ -11,7 +11,6 @@ String flightDetailsToMap(FlightDetails data) => json.encode(data.toMap());
 
 class FlightDetails {
   FlightDetails({
-    required this.id,
     required this.price,
     required this.travelers,
     required this.departure,
@@ -20,7 +19,6 @@ class FlightDetails {
     required this.travel,
   });
 
-  String id;
   int price;
   int travelers;
   String departure;
@@ -29,7 +27,6 @@ class FlightDetails {
   Travel travel;
 
   factory FlightDetails.fromMap(Map<String, dynamic> json) => FlightDetails(
-        id: json["id"],
         price: json["price"],
         travelers: json["travelers"],
         departure: json["Departure"],
@@ -39,13 +36,12 @@ class FlightDetails {
       );
 
   Map<String, dynamic> toMap() => {
-        "id": id,
         "price": price,
         "travelers": travelers,
         "Departure": departure,
         "Airline": airline,
         "flightTime": flightTime,
-        "travel": travel == null ? null : travel.toMap(),
+        "travel": travel.toMap(),
       };
 }
 

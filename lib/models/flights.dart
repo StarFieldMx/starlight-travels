@@ -4,6 +4,7 @@
 
 import 'dart:convert';
 
+import 'package:starlight/models/country.dart';
 import 'package:starlight/models/flights_details.dart';
 
 List<Flights> flightsFromMap(String str) =>
@@ -31,8 +32,8 @@ class Flights {
   String? id;
   Airline airline;
   Type type;
-  String from;
-  String to;
+  Country from;
+  Country to;
   String departure;
   String arrival;
   String depTime;
@@ -45,8 +46,8 @@ class Flights {
         id: json["id"],
         airline: Airline.starlight,
         type: Type.redondo,
-        from: json["from"],
-        to: json["to"],
+        from: Country(code: json["from"]),
+        to: Country(code: json["to"]),
         departure: json["Departure"],
         arrival: json["Arrival"],
         depTime: json["depTime"],

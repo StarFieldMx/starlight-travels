@@ -1,6 +1,5 @@
-[
-  {
-    "id": "4165156156156165",
+{
+  "4165156156156165": {
     "Airline": "Viva Aerobus",
     "type": "redondo",
     "from": "LAX",
@@ -28,8 +27,7 @@
       }
     }
   },
-  {
-    "id": "6795908536750427",
+  "6795908536750427": {
     "Airline": "Viva Aerobus",
     "type": "redondo",
     "from": "CAL",
@@ -57,8 +55,7 @@
       }
     }
   },
-  {
-    "id": "0430638407393936",
+  "0430638407393936": {
     "Airline": "Viva Aerobus",
     "type": "redondo",
     "from": "KS",
@@ -86,8 +83,7 @@
       }
     }
   },
-  {
-    "id": "8380569873706784",
+  "8380569873706784": {
     "Airline": "Viva Aerobus",
     "type": "redondo",
     "from": "IL",
@@ -115,8 +111,7 @@
       }
     }
   },
-  {
-    "id": "5529240020921645",
+  "5529240020921645": {
     "Airline": "Viva Aerobus",
     "type": "redondo",
     "from": "FL",
@@ -144,8 +139,7 @@
       }
     }
   },
-  {
-    "id": "1574769970553785",
+  "1574769970553785" : {
     "Airline": "Viva Aerobus",
     "type": "redondo",
     "from": "MT",
@@ -173,8 +167,7 @@
       }
     }
   },
-  {
-    "id": "2464082191415511",
+  "2464082191415511": {
     "Airline": "Viva Aerobus",
     "type": "redondo",
     "from": "MI",
@@ -202,8 +195,7 @@
       }
     }
   },
-  {
-    "id": "6374576331467435",
+  "6374576331467435": {
     "Airline": "Viva Aerobus",
     "type": "redondo",
     "from": "ON",
@@ -231,8 +223,7 @@
       }
     }
   },
-  {
-    "id": "7097871195103926",
+  "7097871195103926": {
     "Airline": "Viva Aerobus",
     "type": "redondo",
     "from": "NY",
@@ -260,4 +251,4 @@
       }
     }
   }
-]
+}

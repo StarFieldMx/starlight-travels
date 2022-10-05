@@ -4,7 +4,7 @@ import 'package:starlight/providers/sign_in_provider.dart';
 // STYLES
 import 'package:starlight/styles/starlight_inputs.dart';
 // WIDGETS
-import 'package:starlight/widgets/fields/index.dart';
+import 'package:starlight/widgets/fields/fields.dart';
 import 'package:starlight/widgets/buttons/primary_button.dart';
 import 'package:starlight/widgets/form_structure.dart';
 
