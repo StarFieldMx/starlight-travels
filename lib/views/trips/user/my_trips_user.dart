@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:starlight/main_test.dart';
 import 'package:starlight/views/payment/payment_screen.dart';
 import 'package:starlight/widgets/buttons/primary_button.dart';
 
@@ -19,6 +18,10 @@ class _MyTripsViewUserState extends State<MyTripsViewUser> {
 
   @override
   Widget build(BuildContext context) {
-    return PaymentScreen();
+    return SafeArea(
+      child: Column(
+        children: [],
+      ),
+    );
   }
 }

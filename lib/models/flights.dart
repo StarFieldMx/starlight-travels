@@ -2,8 +2,9 @@
 //
 //     final flights = flightsFromMap(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
+
+import 'package:starlight/models/flights_details.dart';
 
 List<Flights> flightsFromMap(String str) =>
     List<Flights>.from(json.decode(str).map((x) => Flights.fromMap(x)));
@@ -24,6 +25,7 @@ class Flights {
     required this.arrTime,
     required this.flighTime,
     required this.price,
+    required this.details,
   });
 
   String? id;
@@ -37,38 +39,12 @@ class Flights {
   String arrTime;
   int flighTime;
   int price;
-
-  Flights copyWith({
-    required String id,
-    Airline? airline,
-    Type? type,
-    String? from,
-    String? to,
-    String? departure,
-    String? arrival,
-    String? depTime,
-    String? arrTime,
-    int? flighTime,
-    int? price,
-  }) =>
-      Flights(
-        id: id,
-        airline: airline ?? this.airline,
-        type: type ?? this.type,
-        from: from ?? this.from,
-        to: to ?? this.to,
-        departure: departure ?? this.departure,
-        arrival: arrival ?? this.arrival,
-        depTime: depTime ?? this.depTime,
-        arrTime: arrTime ?? this.arrTime,
-        flighTime: flighTime ?? this.flighTime,
-        price: price ?? this.price,
-      );
+  FlightDetails details;
 
   factory Flights.fromMap(Map<String, dynamic> json) => Flights(
         id: json["id"],
-        airline: Airline.VIVA_AEROBUS,
-        type: Type.REDONDO,
+        airline: Airline.starlight,
+        type: Type.redondo,
         from: json["from"],
         to: json["to"],
         departure: json["Departure"],
@@ -77,6 +53,7 @@ class Flights {
         arrTime: json["arrTime"],
         flighTime: json["flighTime"],
         price: json["price"],
+        details: FlightDetails.fromMap(json["flights_details"]),
       );
 
   Map<String, dynamic> toMap() => {
@@ -94,6 +71,6 @@ class Flights {
       };
 }
 
-enum Airline { VIVA_AEROBUS }
+enum Airline { starlight }
 
-enum Type { REDONDO }
+enum Type { redondo }
