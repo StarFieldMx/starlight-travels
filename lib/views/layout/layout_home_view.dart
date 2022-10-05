@@ -18,6 +18,8 @@ class _LayoutHomeViewState extends State<LayoutHomeView>
     with AfterLayoutMixin<LayoutHomeView> {
   @override
   Widget build(BuildContext context) {
+    final userState = Provider.of<UserState>(context);
+    bool hasUser = userState.user == null ? false : true;
     final upperTab = [
       GestureDetector(
         child: const Icon(Icons.hotel, size: 25),
@@ -36,7 +38,7 @@ class _LayoutHomeViewState extends State<LayoutHomeView>
       backgroundColor: StarLightColors.starPrimaryBlue,
       body: CustomScrollView(
         slivers: [
-          _CustomAppBar(upperTab),
+          if (hasUser) _CustomAppBar(upperTab),
           SliverSafeArea(
               sliver:
                   SliverList(delegate: SliverChildListDelegate([widget.child])))

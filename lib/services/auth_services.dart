@@ -8,8 +8,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:starlight/models/user.dart';
 
-import '../router/starlight_router.gr.dart';
-
 class AuthServices extends ChangeNotifier {
   final _baseUrl = "identitytoolkit.googleapis.com";
   final _firebaseToken = "AIzaSyBsXjft_FDGmBIwlV1Snbh_tnmVq6DKoHM";
@@ -17,6 +15,7 @@ class AuthServices extends ChangeNotifier {
   final _endpintURLRegister = "/v1/accounts:signUp";
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
+  User? googleUser;
 
   // storage
   final storage = const FlutterSecureStorage();
@@ -78,8 +77,8 @@ class AuthServices extends ChangeNotifier {
     assert(isValid);
     assert(await user?.getIdToken() != null);
     final _idToken = await user?.getIdToken();
-    final User currentUser = await _auth.currentUser!;
-    assert(user?.uid == currentUser.uid);
+    final User googleUser = await _auth.currentUser!;
+    assert(user?.uid == googleUser.uid);
     storage.write(key: 'token', value: _idToken);
     final userStarlight = UserStarlight(
       email: user?.email ?? '',
@@ -94,7 +93,9 @@ class AuthServices extends ChangeNotifier {
   }
 
   void signOutGoogle(BuildContext context) async {
-    await googleSignIn.signOut();
+    if (googleUser != null) {
+      await googleSignIn.signOut();
+    }
     // googleSignIn.disconnect();
     logOut();
     context.router.replaceNamed('main');

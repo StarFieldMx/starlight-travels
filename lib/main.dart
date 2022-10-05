@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:starlight/providers/providers.dart';
@@ -7,6 +8,8 @@ import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/services/services.dart';
 import 'package:starlight/styles/theme_starlight.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+GetIt getIt = GetIt.instance;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +22,7 @@ void main() async {
       projectId: "starlight-flights",
     ),
   );
+  getIt.registerSingleton<AppRouter>(AppRouter(authGuard: AuthGuard()));
   runApp(const MyApp());
 }
 
@@ -26,14 +30,15 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _starLightRouter = AppRouter(authGuard: AuthGuard());
+    final starLightRouter = getIt<AppRouter>();
     final theme = ThemeDataStarLight(context: context);
     return MultiProvider(
       providers: provider(),
       child: MaterialApp.router(
+        scaffoldMessengerKey: NotificationsService.messengerKey,
         theme: theme.starDark,
-        routeInformationParser: _starLightRouter.defaultRouteParser(),
-        routerDelegate: _starLightRouter.delegate(),
+        routeInformationParser: starLightRouter.defaultRouteParser(),
+        routerDelegate: starLightRouter.delegate(),
       ),
     );
   }
@@ -48,6 +53,9 @@ class MyApp extends StatelessWidget {
       ),
       ChangeNotifierProvider(
         create: (_) => UserState(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => HomeServices(),
       ),
     ];
   }
