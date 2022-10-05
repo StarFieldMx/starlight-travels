@@ -14,13 +14,17 @@ class PrimaryButton extends StatelessWidget {
   final bool isLoading;
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      colorBrightness: Brightness.light,
-      onPressed: !isLoading ? onTap : null,
-      color: StarLightColors.lightBlue,
-      minWidth: 150,
-      child: Text(labelText, style: StarLightTextStyles.primaryButton),
-      // minHeight: 200,
+    final width = MediaQuery.of(context).size.width;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(25),
+      child: MaterialButton(
+        onPressed: !isLoading ? onTap : null,
+        color: StarLightColors.lightBlue,
+        minWidth: width * 0.6,
+        height: 50,
+        child: Text(labelText, style: StarLightTextStyles.primaryButton),
+        // minHeight: 200,
+      ),
     );
   }
 }

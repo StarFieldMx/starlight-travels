@@ -12,7 +12,7 @@ class LayoutSignIn extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final authServices = Provider.of<AuthServices>(context);
     final userState = Provider.of<UserState>(context);
-    return Stack(children: [
+    return Stack(alignment: Alignment.center, children: [
       Positioned(
         top: 30,
         left: size.width * 0.5 - 60,
@@ -26,13 +26,13 @@ class LayoutSignIn extends StatelessWidget {
         ),
       ),
       Positioned(
-        top: 120,
+        top: 150,
         child: ChangeNotifierProvider(
           create: (_) => SignInProvider(
               authServices: authServices,
               userState: userState,
               context: context),
-          child: CardSignIn(size: size),
+          child: Center(child: CardSignIn(size: size)),
         ),
       ),
     ]);
