@@ -46,9 +46,9 @@ class HttpResponse {
     final Map<String, dynamic> map = json.decode(response.body);
     map.forEach((key, value) {
       final tempData = parseFrom(value);
-      if (tempData is Flights) {
+      if (tempData is Flight) {
         tempData.id = key;
-      } else if (tempData is Hotels) {
+      } else if (tempData is Hotel) {
         tempData.id = key;
         // ! Settear imagen??
       }

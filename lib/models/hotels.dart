@@ -4,14 +4,14 @@
 
 import 'dart:convert';
 
-List<Hotels> hotelsFromMap(String str) =>
-    List<Hotels>.from(json.decode(str).map((x) => Hotels.fromMap(x)));
+List<Hotel> hotelsFromMap(String str) =>
+    List<Hotel>.from(json.decode(str).map((x) => Hotel.fromMap(x)));
 
-String hotelsToMap(List<Hotels> data) =>
+String hotelsToMap(List<Hotel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
 
-class Hotels {
-  Hotels({
+class Hotel {
+  Hotel({
     this.id,
     this.picture,
     required this.hotel,
@@ -36,7 +36,7 @@ class Hotels {
   Accessibility accessibility;
   List<More> more;
 
-  factory Hotels.fromMap(Map<String, dynamic> json) => Hotels(
+  factory Hotel.fromMap(Map<String, dynamic> json) => Hotel(
         picture: json["picture"],
         hotel: json["hotel"],
         rate: json["rate"].toDouble(),

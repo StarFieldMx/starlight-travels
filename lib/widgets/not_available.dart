@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class NotAvailable extends StatelessWidget {
-  const NotAvailable({super.key});
-
+  const NotAvailable({super.key, this.message});
+  final String? message;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,13 +12,13 @@ class NotAvailable extends StatelessWidget {
           color: Colors.yellow[800],
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(25), bottomRight: Radius.circular(25))),
-      child: const FittedBox(
+      child: FittedBox(
         fit: BoxFit.contain,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            'No disponible',
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            message ?? 'No disponible',
+            style: const TextStyle(color: Colors.white, fontSize: 20),
           ),
         ),
       ),

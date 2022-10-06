@@ -1,12 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:starlight/models/hotels.dart';
 import 'package:starlight/services/http_reponse.dart';
 
 class HotelsServices extends ChangeNotifier {
   BuildContext? context;
-  List<Hotels> hotels = [];
+  List<Hotel> hotels = [];
   bool isLoading = true;
   final httpReponse = HttpResponse();
   HotelsServices() {
@@ -14,7 +12,7 @@ class HotelsServices extends ChangeNotifier {
   }
   void _loadHotels() async {
     await httpReponse.getHttpReponseFromList(
-        "hotels.json", Hotels.fromMap, hotels);
+        "hotels.json", Hotel.fromMap, hotels);
     isLoading = false;
     notifyListeners();
   }

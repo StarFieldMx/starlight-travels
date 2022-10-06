@@ -8,7 +8,7 @@ const mxConvert = 21;
 
 class MyFlightsCard extends StatelessWidget {
   const MyFlightsCard({super.key, required this.flight});
-  final Flights flight;
+  final Flight flight;
 
   @override
   Widget build(BuildContext context) {
