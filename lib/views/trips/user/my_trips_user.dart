@@ -22,21 +22,15 @@ class _MyTripsViewUserState extends State<MyTripsViewUser> {
   Widget build(BuildContext context) {
     final provider = Provider.of<FlightsServices>(context);
     if (provider.flights.isNotEmpty) {
-      Flights flight = provider.flights[0];
       return SafeArea(
-        child: Column(
-          children: [
-            MyFlightsCard(
-              flight: flight,
-            ),
-            MyFlightsCard(
-              flight: flight,
-            )
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: _parseChildren(provider.flights),
+          ),
         ),
       );
     }
-    return Center();
+    return const LoadinStarlight();
   }
 
   List<Widget> _parseChildren(List<Flights> flights) => flights
