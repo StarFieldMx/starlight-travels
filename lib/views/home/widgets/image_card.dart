@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starlight/widgets/background_image.dart';
 
 class ImageCard extends StatelessWidget {
   const ImageCard({super.key, required this.image});
@@ -17,15 +18,10 @@ class ImageCard extends StatelessWidget {
     return Container(
       width: width * 0.9,
       height: width * 0.55,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        image: DecorationImage(
-          image: NetworkImage(image),
-          fit: BoxFit.cover,
+      child: ColorFiltered(
           colorFilter:
               ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
-        ),
-      ),
+          child: BackgroundImage(image)),
     );
   }
 }

@@ -11,12 +11,12 @@ class MyProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     final authServices = Provider.of<AuthServices>(context, listen: false);
     final userState = Provider.of<UserState>(context, listen: false);
-
+    // return PaymentScreen2();
     return Center(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('Profile User'),
+        const Text('Profile User'),
         PrimaryButton(
           labelText: 'labelText',
           onTap: () {

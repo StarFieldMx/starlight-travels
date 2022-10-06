@@ -9,11 +9,15 @@ import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/services/services.dart';
 import 'package:starlight/styles/theme_starlight.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 GetIt getIt = GetIt.instance;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
+  Stripe.publishableKey = dotenv.env['STRIPEPUBLICKEY']!;
+
   await Firebase.initializeApp(
     // Replace with actual values
     options: const FirebaseOptions(
@@ -24,7 +28,6 @@ void main() async {
     ),
   );
   getIt.registerSingleton<AppRouter>(AppRouter(authGuard: AuthGuard()));
-  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 

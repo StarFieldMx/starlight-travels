@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:starlight/models/user.dart';
-import 'package:starlight/router/starlight_router.gr.dart';
 
 class UserState extends ChangeNotifier {
   final storage = const FlutterSecureStorage();

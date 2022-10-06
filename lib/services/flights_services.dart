@@ -10,16 +10,8 @@ class FlightsServices extends ChangeNotifier {
   }
   Future<List<Flights>> loadFlights() async {
     const path = "flights.json";
-    final Map<String, dynamic> flightsMap =
-        await HttpReponse.getHttpReponse(path);
-    flightsMap.forEach((key, value) {
-      if (key != "flights-details") {
-        final tempFlight = Flights.fromMap(value);
-        tempFlight.id = key;
-        flights.add(tempFlight);
-      }
-    });
-    print(flights[0].airline);
+    await HttpReponse.getHttpReponseFromList(path, Flights.fromMap, flights);
+    notifyListeners();
     return flights;
   }
 }

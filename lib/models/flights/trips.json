@@ -1,93 +1,254 @@
-[
-  {
-    "AirportCode": "LAX",
-    "AirportName": "Los Angeles",
+{
+  "4165156156156165": {
+    "Airline": "Viva Aerobus",
+    "type": "redondo",
     "from": "LAX",
     "to": "AUS",
     "Departure": "25 Jun 2019",
     "Arrival": "25 Jun 2019",
-    "depTime": "01:05 AM",
-    "arrTime": "02:05 AM"
+    "depTime": "1:05 AM",
+    "arrTime": "2:05 AM",
+    "flighTime": 60,
+    "price": 183,
+    "flights_details" : {
+      "price": 183,
+      "travelers": 1,
+      "Departure": "25 jun",
+      "Airline": "Viva Aerobus",
+      "flightTime": 60,
+      "travel": {
+        "depTime": "1:05 AM",
+        "arrTime": "2:05 AM",
+        "AirportName": "Los Angeles",
+        "flightTime": 60,
+        "Airline": "Viva Aerobus",
+        "from": "LAX",
+        "to": "AUS"
+      }
+    }
   },
-  {
-    "AirportCode": "AUS",
-    "AirportName": "Austin",
-    "from": "AUS",
-    "to": "LAX",
-    "Departure": "25 Jun 2019",
-    "Arrival": "25 Jun 2019",
-    "time": "03:05 AM"
-  },
-  {
-    "AirportCode": "CAL",
-    "AirportName": "California",
+  "6795908536750427": {
+    "Airline": "Viva Aerobus",
+    "type": "redondo",
     "from": "CAL",
     "to": "NY",
     "Departure": "15 Jun 2019",
     "Arrival": "15 Jun 2019",
-    "time": "10:05 AM"
+    "depTime": "10:05 AM",
+    "arrTime": "3:35 PM",
+    "flighTime": 220,
+    "price": 233,
+    "flights_details" : {
+      "price": 233,
+      "travelers": 1,
+      "Departure": "15 jun",
+      "Airline": "Viva Aerobus",
+      "flightTime": 220,
+      "travel": {
+        "depTime": "10:05 AM",
+        "arrTime": "3:35 PM",
+        "AirportName": "California",
+        "flightTime": 220,
+        "Airline": "Viva Aerobus",
+        "from": "CAL",
+        "to": "NY"
+      }
+    }
   },
-  {
-    "AirportCode": "KS",
-    "AirportName": "Kansas International",
+  "0430638407393936": {
+    "Airline": "Viva Aerobus",
+    "type": "redondo",
     "from": "KS",
     "to": "FL",
     "Departure": "19 Jun 2019",
     "Arrival": "19 Jun 2019",
-    "time": "09:05 AM"
+    "depTime": "09:05 AM",
+    "arrTime": "11:05 AM",
+    "flighTime": 120,
+    "price": 160,
+    "flights_details" : {
+      "price": 160,
+      "travelers": 1,
+      "Departure": "19 jun",
+      "Airline": "Viva Aerobus",
+      "flightTime": 120,
+      "travel": {
+        "depTime": "09:05 AM",
+        "arrTime": "11:05 AM",
+        "AirportName": "Kansas International",
+        "flightTime": 120,
+        "Airline": "Viva Aerobus",
+        "from": "KS",
+        "to": "FL"
+      }
+    }
   },
-  {
-    "AirportCode": "IL",
-    "AirportName": "Illinois Airlines",
+  "8380569873706784": {
+    "Airline": "Viva Aerobus",
+    "type": "redondo",
     "from": "IL",
     "to": "KS",
     "Departure": "22 Jun 2019",
     "Arrival": "22 Jun 2019",
-    "time": "08:00 AM"
+    "depTime": "08:00 AM",
+    "arrTime": "09:24 AM",
+    "flighTime": 84,
+    "price": 140,
+    "flights_details" : {
+      "price": 140,
+      "travelers": 1,
+      "Departure": "25 jun",
+      "Airline": "Viva Aerobus",
+      "flightTime": 84,
+      "travel": {
+        "depTime": "08:00 AM",
+        "arrTime": "09:24 AM",
+        "AirportName": "Illinois Airlines",
+        "flightTime": 84,
+        "Airline": "Viva Aerobus",
+        "from": "IL",
+        "to": "KS"
+      }
+    }
   },
-  {
-    "AirportCode": "FL",
-    "AirportName": "Florida International",
+  "5529240020921645": {
+    "Airline": "Viva Aerobus",
+    "type": "redondo",
     "from": "FL",
     "to": "AUS",
     "Departure": "22 Jun 2019",
     "Arrival": "22 Jun 2019",
-    "time": "07:05 AM"
+    "depTime": "07:05 AM",
+    "arrTime": "08:41 AM",
+    "flighTime": 96,
+    "price": 174,
+    "flights_details" : {
+      "price": 174,
+      "travelers": 1,
+      "Departure": "22 jun",
+      "Airline": "Viva Aerobus",
+      "flightTime": 96,
+      "travel": {
+        "depTime": "07:05 AM",
+        "arrTime": "08:41 AM",
+        "AirportName": "Florida International",
+        "flightTime": 96,
+        "Airline": "Viva Aerobus",
+        "from": "FL",
+        "to": "AUS"
+      }
+    }
   },
-  {
-    "AirportCode": "MT",
-    "AirportName": "Montana International",
+  "1574769970553785" : {
+    "Airline": "Viva Aerobus",
+    "type": "redondo",
     "from": "MT",
     "to": "LAX",
     "Departure": "30 Jun 2019",
     "Arrival": "30 Jun 2019",
-    "time": "07:05 AM"
+    "depTime": "07:05 AM",
+    "arrTime": "09:39 AM",
+    "flighTime": 154,
+    "price": 200,
+    "flights_details" : {
+      "price": 200,
+      "travelers": 1,
+      "Departure": "25 jun",
+      "Airline": "Viva Aerobus",
+      "flightTime": 154,
+      "travel": {
+        "depTime": "07:05 AM",
+        "arrTime": "09:39 AM",
+        "AirportName": "Montana International",
+        "flightTime": 154,
+        "Airline": "Viva Aerobus",
+        "from": "MT",
+        "to": "LAX"
+      }
+    }
   },
-  {
-    "AirportCode": "MI",
-    "AirportName": "Michigan International Airlines",
+  "2464082191415511": {
+    "Airline": "Viva Aerobus",
+    "type": "redondo",
     "from": "MI",
     "to": "MT",
     "Departure": "1 Aug 2019",
     "Arrival": "1 Aug 2019",
-    "time": "10:05 AM"
+    "depTime": "10:05 AM",
+    "arrTime": "1:41 PM",
+    "flighTime": 216,
+    "price": 210,
+    "flights_details" : {
+      "price": 210,
+      "travelers": 1,
+      "Departure": "1 Aug",
+      "Airline": "Viva Aerobus",
+      "flightTime": 216,
+      "travel": {
+        "depTime": "10:05 AM",
+        "arrTime": "01:41 PM",
+        "AirportName": "Michigan International Airlines",
+        "flightTime": 216,
+        "Airline": "Viva Aerobus",
+        "from": "MI",
+        "to": "MT"
+      }
+    }
   },
-  {
-    "AirportCode": "ON",
-    "AirportName": "Air Canada",
+  "6374576331467435": {
+    "Airline": "Viva Aerobus",
+    "type": "redondo",
     "from": "ON",
     "to": "OH",
     "Departure": "13 Aug 2019",
     "Arrival": "13 Aug 2019",
-    "time": "11:05 AM"
+    "depTime": "11:05 AM",
+    "arrTime": "3:05 PM",
+    "flighTime": 240,
+    "price": 240,
+    "flights_details" : {
+      "price": 240,
+      "travelers": 1,
+      "Departure": "13 jun",
+      "Airline": "Viva Aerobus",
+      "flightTime": 240,
+      "travel": {
+        "depTime": "11:05 AM",
+        "arrTime": "3:05 PM",
+        "AirportName": "Air Canada",
+        "flightTime": 240,
+        "Airline": "Viva Aerobus",
+        "from": "ON",
+        "to": "OH"
+      }
+    }
   },
-  {
-    "AirportCode": "NY",
-    "AirportName": "New York Airport",
+  "7097871195103926": {
+    "Airline": "Viva Aerobus",
+    "type": "redondo",
     "from": "NY",
     "to": "AL",
     "Departure": "15 Aug 2019",
     "Arrival": "15 Aug 2019",
-    "time": "09:05 AM"
+    "depTime": "09:05 AM",
+    "arrTime": "11:05 AM",
+    "flighTime": 120,
+    "price": 160,
+    "flights_details" : {
+      "price": 160,
+      "travelers": 1,
+      "Departure": "15 Aug",
+      "Airline": "Viva Aerobus",
+      "flightTime": 120,
+      "travel": {
+        "depTime": "1:05 AM",
+        "arrTime": "2:05 AM",
+        "AirportName": "New York Airport",
+        "flightTime": 120,
+        "Airline": "Viva Aerobus",
+        "from": "NY",
+        "to": "AL"
+      }
+    }
   }
-]
+}

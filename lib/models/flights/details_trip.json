@@ -1,6 +1,5 @@
 [
   {
-    "id": "4165156156156165",
     "price": 183,
     "travelers": 1,
     "Departure": "25 jun",
@@ -17,7 +16,6 @@
     }
   },
   {
-    "id": "6795908536750427",
     "price": 233,
     "travelers": 1,
     "Departure": "15 jun",
@@ -34,7 +32,6 @@
     }
   },
   {
-    "id": "0430638407393936",
     "price": 160,
     "travelers": 1,
     "Departure": "19 jun",
@@ -51,7 +48,6 @@
     }
   },
   {
-    "id": "8380569873706784",
     "price": 140,
     "travelers": 1,
     "Departure": "25 jun",
@@ -68,7 +64,6 @@
     }
   },
   {
-    "id": "5529240020921645",
     "price": 174,
     "travelers": 1,
     "Departure": "22 jun",
@@ -85,7 +80,6 @@
     }
   },
   {
-    "id": "1574769970553785",
     "price": 200,
     "travelers": 1,
     "Departure": "25 jun",
@@ -102,7 +96,6 @@
     }
   },
   {
-    "id": "2464082191415511",
     "price": 210,
     "travelers": 1,
     "Departure": "1 Aug",
@@ -119,7 +112,6 @@
     }
   },
   {
-    "id": "6374576331467435",
     "price": 240,
     "travelers": 1,
     "Departure": "13 jun",
@@ -136,7 +128,6 @@
     }
   },
   {
-    "id": "7097871195103926",
     "price": 160,
     "travelers": 1,
     "Departure": "15 Aug",

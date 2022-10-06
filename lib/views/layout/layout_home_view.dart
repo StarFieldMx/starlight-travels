@@ -29,10 +29,10 @@ class _LayoutHomeViewState extends State<LayoutHomeView>
         child: const Icon(Icons.flight_land_rounded, size: 25),
         onTap: () {},
       ),
-      GestureDetector(
-        child: const Icon(Icons.today_rounded, size: 25),
-        onTap: () {},
-      ),
+      // GestureDetector(
+      //   child: const Icon(Icons.today_rounded, size: 25),
+      //   onTap: () {},
+      // ),
     ];
     return Scaffold(
       backgroundColor: StarLightColors.starPrimaryBlue,

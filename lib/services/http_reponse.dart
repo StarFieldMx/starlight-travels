@@ -22,6 +22,18 @@ class HttpReponse {
     return map;
   }
 
+  static Future<void> getHttpReponseFromList(String path,
+      Function(Map<String, dynamic>) parseFrom, List<dynamic> list) async {
+    final url = Uri.https(dataBase!, path);
+    final response = await http.get(url);
+    final Map<String, dynamic> map = json.decode(response.body);
+    map.forEach((key, value) {
+      final tempFlight = parseFrom(value);
+      tempFlight.id = key;
+      list.add(tempFlight);
+    });
+  }
+
   static Future<Map<String, dynamic>> getAuthReponse(
     Map<String, dynamic> authData,
     String path,
