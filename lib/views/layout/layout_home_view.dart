@@ -4,7 +4,7 @@ import 'package:after_layout/after_layout.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:starlight/providers/user_state.dart';
+import 'package:starlight/providers/providers.dart';
 import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/styles/starlight_colors.dart';
 
@@ -21,6 +21,10 @@ class _LayoutHomeViewState extends State<LayoutHomeView>
   @override
   Widget build(BuildContext context) {
     final userState = Provider.of<UserState>(context);
+    final authChecker = Provider.of<AuthChecker>(context);
+    if (authChecker.user != null && userState.user != null) {
+      userState.user!.uid = authChecker.user!.uid;
+    }
     bool hasUser = userState.user == null ? false : true;
     final upperTab = [
       GestureDetector(

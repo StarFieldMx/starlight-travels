@@ -49,7 +49,8 @@ class AuthServices extends ChangeNotifier {
     );
     if (decodeResponse.containsKey('idToken')) {
       final UserStarlight tempUser = UserStarlight.fromMap(decodeResponse);
-      // TODO: Guardarlo en un lugar seguro
+      // !change
+      tempUser.userDetails = null;
       await storage.write(key: 'token', value: decodeResponse['idToken']);
       await storage.write(key: 'user', value: tempUser.toJson().toString());
       return null;
@@ -91,6 +92,8 @@ class AuthServices extends ChangeNotifier {
       photoUrl: user?.photoURL,
       uid: user?.uid,
     );
+    // !change
+    userStarlight.userDetails = null;
     await storage.write(key: 'user', value: userStarlight.toJson().toString());
     return userStarlight;
   }
@@ -107,4 +110,6 @@ class AuthServices extends ChangeNotifier {
   void logOut() {
     storage.deleteAll();
   }
+
+  Future<void> getUserDetails() async {}
 }
