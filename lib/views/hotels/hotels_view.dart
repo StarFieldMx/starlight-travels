@@ -23,9 +23,12 @@ class HotelsView extends StatelessWidget {
           child: ListView.builder(
             itemCount: hotels.hotels.length,
             itemBuilder: (_, int index) {
-              return HotelItem(
-                hotel: hotels.hotels[index],
-                imageIndexHotel: index,
+              return GestureDetector(
+                onTap: () => print('hola'),
+                child: HotelItem(
+                  hotel: hotels.hotels[index],
+                  imageIndexHotel: index,
+                ),
               );
             },
           )),

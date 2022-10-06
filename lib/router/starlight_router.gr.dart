@@ -95,16 +95,40 @@ class AppRouter extends _i4.RootStackRouter {
         child: const _i1.MyProfileView(),
       );
     },
+    HotelsRoute.name: (routeData) {
+      return _i4.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i2.EmptyRouterPage(),
+      );
+    },
+    FlightsRoute.name: (routeData) {
+      return _i4.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i2.EmptyRouterPage(),
+      );
+    },
     HotelsViewRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.LayoutHotelsView(),
       );
     },
+    HotelDetailsViewRoute.name: (routeData) {
+      return _i4.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i1.HotelDetailsView(),
+      );
+    },
     FlightsViewRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.LayoutFlightsView(),
+      );
+    },
+    FlightDetailsViewRoute.name: (routeData) {
+      return _i4.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i1.FlightDetailsView(),
       );
     },
   };
@@ -173,14 +197,38 @@ class AppRouter extends _i4.RootStackRouter {
           path: 'services',
           children: [
             _i4.RouteConfig(
-              HotelsViewRoute.name,
+              HotelsRoute.name,
               path: 'hotels',
               parent: ServicesViewRoute.name,
+              children: [
+                _i4.RouteConfig(
+                  HotelsViewRoute.name,
+                  path: '',
+                  parent: HotelsRoute.name,
+                ),
+                _i4.RouteConfig(
+                  HotelDetailsViewRoute.name,
+                  path: 'hotel_details',
+                  parent: HotelsRoute.name,
+                ),
+              ],
             ),
             _i4.RouteConfig(
-              FlightsViewRoute.name,
+              FlightsRoute.name,
               path: 'flights',
               parent: ServicesViewRoute.name,
+              children: [
+                _i4.RouteConfig(
+                  FlightsViewRoute.name,
+                  path: '',
+                  parent: FlightsRoute.name,
+                ),
+                _i4.RouteConfig(
+                  FlightDetailsViewRoute.name,
+                  path: 'hotel_details',
+                  parent: FlightsRoute.name,
+                ),
+              ],
             ),
           ],
         ),
@@ -323,15 +371,53 @@ class MyProfileViewRoute extends _i4.PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [_i2.EmptyRouterPage]
+class HotelsRoute extends _i4.PageRouteInfo<void> {
+  const HotelsRoute({List<_i4.PageRouteInfo>? children})
+      : super(
+          HotelsRoute.name,
+          path: 'hotels',
+          initialChildren: children,
+        );
+
+  static const String name = 'HotelsRoute';
+}
+
+/// generated route for
+/// [_i2.EmptyRouterPage]
+class FlightsRoute extends _i4.PageRouteInfo<void> {
+  const FlightsRoute({List<_i4.PageRouteInfo>? children})
+      : super(
+          FlightsRoute.name,
+          path: 'flights',
+          initialChildren: children,
+        );
+
+  static const String name = 'FlightsRoute';
+}
+
+/// generated route for
 /// [_i1.LayoutHotelsView]
 class HotelsViewRoute extends _i4.PageRouteInfo<void> {
   const HotelsViewRoute()
       : super(
           HotelsViewRoute.name,
-          path: 'hotels',
+          path: '',
         );
 
   static const String name = 'HotelsViewRoute';
+}
+
+/// generated route for
+/// [_i1.HotelDetailsView]
+class HotelDetailsViewRoute extends _i4.PageRouteInfo<void> {
+  const HotelDetailsViewRoute()
+      : super(
+          HotelDetailsViewRoute.name,
+          path: 'hotel_details',
+        );
+
+  static const String name = 'HotelDetailsViewRoute';
 }
 
 /// generated route for
@@ -340,8 +426,20 @@ class FlightsViewRoute extends _i4.PageRouteInfo<void> {
   const FlightsViewRoute()
       : super(
           FlightsViewRoute.name,
-          path: 'flights',
+          path: '',
         );
 
   static const String name = 'FlightsViewRoute';
+}
+
+/// generated route for
+/// [_i1.FlightDetailsView]
+class FlightDetailsViewRoute extends _i4.PageRouteInfo<void> {
+  const FlightDetailsViewRoute()
+      : super(
+          FlightDetailsViewRoute.name,
+          path: 'hotel_details',
+        );
+
+  static const String name = 'FlightDetailsViewRoute';
 }

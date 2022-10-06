@@ -38,7 +38,7 @@ class OptionsStarlight extends StatelessWidget {
                       // ! Redirect
                     ),
                     onTap: () => context.router.push(
-                        const ServicesViewRoute(children: [HotelsViewRoute()])),
+                        const ServicesViewRoute(children: [HotelsRoute()])),
                   ),
                   VerticalDivider(
                     color: StarLightColors.starLight, //color of divider
@@ -53,8 +53,8 @@ class OptionsStarlight extends StatelessWidget {
                       type: 'Viajes',
                       // ! Redirect
                     ),
-                    onTap: () => context.router.push(const ServicesViewRoute(
-                        children: [FlightsViewRoute()])),
+                    onTap: () => context.router.push(
+                        const ServicesViewRoute(children: [FlightsRoute()])),
                   )
                 ],
               ),

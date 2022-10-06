@@ -26,16 +26,39 @@ import 'package:starlight/views/main_views.dart';
       name: "ServicesViewRoute",
       page: EmptyRouterPage,
       children: [
+        // FlightDetailsView
         AutoRoute(
-          path: 'hotels',
-          name: 'HotelsViewRoute',
-          page: LayoutHotelsView,
-        ),
+            path: 'hotels',
+            name: 'HotelsRoute',
+            page: EmptyRouterPage,
+            children: [
+              AutoRoute(
+                path: '',
+                name: 'HotelsViewRoute',
+                page: LayoutHotelsView,
+              ),
+              AutoRoute(
+                path: 'hotel_details',
+                name: 'HotelDetailsViewRoute',
+                page: HotelDetailsView,
+              ),
+            ]),
         AutoRoute(
-          path: 'flights',
-          name: 'FlightsViewRoute',
-          page: LayoutFlightsView,
-        ),
+            path: 'flights',
+            name: 'FlightsRoute',
+            page: EmptyRouterPage,
+            children: [
+              AutoRoute(
+                path: '',
+                name: 'FlightsViewRoute',
+                page: LayoutFlightsView,
+              ),
+              AutoRoute(
+                path: 'hotel_details',
+                name: 'FlightDetailsViewRoute',
+                page: FlightDetailsView,
+              ),
+            ]),
       ],
     )
   ],

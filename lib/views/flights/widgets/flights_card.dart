@@ -4,8 +4,8 @@ import 'package:starlight/utils/parse_time.dart';
 import 'package:starlight/widgets/multiply_text.dart';
 import 'package:starlight/widgets/widgets.dart';
 
-class MyFlightsCard extends StatelessWidget {
-  const MyFlightsCard({super.key, required this.flight});
+class FlightsCard extends StatelessWidget {
+  const FlightsCard({super.key, required this.flight});
   final Flight flight;
 
   @override
