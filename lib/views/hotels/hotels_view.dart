@@ -44,7 +44,7 @@ class _HoteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final Hotel = hotels.hotels[index];
+    final hotel = hotels.hotels[index];
     return Container(
       height: height * 0.3,
       alignment: Alignment.center,
@@ -53,7 +53,7 @@ class _HoteItem extends StatelessWidget {
         alignment: Alignment.topCenter,
         children: [
           imageHotels(index),
-          Text(hotels.hotels[index].hotel),
+          Text(hotel.hotel),
         ],
       ),
     );
