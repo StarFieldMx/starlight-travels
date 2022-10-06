@@ -29,7 +29,7 @@ class AuthServices extends ChangeNotifier {
       'returnSecureToken': false
     };
     final Map<String, dynamic> decodeResponse =
-        await HttpReponse.getAuthReponse(
+        await HttpResponse.getAuthReponse(
       authData,
       _endpintURLRegister!,
     );
@@ -43,7 +43,7 @@ class AuthServices extends ChangeNotifier {
       'returnSecureToken': true
     };
     final Map<String, dynamic> decodeResponse =
-        await HttpReponse.getAuthReponse(
+        await HttpResponse.getAuthReponse(
       authData,
       _endpintURLLogin!,
     );

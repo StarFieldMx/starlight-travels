@@ -6,7 +6,7 @@ import 'package:starlight/models/home_item.dart';
 import 'package:starlight/services/http_reponse.dart';
 
 class HomeServices extends ChangeNotifier {
-  final _baseUrl = "starlight-flights-default-rtdb.firebaseio.com";
+  final httpReponse = HttpResponse();
   HomeItem? homeItem;
   bool isLoading = true;
   HomeServices() {
@@ -14,7 +14,7 @@ class HomeServices extends ChangeNotifier {
   }
   Future<HomeItem> loadHome() async {
     const path = "home.json";
-    final Map<String, dynamic> homeMap = await HttpReponse.getHttpReponse(path);
+    final Map<String, dynamic> homeMap = await httpReponse.getHttpReponse(path);
     homeItem = HomeItem.fromMap(homeMap);
     isLoading = false;
     notifyListeners();

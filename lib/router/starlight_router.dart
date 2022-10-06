@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/empty_router_widgets.dart';
 import 'package:starlight/router/guards/guards.dart';
 import 'package:starlight/views/home/home_page.dart';
 import 'package:starlight/views/main_views.dart';
@@ -12,8 +13,6 @@ import 'package:starlight/views/main_views.dart';
       path: 'sign_in',
       name: "LayoutSignSelectRoute",
       page: LayoutSignSelect,
-      // guards: [SignInGuard],
-      // initial: true,
     ),
     AutoRoute(
       path: 'main',
@@ -57,9 +56,26 @@ const starLightFlow = AutoRoute(
   page: StarLightFlowUser,
   children: [
     AutoRoute(
-      path: 'home',
-      name: 'HomeView',
-      page: HomePageView,
+      path: 'home_route',
+      name: 'HomeRoute',
+      page: EmptyRouterPage,
+      children: [
+        AutoRoute(
+          path: '',
+          name: 'HomeViewRoute',
+          page: HomePageView,
+        ),
+        AutoRoute(
+          path: 'hotels',
+          name: 'HotelsView',
+          page: LayoutHotelsView,
+        ),
+        AutoRoute(
+          path: 'flights',
+          name: 'FlightsView',
+          page: LayoutFlightsView,
+        ),
+      ],
     ),
     AutoRoute(
       path: 'my_trips',

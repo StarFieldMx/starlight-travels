@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:after_layout/after_layout.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:starlight/providers/user_state.dart';
@@ -23,11 +24,11 @@ class _LayoutHomeViewState extends State<LayoutHomeView>
     final upperTab = [
       GestureDetector(
         child: const Icon(Icons.hotel, size: 25),
-        onTap: () {},
+        onTap: () => context.router.pushNamed('hotels'),
       ),
       GestureDetector(
         child: const Icon(Icons.flight_land_rounded, size: 25),
-        onTap: () {},
+        onTap: () => context.router.pushNamed('flights'),
       ),
       // GestureDetector(
       //   child: const Icon(Icons.today_rounded, size: 25),
