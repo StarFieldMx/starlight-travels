@@ -15,6 +15,8 @@ import 'package:auto_route/auto_route.dart' as _i4;
 import 'package:auto_route/empty_router_widgets.dart' as _i2;
 import 'package:flutter/material.dart' as _i5;
 
+import '../models/flights.dart' as _i8;
+import '../models/hotels.dart' as _i7;
 import '../views/home/home_page.dart' as _i3;
 import '../views/main_views.dart' as _i1;
 import 'guards/guards.dart' as _i6;
@@ -114,9 +116,13 @@ class AppRouter extends _i4.RootStackRouter {
       );
     },
     HotelDetailsViewRoute.name: (routeData) {
+      final args = routeData.argsAs<HotelDetailsViewRouteArgs>();
       return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i1.HotelDetailsView(),
+        child: _i1.HotelDetailsView(
+          key: args.key,
+          hotel: args.hotel,
+        ),
       );
     },
     FlightsViewRoute.name: (routeData) {
@@ -126,9 +132,13 @@ class AppRouter extends _i4.RootStackRouter {
       );
     },
     FlightDetailsViewRoute.name: (routeData) {
+      final args = routeData.argsAs<FlightDetailsViewRouteArgs>();
       return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i1.FlightDetailsView(),
+        child: _i1.FlightDetailsView(
+          key: args.key,
+          flight: args.flight,
+        ),
       );
     },
   };
@@ -410,14 +420,37 @@ class HotelsViewRoute extends _i4.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i1.HotelDetailsView]
-class HotelDetailsViewRoute extends _i4.PageRouteInfo<void> {
-  const HotelDetailsViewRoute()
-      : super(
+class HotelDetailsViewRoute
+    extends _i4.PageRouteInfo<HotelDetailsViewRouteArgs> {
+  HotelDetailsViewRoute({
+    _i5.Key? key,
+    required _i7.Hotel hotel,
+  }) : super(
           HotelDetailsViewRoute.name,
           path: 'hotel_details',
+          args: HotelDetailsViewRouteArgs(
+            key: key,
+            hotel: hotel,
+          ),
         );
 
   static const String name = 'HotelDetailsViewRoute';
+}
+
+class HotelDetailsViewRouteArgs {
+  const HotelDetailsViewRouteArgs({
+    this.key,
+    required this.hotel,
+  });
+
+  final _i5.Key? key;
+
+  final _i7.Hotel hotel;
+
+  @override
+  String toString() {
+    return 'HotelDetailsViewRouteArgs{key: $key, hotel: $hotel}';
+  }
 }
 
 /// generated route for
@@ -434,12 +467,35 @@ class FlightsViewRoute extends _i4.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i1.FlightDetailsView]
-class FlightDetailsViewRoute extends _i4.PageRouteInfo<void> {
-  const FlightDetailsViewRoute()
-      : super(
+class FlightDetailsViewRoute
+    extends _i4.PageRouteInfo<FlightDetailsViewRouteArgs> {
+  FlightDetailsViewRoute({
+    _i5.Key? key,
+    required _i8.Flight flight,
+  }) : super(
           FlightDetailsViewRoute.name,
           path: 'hotel_details',
+          args: FlightDetailsViewRouteArgs(
+            key: key,
+            flight: flight,
+          ),
         );
 
   static const String name = 'FlightDetailsViewRoute';
+}
+
+class FlightDetailsViewRouteArgs {
+  const FlightDetailsViewRouteArgs({
+    this.key,
+    required this.flight,
+  });
+
+  final _i5.Key? key;
+
+  final _i8.Flight flight;
+
+  @override
+  String toString() {
+    return 'FlightDetailsViewRouteArgs{key: $key, flight: $flight}';
+  }
 }
