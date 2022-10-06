@@ -11,22 +11,22 @@ String hotelsToMap(List<Hotel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
 
 class Hotel {
-  Hotel({
-    this.id,
-    this.picture,
-    required this.hotel,
-    required this.rate,
-    required this.direction,
-    required this.amenties,
-    required this.internet,
-    required this.foodDrink,
-    required this.thingsToDo,
-    required this.accessibility,
-    required this.more,
-  });
+  Hotel(
+      {this.id,
+      this.picture,
+      required this.name,
+      required this.rate,
+      required this.direction,
+      required this.amenties,
+      required this.internet,
+      required this.foodDrink,
+      required this.thingsToDo,
+      required this.accessibility,
+      required this.more,
+      required this.price});
   String? id;
   String? picture;
-  String hotel;
+  String name;
   double rate;
   Direction direction;
   Amenties amenties;
@@ -35,11 +35,12 @@ class Hotel {
   List<More> thingsToDo;
   Accessibility accessibility;
   List<More> more;
-
+  double price;
   factory Hotel.fromMap(Map<String, dynamic> json) => Hotel(
         picture: json["picture"],
-        hotel: json["hotel"],
+        name: json["hotel"],
         rate: json["rate"].toDouble(),
+        price: json["price"].toDouble(),
         direction: Direction.fromMap(json["direction"]),
         amenties: Amenties.fromMap(json["amenties"]),
         internet: List<Internet>.from(
@@ -53,7 +54,7 @@ class Hotel {
 
   Map<String, dynamic> toMap() => {
         "picture": picture,
-        "hotel": hotel,
+        "hotel": name,
         "rate": rate,
         "direction": direction.toMap(),
         "amenties": amenties.toMap(),
@@ -63,6 +64,7 @@ class Hotel {
             ? null
             : List<dynamic>.from(thingsToDo.map((x) => x.toMap())),
         "accessibility": List<dynamic>.from(more.map((x) => x.toMap())),
+        "price": price
       };
 }
 

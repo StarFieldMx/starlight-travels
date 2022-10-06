@@ -4,8 +4,6 @@ import 'package:starlight/utils/parse_time.dart';
 import 'package:starlight/widgets/multiply_text.dart';
 import 'package:starlight/widgets/widgets.dart';
 
-const mxConvert = 21;
-
 class MyFlightsCard extends StatelessWidget {
   const MyFlightsCard({super.key, required this.flight});
   final Flight flight;
@@ -18,12 +16,15 @@ class MyFlightsCard extends StatelessWidget {
         // ! Margi in view!!!
         margin: const EdgeInsets.only(top: 10, bottom: 20),
         width: double.infinity,
+        // ! Change for dynamic value
         height: 150,
         decoration: _cardBorders(),
         child: Stack(
           alignment: Alignment.bottomLeft,
           children: [
-            const AssetBackground(),
+            const AssetBackground(
+              height: 400,
+            ),
             DetailsText(
               child: MultiplyText(
                 textList: [
@@ -39,7 +40,7 @@ class MyFlightsCard extends StatelessWidget {
                 top: 0,
                 right: 0,
                 child: PriceTag(
-                  price: flight.price.toDouble() * mxConvert,
+                  price: flight.price.toDouble(),
                   typeTrip: flight.type.name,
                 )),
           ],
