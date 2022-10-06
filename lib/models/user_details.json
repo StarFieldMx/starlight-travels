@@ -1,4 +1,9 @@
 {
+    "name": "Juanjo",
+    "lastName": "perez",
+    "phoneNumber": "3121056509",
+    "gender": "male",
+    "creditCard" : 50000,
     "likedHotels" : {
         "9PdqX" : {
             "like": false
