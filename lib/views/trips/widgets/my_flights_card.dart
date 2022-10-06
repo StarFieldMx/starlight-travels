@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:starlight/models/flights.dart';
+import 'package:starlight/utils/parse_time.dart';
+import 'package:starlight/widgets/multiply_text.dart';
 import 'package:starlight/widgets/widgets.dart';
 
 const mxConvert = 21;
@@ -39,11 +41,17 @@ class _MyFlightsCardState extends State<MyFlightsCard> {
         child: Stack(
           alignment: Alignment.bottomLeft,
           children: [
-            const BackgroundImage(
-                'https://anba.com.br/wp-content/uploads/2020/07/emiratesboeing777-300er.png'),
+            const AssetBackground(),
             DetailsText(
-              title: _from,
-              subTitle: _to,
+              child: MultiplyText(
+                textList: [
+                  {"time": "${widget.flight.depTime}-${widget.flight.arrTime}"},
+                  _from,
+                  _to,
+                  parseTime(widget.flight.flighTime),
+                  widget.flight.airline,
+                ],
+              ),
             ),
             Positioned(
                 top: 0,

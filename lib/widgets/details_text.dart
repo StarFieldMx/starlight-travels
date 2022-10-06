@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:starlight/styles/starlight_colors.dart';
 
 class DetailsText extends StatelessWidget {
-  final String title;
-  final String subTitle;
-
-  const DetailsText({super.key, required this.title, required this.subTitle});
+  final String? title;
+  final String? subTitle;
+  final Widget? child;
+  const DetailsText({super.key, this.title, this.subTitle, this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,9 @@ class DetailsText extends StatelessWidget {
         width: double.infinity,
         height: width * 0.4,
         // decoration: _buildBoxDecoration(),
-        child: _TitleSubtitle(title: title, subTitle: subTitle),
+        child: child ??
+            _TitleSubtitle(
+                title: title ?? 'no text', subTitle: subTitle ?? 'no text'),
       ),
     );
   }

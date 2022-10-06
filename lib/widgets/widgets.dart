@@ -1,3 +1,4 @@
+export 'package:starlight/widgets/asset_bacground.dart';
 export 'package:starlight/widgets/background_image.dart';
 export 'package:starlight/widgets/card_container.dart';
 export 'package:starlight/widgets/details_text.dart';

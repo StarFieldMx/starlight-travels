@@ -46,9 +46,9 @@ class CardHomeItem extends StatelessWidget {
   }
 
   TextStyle styleTitle() =>
-      TextStyle(color: StarLightColors.starLight, fontSize: 30);
+      TextStyle(color: StarLightColors.starLight, fontSize: 20);
   TextStyle styleInfo() =>
-      TextStyle(color: StarLightColors.starLight, fontSize: 18);
+      TextStyle(color: StarLightColors.starLight, fontSize: 15);
 }
 
 class WrapText extends StatelessWidget {
@@ -64,11 +64,11 @@ class WrapText extends StatelessWidget {
   final TextStyle style;
   @override
   Widget build(BuildContext context) {
-    double maxHeight = text.length > 40 ? 80 : 40;
+    double maxHeight = _getHeight(text.length);
     return Container(
       constraints: BoxConstraints(
         maxHeight: maxHeight,
-        maxWidth: width * 0.9,
+        maxWidth: width * 0.8,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -80,4 +80,16 @@ class WrapText extends StatelessWidget {
       ),
     );
   }
+}
+
+double _getHeight(int lenght) {
+  double value = 0.0;
+  if (lenght < 40) {
+    value = lenght * 0.6;
+  } else if (lenght < 120) {
+    value = lenght * 0.9;
+  } else {
+    value = lenght * 0.5;
+  }
+  return value;
 }
