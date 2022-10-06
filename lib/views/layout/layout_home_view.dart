@@ -5,6 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:starlight/providers/user_state.dart';
+import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/styles/starlight_colors.dart';
 
 class LayoutHomeView extends StatefulWidget {
@@ -24,11 +25,13 @@ class _LayoutHomeViewState extends State<LayoutHomeView>
     final upperTab = [
       GestureDetector(
         child: const Icon(Icons.hotel, size: 25),
-        onTap: () => context.router.pushNamed('hotels'),
+        onTap: () => context.router
+            .push(const ServicesViewRoute(children: [HotelsViewRoute()])),
       ),
       GestureDetector(
         child: const Icon(Icons.flight_land_rounded, size: 25),
-        onTap: () => context.router.pushNamed('flights'),
+        onTap: () => context.router
+            .push(const ServicesViewRoute(children: [FlightsViewRoute()])),
       ),
       // GestureDetector(
       //   child: const Icon(Icons.today_rounded, size: 25),

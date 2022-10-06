@@ -18,7 +18,7 @@ class StarLightFlowUser extends StatelessWidget {
 List<PageRouteInfo<dynamic>> _pageRoutes() {
   return const [
     HomeRoute(),
-    MyTripsView(),
-    MyProfileView(),
+    MyTripsViewRoute(),
+    MyProfileViewRoute(),
   ];
 }

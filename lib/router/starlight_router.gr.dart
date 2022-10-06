@@ -12,10 +12,10 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:auto_route/empty_router_widgets.dart' as _i3;
+import 'package:auto_route/empty_router_widgets.dart' as _i2;
 import 'package:flutter/material.dart' as _i5;
 
-import '../views/home/home_page.dart' as _i2;
+import '../views/home/home_page.dart' as _i3;
 import '../views/main_views.dart' as _i1;
 import 'guards/guards.dart' as _i6;
 
@@ -53,19 +53,25 @@ class AppRouter extends _i4.RootStackRouter {
         child: const _i1.MainView(),
       );
     },
-    HomeViewInvited.name: (routeData) {
+    ServicesViewRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i2.HomePageView(),
+        child: const _i2.EmptyRouterPage(),
       );
     },
-    MyTripsViewInvited.name: (routeData) {
+    HomeViewInvitedRoute.name: (routeData) {
+      return _i4.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i3.HomePageView(),
+      );
+    },
+    MyTripsViewInvitedRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.MyTripsViewInvited(),
       );
     },
-    MyProfileViewRouteInvited.name: (routeData) {
+    MyProfileViewRouteInvitedRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.ProfileViewInvited(),
@@ -74,34 +80,28 @@ class AppRouter extends _i4.RootStackRouter {
     HomeRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i3.EmptyRouterPage(),
+        child: const _i3.HomePageView(),
       );
     },
-    MyTripsView.name: (routeData) {
+    MyTripsViewRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.MyTripsViewUser(),
       );
     },
-    MyProfileView.name: (routeData) {
+    MyProfileViewRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.MyProfileView(),
       );
     },
-    HomeViewRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i2.HomePageView(),
-      );
-    },
-    HotelsView.name: (routeData) {
+    HotelsViewRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.LayoutHotelsView(),
       );
     },
-    FlightsView.name: (routeData) {
+    FlightsViewRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.LayoutFlightsView(),
@@ -122,17 +122,17 @@ class AppRouter extends _i4.RootStackRouter {
           path: '/flow',
           children: [
             _i4.RouteConfig(
-              HomeViewInvited.name,
+              HomeViewInvitedRoute.name,
               path: 'home',
               parent: StarLightFlowInvited.name,
             ),
             _i4.RouteConfig(
-              MyTripsViewInvited.name,
+              MyTripsViewInvitedRoute.name,
               path: 'my_trips',
               parent: StarLightFlowInvited.name,
             ),
             _i4.RouteConfig(
-              MyProfileViewRouteInvited.name,
+              MyProfileViewRouteInvitedRoute.name,
               path: 'profile_route',
               parent: StarLightFlowInvited.name,
             ),
@@ -146,31 +146,14 @@ class AppRouter extends _i4.RootStackRouter {
               HomeRoute.name,
               path: 'home_route',
               parent: StarLightFlowUser.name,
-              children: [
-                _i4.RouteConfig(
-                  HomeViewRoute.name,
-                  path: '',
-                  parent: HomeRoute.name,
-                ),
-                _i4.RouteConfig(
-                  HotelsView.name,
-                  path: 'hotels',
-                  parent: HomeRoute.name,
-                ),
-                _i4.RouteConfig(
-                  FlightsView.name,
-                  path: 'flights',
-                  parent: HomeRoute.name,
-                ),
-              ],
             ),
             _i4.RouteConfig(
-              MyTripsView.name,
+              MyTripsViewRoute.name,
               path: 'my_trips',
               parent: StarLightFlowUser.name,
             ),
             _i4.RouteConfig(
-              MyProfileView.name,
+              MyProfileViewRoute.name,
               path: 'profile_route',
               parent: StarLightFlowUser.name,
             ),
@@ -184,6 +167,22 @@ class AppRouter extends _i4.RootStackRouter {
           MainViewRoute.name,
           path: 'main',
           guards: [authGuard],
+        ),
+        _i4.RouteConfig(
+          ServicesViewRoute.name,
+          path: 'services',
+          children: [
+            _i4.RouteConfig(
+              HotelsViewRoute.name,
+              path: 'hotels',
+              parent: ServicesViewRoute.name,
+            ),
+            _i4.RouteConfig(
+              FlightsViewRoute.name,
+              path: 'flights',
+              parent: ServicesViewRoute.name,
+            ),
+          ],
         ),
       ];
 }
@@ -239,49 +238,61 @@ class MainViewRoute extends _i4.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.HomePageView]
-class HomeViewInvited extends _i4.PageRouteInfo<void> {
-  const HomeViewInvited()
+/// [_i2.EmptyRouterPage]
+class ServicesViewRoute extends _i4.PageRouteInfo<void> {
+  const ServicesViewRoute({List<_i4.PageRouteInfo>? children})
       : super(
-          HomeViewInvited.name,
+          ServicesViewRoute.name,
+          path: 'services',
+          initialChildren: children,
+        );
+
+  static const String name = 'ServicesViewRoute';
+}
+
+/// generated route for
+/// [_i3.HomePageView]
+class HomeViewInvitedRoute extends _i4.PageRouteInfo<void> {
+  const HomeViewInvitedRoute()
+      : super(
+          HomeViewInvitedRoute.name,
           path: 'home',
         );
 
-  static const String name = 'HomeViewInvited';
+  static const String name = 'HomeViewInvitedRoute';
 }
 
 /// generated route for
 /// [_i1.MyTripsViewInvited]
-class MyTripsViewInvited extends _i4.PageRouteInfo<void> {
-  const MyTripsViewInvited()
+class MyTripsViewInvitedRoute extends _i4.PageRouteInfo<void> {
+  const MyTripsViewInvitedRoute()
       : super(
-          MyTripsViewInvited.name,
+          MyTripsViewInvitedRoute.name,
           path: 'my_trips',
         );
 
-  static const String name = 'MyTripsViewInvited';
+  static const String name = 'MyTripsViewInvitedRoute';
 }
 
 /// generated route for
 /// [_i1.ProfileViewInvited]
-class MyProfileViewRouteInvited extends _i4.PageRouteInfo<void> {
-  const MyProfileViewRouteInvited()
+class MyProfileViewRouteInvitedRoute extends _i4.PageRouteInfo<void> {
+  const MyProfileViewRouteInvitedRoute()
       : super(
-          MyProfileViewRouteInvited.name,
+          MyProfileViewRouteInvitedRoute.name,
           path: 'profile_route',
         );
 
-  static const String name = 'MyProfileViewRouteInvited';
+  static const String name = 'MyProfileViewRouteInvitedRoute';
 }
 
 /// generated route for
-/// [_i3.EmptyRouterPage]
+/// [_i3.HomePageView]
 class HomeRoute extends _i4.PageRouteInfo<void> {
-  const HomeRoute({List<_i4.PageRouteInfo>? children})
+  const HomeRoute()
       : super(
           HomeRoute.name,
           path: 'home_route',
-          initialChildren: children,
         );
 
   static const String name = 'HomeRoute';
@@ -289,60 +300,48 @@ class HomeRoute extends _i4.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i1.MyTripsViewUser]
-class MyTripsView extends _i4.PageRouteInfo<void> {
-  const MyTripsView()
+class MyTripsViewRoute extends _i4.PageRouteInfo<void> {
+  const MyTripsViewRoute()
       : super(
-          MyTripsView.name,
+          MyTripsViewRoute.name,
           path: 'my_trips',
         );
 
-  static const String name = 'MyTripsView';
+  static const String name = 'MyTripsViewRoute';
 }
 
 /// generated route for
 /// [_i1.MyProfileView]
-class MyProfileView extends _i4.PageRouteInfo<void> {
-  const MyProfileView()
+class MyProfileViewRoute extends _i4.PageRouteInfo<void> {
+  const MyProfileViewRoute()
       : super(
-          MyProfileView.name,
+          MyProfileViewRoute.name,
           path: 'profile_route',
         );
 
-  static const String name = 'MyProfileView';
-}
-
-/// generated route for
-/// [_i2.HomePageView]
-class HomeViewRoute extends _i4.PageRouteInfo<void> {
-  const HomeViewRoute()
-      : super(
-          HomeViewRoute.name,
-          path: '',
-        );
-
-  static const String name = 'HomeViewRoute';
+  static const String name = 'MyProfileViewRoute';
 }
 
 /// generated route for
 /// [_i1.LayoutHotelsView]
-class HotelsView extends _i4.PageRouteInfo<void> {
-  const HotelsView()
+class HotelsViewRoute extends _i4.PageRouteInfo<void> {
+  const HotelsViewRoute()
       : super(
-          HotelsView.name,
+          HotelsViewRoute.name,
           path: 'hotels',
         );
 
-  static const String name = 'HotelsView';
+  static const String name = 'HotelsViewRoute';
 }
 
 /// generated route for
 /// [_i1.LayoutFlightsView]
-class FlightsView extends _i4.PageRouteInfo<void> {
-  const FlightsView()
+class FlightsViewRoute extends _i4.PageRouteInfo<void> {
+  const FlightsViewRoute()
       : super(
-          FlightsView.name,
+          FlightsViewRoute.name,
           path: 'flights',
         );
 
-  static const String name = 'FlightsView';
+  static const String name = 'FlightsViewRoute';
 }

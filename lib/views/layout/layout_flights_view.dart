@@ -11,17 +11,37 @@ class LayoutFlightsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<FlightsServices>(context);
     if (provider.flights.isNotEmpty && !provider.isLoading) {
-      return SafeArea(
-        child: ListView.builder(
-          itemCount: provider.flights.length,
-          itemBuilder: (_, int item) {
-            return MyFlightsCard(
-              flight: provider.flights[item],
-            );
-          },
+      return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('Vuelos disponibles'),
         ),
+        body: FlightView(provider: provider),
       );
     }
     return const LoadinStarlight();
+  }
+}
+
+class FlightView extends StatelessWidget {
+  const FlightView({
+    Key? key,
+    required this.provider,
+  }) : super(key: key);
+
+  final FlightsServices provider;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: ListView.builder(
+        itemCount: provider.flights.length,
+        itemBuilder: (_, int item) {
+          return MyFlightsCard(
+            flight: provider.flights[item],
+          );
+        },
+      ),
+    );
   }
 }

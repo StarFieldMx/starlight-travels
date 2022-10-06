@@ -21,6 +21,23 @@ import 'package:starlight/views/main_views.dart';
       guards: [AuthGuard],
       // initial: true,
     ),
+    AutoRoute(
+      path: 'services',
+      name: "ServicesViewRoute",
+      page: EmptyRouterPage,
+      children: [
+        AutoRoute(
+          path: 'hotels',
+          name: 'HotelsViewRoute',
+          page: LayoutHotelsView,
+        ),
+        AutoRoute(
+          path: 'flights',
+          name: 'FlightsViewRoute',
+          page: LayoutFlightsView,
+        ),
+      ],
+    )
   ],
 )
 class $AppRouter {}
@@ -33,17 +50,17 @@ const starLightFlowInvited = AutoRoute(
   children: [
     AutoRoute(
       path: 'home',
-      name: 'HomeViewInvited',
+      name: 'HomeViewInvitedRoute',
       page: HomePageView,
     ),
     AutoRoute(
       path: 'my_trips',
-      name: 'MyTripsViewInvited',
+      name: 'MyTripsViewInvitedRoute',
       page: MyTripsViewInvited,
     ),
     AutoRoute(
       path: 'profile_route',
-      name: 'MyProfileViewRouteInvited',
+      name: 'MyProfileViewRouteInvitedRoute',
       page: ProfileViewInvited,
     ),
   ],
@@ -58,33 +75,16 @@ const starLightFlow = AutoRoute(
     AutoRoute(
       path: 'home_route',
       name: 'HomeRoute',
-      page: EmptyRouterPage,
-      children: [
-        AutoRoute(
-          path: '',
-          name: 'HomeViewRoute',
-          page: HomePageView,
-        ),
-        AutoRoute(
-          path: 'hotels',
-          name: 'HotelsView',
-          page: LayoutHotelsView,
-        ),
-        AutoRoute(
-          path: 'flights',
-          name: 'FlightsView',
-          page: LayoutFlightsView,
-        ),
-      ],
+      page: HomePageView,
     ),
     AutoRoute(
       path: 'my_trips',
-      name: 'MyTripsView',
+      name: 'MyTripsViewRoute',
       page: MyTripsViewUser,
     ),
     AutoRoute(
       path: 'profile_route',
-      name: 'MyProfileView',
+      name: 'MyProfileViewRoute',
       page: MyProfileView,
     ),
   ],

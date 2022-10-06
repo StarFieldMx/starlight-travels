@@ -16,7 +16,7 @@ class FlightsServices extends ChangeNotifier {
       element.from.updateCountry();
       element.to.updateCountry();
     }));
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 2));
     isLoading = false;
     notifyListeners();
     return flights;
