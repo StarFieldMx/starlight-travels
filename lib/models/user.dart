@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:starlight/models/user_details.dart';
+
 UserStarlight userFromString(String str) =>
     UserStarlight.fromMap(json.decode(str));
 
@@ -13,6 +15,7 @@ class UserStarlight {
     this.phoneNumber,
     this.photoUrl,
     this.uid,
+    this.userDetails,
   });
   String email;
   String? displayName;
@@ -20,23 +23,7 @@ class UserStarlight {
   String? phoneNumber;
   String? photoUrl;
   String? uid;
-
-  UserStarlight copyWith({
-    required String email,
-    String? displayName,
-    bool emailVerified = false,
-    String? phoneNumber,
-    String? photoUrl,
-    String? uid,
-  }) =>
-      UserStarlight(
-        displayName: displayName ?? this.displayName,
-        email: email,
-        emailVerified: emailVerified,
-        phoneNumber: phoneNumber ?? this.phoneNumber,
-        photoUrl: photoUrl ?? this.photoUrl,
-        uid: uid ?? this.uid,
-      );
+  UserDetails? userDetails;
 
   factory UserStarlight.fromMap(Map<String, dynamic> json) => UserStarlight(
         displayName: json["displayName"],

@@ -1,5 +1,6 @@
-[
-  {
+{
+  "9PdqX": {
+    "picture" : null,
     "hotel": "Villa palmeras",
     "rate": 4.5,
     "direction": {
@@ -53,7 +54,8 @@
     ]
   },
 
-  {
+  "qCJhr": {
+    "picture" : null,
     "hotel": "San Siro",
     "rate": 4.9,
     "direction": {
@@ -107,8 +109,8 @@
       { "activity": "Golf field" }
     ]
   },
-
-  {
+  "deM8r": {
+    "picture" : null,
     "hotel": "Etihad ",
     "rate": 4,
     "direction": {
@@ -162,7 +164,8 @@
     ]
   },
 
-  {
+  "I6WJD" : {
+    "picture" : null,
     "hotel": "Victory",
     "rate": 3.4,
     "direction": {
@@ -214,7 +217,8 @@
     "more": [{ "activity": "Designed smoking areas" }]
   },
 
-  {
+  "c1Zjt" : {
+    "picture" : null,
     "hotel": "Silver",
     "rate": 4,
     "direction": {
@@ -268,7 +272,8 @@
     ]
   },
 
-  {
+  "JW03x" :{
+    "picture" : null,
     "hotel": "Gustavo Petro",
     "rate": 2.5,
     "direction": {
@@ -321,4 +326,4 @@
       { "activity": "Open mic night" }
     ]
   }
-]
+}

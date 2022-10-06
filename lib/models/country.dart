@@ -35,5 +35,8 @@ class Country {
         "name": name,
         "code": code,
       };
-  Future<Country> get country => ParseCountryCode.byCode(code);
+  Future<void> updateCountry() async {
+    final newCountry = await ParseCountryCode.byCode(code);
+    name = newCountry.name;
+  }
 }

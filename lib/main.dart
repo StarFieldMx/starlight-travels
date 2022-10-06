@@ -6,6 +6,7 @@ import 'package:provider/single_child_widget.dart';
 import 'package:starlight/providers/providers.dart';
 import 'package:starlight/router/guards/guards.dart';
 import 'package:starlight/router/starlight_router.gr.dart';
+import 'package:starlight/services/hotels_services.dart';
 import 'package:starlight/services/services.dart';
 import 'package:starlight/styles/theme_starlight.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,11 +21,11 @@ void main() async {
 
   await Firebase.initializeApp(
     // Replace with actual values
-    options: const FirebaseOptions(
-      apiKey: "AIzaSyBsXjft_FDGmBIwlV1Snbh_tnmVq6DKoHM",
-      appId: "com.example.starlight",
-      messagingSenderId: "215491214676",
-      projectId: "starlight-flights",
+    options: FirebaseOptions(
+      apiKey: dotenv.env['FIREBASE_TOKEN']!,
+      appId: dotenv.env['APPID']!,
+      messagingSenderId: dotenv.env["SENDERID"]!,
+      projectId: dotenv.env["PROYEJCTID"]!,
     ),
   );
   getIt.registerSingleton<AppRouter>(AppRouter(authGuard: AuthGuard()));
@@ -61,6 +62,12 @@ class MyApp extends StatelessWidget {
       ),
       ChangeNotifierProvider(
         create: (_) => HomeServices(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => HotelsServices(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => AuthChecker(),
       ),
     ];
   }

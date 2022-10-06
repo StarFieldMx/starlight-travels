@@ -4,52 +4,35 @@ import 'package:starlight/utils/parse_time.dart';
 import 'package:starlight/widgets/multiply_text.dart';
 import 'package:starlight/widgets/widgets.dart';
 
-const mxConvert = 21;
-
-class MyFlightsCard extends StatefulWidget {
+class MyFlightsCard extends StatelessWidget {
   const MyFlightsCard({super.key, required this.flight});
-  final Flights flight;
-
-  @override
-  State<MyFlightsCard> createState() => _MyFlightsCardState();
-}
-
-class _MyFlightsCardState extends State<MyFlightsCard> {
-  String _from = "";
-  String _to = "";
-
-  @override
-  void initState() {
-    widget.flight.from.country.then((value) => setState(() {
-          _from = "${value.name!}(${value.code})";
-        }));
-    widget.flight.to.country.then((value) => setState(() {
-          _to = "${value.name!}(${value.code})";
-        }));
-    super.initState();
-  }
+  final Flight flight;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
-        margin: const EdgeInsets.only(top: 30, bottom: 50),
+        // ! Margi in view!!!
+        margin: const EdgeInsets.only(top: 10, bottom: 20),
         width: double.infinity,
+        // ! Change for dynamic value
         height: 150,
         decoration: _cardBorders(),
         child: Stack(
           alignment: Alignment.bottomLeft,
           children: [
-            const AssetBackground(),
+            const AssetBackground(
+              height: 400,
+            ),
             DetailsText(
               child: MultiplyText(
                 textList: [
-                  {"time": "${widget.flight.depTime}-${widget.flight.arrTime}"},
-                  _from,
-                  _to,
-                  parseTime(widget.flight.flighTime),
-                  widget.flight.airline,
+                  {"time": "${flight.depTime}-${flight.arrTime}"},
+                  "${flight.from.name}(${flight.from.code})",
+                  "${flight.to.name}(${flight.to.code})",
+                  parseTime(flight.flighTime),
+                  flight.airline,
                 ],
               ),
             ),
@@ -57,8 +40,8 @@ class _MyFlightsCardState extends State<MyFlightsCard> {
                 top: 0,
                 right: 0,
                 child: PriceTag(
-                  price: widget.flight.price.toDouble() * mxConvert,
-                  typeTrip: widget.flight.type.name,
+                  price: flight.price.toDouble(),
+                  typeTrip: flight.type.name,
                 )),
           ],
         ),

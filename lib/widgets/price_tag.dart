@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:starlight/styles/starlight_colors.dart';
 
+import '../utils/money.dart';
+
 class PriceTag extends StatelessWidget {
   final double price;
 
@@ -28,11 +30,13 @@ class PriceTag extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               children: [
-                Text('MXN\$$price',
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold)),
+                Text(
+                  getCurrency(price),
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),
+                ),
                 if (typeTrip != null)
                   Text("Vuelo ${typeTrip!}",
                       style:

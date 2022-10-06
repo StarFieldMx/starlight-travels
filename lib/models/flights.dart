@@ -7,14 +7,14 @@ import 'dart:convert';
 import 'package:starlight/models/country.dart';
 import 'package:starlight/models/flights_details.dart';
 
-List<Flights> flightsFromMap(String str) =>
-    List<Flights>.from(json.decode(str).map((x) => Flights.fromMap(x)));
+List<Flight> flightsFromMap(String str) =>
+    List<Flight>.from(json.decode(str).map((x) => Flight.fromMap(x)));
 
-String flightsToMap(List<Flights> data) =>
+String flightsToMap(List<Flight> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
 
-class Flights {
-  Flights({
+class Flight {
+  Flight({
     this.id,
     required this.airline,
     required this.type,
@@ -42,7 +42,7 @@ class Flights {
   int price;
   FlightDetails details;
 
-  factory Flights.fromMap(Map<String, dynamic> json) => Flights(
+  factory Flight.fromMap(Map<String, dynamic> json) => Flight(
         id: json["id"],
         airline: Airline.starlight,
         type: Type.redondo,
