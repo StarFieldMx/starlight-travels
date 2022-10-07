@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/services/hotels_services.dart';
 import 'package:starlight/widgets/check_status_provider.dart';
 
@@ -24,12 +25,12 @@ class HotelsView extends StatelessWidget {
           child: ListView.builder(
             itemCount: hotels.hotels.length,
             itemBuilder: (_, int index) {
+              final hotel = hotels.hotels[index];
               return GestureDetector(
-                // onTap: () => context.router.push(
-                //   'awa'
-                // ),
+                onTap: () =>
+                    context.router.push(HotelDetailsViewRoute(hotel: hotel)),
                 child: HotelItem(
-                  hotel: hotels.hotels[index],
+                  hotel: hotel,
                   imageIndexHotel: index,
                 ),
               );
