@@ -33,7 +33,7 @@ class Details extends StatelessWidget {
   Widget build(BuildContext context) {
     return ConstrainedBoxStarlight(
         maxHeight: size.height * 0.8,
-        child: _ItemDetails(
+        child: ItemDetails(
           title: '',
           child: ConstrainedBoxStarlight(
             maxHeight: size.height * 0.6,
@@ -87,22 +87,22 @@ class Details extends StatelessWidget {
                   height: 10,
                 ),
                 if (hotel.internet[0].rooms ?? false)
-                  const _DotText(text: "Cuartos"),
+                  const DotText(text: "Cuartos"),
                 const SizedBox(
                   height: 10,
                 ),
                 if (hotel.internet[1].places?.bar ?? false)
-                  const _DotText(text: "Alberca"),
+                  const DotText(text: "Alberca"),
                 const SizedBox(
                   height: 10,
                 ),
                 if (hotel.internet[1].places?.public ?? false)
-                  const _DotText(text: "Area publica"),
+                  const DotText(text: "Area publica"),
                 const SizedBox(
                   height: 10,
                 ),
                 if (hotel.internet[1].places?.restaurant ?? false)
-                  const _DotText(text: "Restaurante"),
+                  const DotText(text: "Restaurante"),
                 const SizedBox(
                   height: 10,
                 ),
@@ -113,13 +113,13 @@ class Details extends StatelessWidget {
                   height: 10,
                 ),
                 if (!hotel.accessibility.elevator && !hotel.accessibility.ramps)
-                  const _DotText(text: "No cuenta"),
+                  const DotText(text: "No cuenta"),
                 if (hotel.accessibility.elevator)
-                  const _DotText(text: "Elevadores"),
+                  const DotText(text: "Elevadores"),
                 const SizedBox(
                   height: 10,
                 ),
-                if (hotel.accessibility.ramps) const _DotText(text: "Rampas"),
+                if (hotel.accessibility.ramps) const DotText(text: "Rampas"),
               ],
             ),
           ),
@@ -157,8 +157,8 @@ class Amenities extends StatelessWidget {
   }
 }
 
-class _DotText extends StatelessWidget {
-  const _DotText({
+class DotText extends StatelessWidget {
+  const DotText({
     Key? key,
     required this.text,
   }) : super(key: key);
@@ -178,8 +178,8 @@ class _DotText extends StatelessWidget {
   }
 }
 
-class _ItemDetails extends StatelessWidget {
-  const _ItemDetails({
+class ItemDetails extends StatelessWidget {
+  const ItemDetails({
     Key? key,
     required this.title,
     required this.child,
@@ -200,45 +200,50 @@ class _ItemDetails extends StatelessWidget {
 Widget _getAmentiesItem(AmentiesType ams) {
   switch (ams) {
     case AmentiesType.internet:
-      return const _ItemAmenties(Icons.wifi, "Internet Gratis");
+      return const ItemAmenties(Icons.wifi, "Internet Gratis");
     case AmentiesType.pool:
-      return const _ItemAmenties(Icons.pool, "Piscina");
+      return const ItemAmenties(Icons.pool, "Piscina");
     case AmentiesType.air:
-      return const _ItemAmenties(Icons.air, "Aire acondicionado");
+      return const ItemAmenties(Icons.air, "Aire acondicionado");
     case AmentiesType.pet:
-      return const _ItemAmenties(Icons.pets, "Se permiten mascotas");
+      return const ItemAmenties(Icons.pets, "Se permiten mascotas");
     case AmentiesType.parking:
-      return const _ItemAmenties(Icons.local_parking, "Estacionamiento propio");
+      return const ItemAmenties(Icons.local_parking, "Estacionamiento propio");
     case AmentiesType.breakfast:
-      return const _ItemAmenties(Icons.breakfast_dining, "Cuenta con desayuno");
+      return const ItemAmenties(Icons.breakfast_dining, "Cuenta con desayuno");
     case AmentiesType.restaurant:
-      return const _ItemAmenties(Icons.restaurant, "Tiene restaurante");
+      return const ItemAmenties(Icons.restaurant, "Tiene restaurante");
     case AmentiesType.bar:
-      return const _ItemAmenties(Icons.local_bar, "Tiene bar");
+      return const ItemAmenties(Icons.local_bar, "Tiene bar");
     case AmentiesType.housekeeping:
-      return const _ItemAmenties(
+      return const ItemAmenties(
           Icons.cleaning_services, "Servicio de limpieza");
     case AmentiesType.frontDesk:
-      return const _ItemAmenties(Icons.desk, "Recepción 24/7");
+      return const ItemAmenties(Icons.desk, "Recepción 24/7");
     case AmentiesType.none:
-      return const _ItemAmenties(Icons.error, "No cuenta con comodidades");
+      return const ItemAmenties(Icons.error, "No cuenta con comodidades");
   }
 }
 
-class _ItemAmenties extends StatelessWidget {
-  const _ItemAmenties(this.icon, this.text);
+class ItemAmenties extends StatelessWidget {
+  const ItemAmenties(this.icon, this.text, {super.key});
   final IconData icon;
   final String text;
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Row(
       children: [
-        Icon(icon, size: 35),
+        Icon(icon, size: 25),
         const SizedBox(
           width: 8,
         ),
-        Flexible(
-            child: Text(text, style: Theme.of(context).textTheme.headline6)),
+        SizedBox(
+          width: 140,
+          // height: size.height * 0.1,
+          child: Flexible(
+              child: Text(text, style: Theme.of(context).textTheme.bodyMedium)),
+        ),
       ],
     );
   }

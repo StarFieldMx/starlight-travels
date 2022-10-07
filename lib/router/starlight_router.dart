@@ -2,7 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:starlight/router/guards/guards.dart';
 import 'package:starlight/views/home/home_page.dart';
+import 'package:starlight/views/hotels/rooms_view.dart';
 import 'package:starlight/views/main_views.dart';
+import 'package:starlight/views/payment/payment_screen.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route,View',
@@ -19,6 +21,12 @@ import 'package:starlight/views/main_views.dart';
       name: "MainViewRoute",
       page: MainView,
       guards: [AuthGuard],
+      // initial: true,
+    ),
+    AutoRoute(
+      path: 'payment',
+      name: "PaymentViewRoute",
+      page: PaymentScreen,
       // initial: true,
     ),
     AutoRoute(
@@ -41,6 +49,11 @@ import 'package:starlight/views/main_views.dart';
                 path: 'hotel_details',
                 name: 'HotelDetailsViewRoute',
                 page: HotelDetailsView,
+              ),
+              AutoRoute(
+                path: 'rooms',
+                name: 'RoomsView',
+                page: RoomsView,
               ),
             ]),
         AutoRoute(

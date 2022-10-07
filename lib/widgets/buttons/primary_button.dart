@@ -20,7 +20,7 @@ class PrimaryButton extends StatelessWidget {
       child: MaterialButton(
         onPressed: !isLoading ? onTap : null,
         color: StarLightColors.lightBlue,
-        minWidth: width * 0.6,
+        minWidth: width * 0.5,
         height: 50,
         child: Text(labelText, style: StarLightTextStyles.primaryButton),
         // minHeight: 200,

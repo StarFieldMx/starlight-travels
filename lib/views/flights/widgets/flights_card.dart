@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:starlight/models/flights.dart';
+import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/utils/parse_time.dart';
+import 'package:starlight/widgets/buttons/primary_button.dart';
 import 'package:starlight/widgets/multiply_text.dart';
 import 'package:starlight/widgets/widgets.dart';
 
@@ -43,6 +46,15 @@ class FlightsCard extends StatelessWidget {
                   price: flight.price.toDouble(),
                   typeTrip: flight.type.name,
                 )),
+            Positioned(
+                bottom: 10,
+                right: 10,
+                child: SizedBox(
+                    height: 40,
+                    width: 130,
+                    child: PrimaryButton(
+                        labelText: "Comprar",
+                        onTap: () => context.router.push(PaymentViewRoute())))),
           ],
         ),
       ),

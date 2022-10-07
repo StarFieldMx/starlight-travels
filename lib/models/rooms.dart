@@ -16,8 +16,8 @@ class Rooms {
     required this.people,
     required this.pictures,
     required this.beds,
-    required this.breakfast,
-    required this.parking,
+    this.breakfast = false,
+    this.parking = false,
     required this.roomAmenities,
   });
 
@@ -79,7 +79,7 @@ class Bed {
 class RoomAmenities {
   RoomAmenities({
     required this.bathroom,
-    required this.internet,
+    this.internet = false,
     required this.more,
   });
 
@@ -89,7 +89,7 @@ class RoomAmenities {
 
   factory RoomAmenities.fromMap(Map<String, dynamic> json) => RoomAmenities(
         bathroom: Bathroom.fromMap(json["bathroom"]),
-        internet: json["internet"],
+        internet: json["internet"] ?? false,
         more: List<More>.from(json["more"].map((x) => More.fromMap(x))),
       );
 
@@ -104,9 +104,9 @@ class RoomAmenities {
 
 class Bathroom {
   Bathroom({
-    required this.toilets,
-    required this.private,
-    required this.shower,
+    this.toilets = false,
+    this.private = false,
+    this.shower = false,
   });
 
   bool toilets;
@@ -128,20 +128,28 @@ class Bathroom {
 
 class More {
   More({
-    required this.housekeeping,
-    required this.wine,
+    this.housekeeping = false,
+    this.wine = false,
+    this.food = false,
+    this.tvServices = false,
   });
 
   bool housekeeping;
   bool wine;
+  bool food;
+  bool tvServices;
 
   factory More.fromMap(Map<String, dynamic> json) => More(
-        housekeeping: json["housekeeping"],
-        wine: json["wine"],
+        housekeeping: json["housekeeping"] ?? false,
+        wine: json["wine"] ?? false,
+        food: json["food"] ?? false,
+        tvServices: json["tv services"] ?? false,
       );
 
   Map<String, dynamic> toMap() => {
         "housekeeping": housekeeping,
         "wine": wine,
+        "food": food,
+        "tv services": tvServices,
       };
 }
