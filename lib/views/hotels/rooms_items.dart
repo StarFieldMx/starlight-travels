@@ -38,8 +38,9 @@ class RoomsItems extends StatelessWidget {
 }
 
 class Room extends StatelessWidget {
-  const Room({super.key, required this.room});
+  const Room({super.key, required this.room, this.isBuying = true});
   final Rooms room;
+  final bool isBuying;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -92,15 +93,18 @@ class Room extends StatelessWidget {
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
-          Positioned(
-              bottom: 30,
-              right: 15,
-              child: SizedBox(
-                  height: 40,
-                  width: 130,
-                  child: PrimaryButton(
-                      labelText: "Comprar",
-                      onTap: () => context.router.push(PaymentViewRoute())))),
+          isBuying
+              ? Positioned(
+                  bottom: 30,
+                  right: 15,
+                  child: SizedBox(
+                      height: 40,
+                      width: 130,
+                      child: PrimaryButton(
+                          labelText: "Comprar",
+                          onTap: () => context.router
+                              .push(PaymentViewRoute(room: room)))))
+              : Container(),
         ],
       ),
     );

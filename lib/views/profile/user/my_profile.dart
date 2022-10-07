@@ -16,9 +16,12 @@ class MyProfileView extends StatelessWidget {
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text('Profile User'),
+        // const Text('Profile User'),
+        Text(userState.user?.email ?? ''),
+        Text(userState.user?.displayName ?? ''),
+        Text(userState.user?.phoneNumber ?? ''),
         PrimaryButton(
-          labelText: 'labelText',
+          labelText: 'cerrar sesión',
           onTap: () {
             userState.logOut();
             authServices.signOutGoogle(context);

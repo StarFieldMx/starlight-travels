@@ -8,9 +8,9 @@ import 'package:starlight/widgets/multiply_text.dart';
 import 'package:starlight/widgets/widgets.dart';
 
 class FlightsCard extends StatelessWidget {
-  const FlightsCard({super.key, required this.flight});
+  const FlightsCard({super.key, required this.flight, this.isBuying = true});
   final Flight flight;
-
+  final bool isBuying;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -46,15 +46,18 @@ class FlightsCard extends StatelessWidget {
                   price: flight.price.toDouble(),
                   typeTrip: flight.type.name,
                 )),
-            Positioned(
-                bottom: 10,
-                right: 10,
-                child: SizedBox(
-                    height: 40,
-                    width: 130,
-                    child: PrimaryButton(
-                        labelText: "Comprar",
-                        onTap: () => context.router.push(PaymentViewRoute())))),
+            isBuying
+                ? Positioned(
+                    bottom: 10,
+                    right: 10,
+                    child: SizedBox(
+                        height: 40,
+                        width: 130,
+                        child: PrimaryButton(
+                            labelText: "Comprar",
+                            onTap: () => context.router
+                                .push(PaymentViewRoute(flight: flight)))))
+                : Container()
           ],
         ),
       ),

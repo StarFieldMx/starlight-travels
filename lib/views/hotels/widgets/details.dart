@@ -116,9 +116,6 @@ class Details extends StatelessWidget {
                   const DotText(text: "No cuenta"),
                 if (hotel.accessibility.elevator)
                   const DotText(text: "Elevadores"),
-                const SizedBox(
-                  height: 10,
-                ),
                 if (hotel.accessibility.ramps) const DotText(text: "Rampas"),
               ],
             ),

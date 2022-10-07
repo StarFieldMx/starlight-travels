@@ -1,9 +1,10 @@
 import 'dart:convert';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:starlight/models/flights.dart';
 import 'package:starlight/models/hotels.dart';
+import 'package:starlight/models/rooms.dart';
 
 final baseAuth = dotenv.env['BASE_URL_AUTH'];
 final firebaseToken = dotenv.env['FIREBASE_TOKEN'];
@@ -43,7 +44,11 @@ class HttpResponse {
       path,
     );
     final response = await http.get(url);
-    final Map<String, dynamic> map = json.decode(response.body);
+    final decode = json.decode(response.body);
+    if (decode is String) {
+      return;
+    }
+    final Map<String, dynamic> map = decode;
     map.forEach((key, value) {
       final tempData = parseFrom(value);
       if (tempData is Flight) {
@@ -65,5 +70,23 @@ class HttpResponse {
     final resp = await http.post(url, body: data);
     final Map<String, dynamic> map = json.decode(resp.body);
     return map;
+  }
+
+  Future<bool> buyFlightOrRoom(dynamic item, List<dynamic> list) async {
+    Uri? url;
+    http.Response? resp;
+    if (item is Flight) {
+      url = Uri.https(dataBase!, "myFlights.json",
+          {'auth': await storage.read(key: 'token') ?? ''});
+      resp = await http.post(url, body: json.encode(item.toMap()));
+    } else if (item is Rooms) {
+      url = Uri.https(dataBase!, "myRooms.json",
+          {'auth': await storage.read(key: 'token') ?? ''});
+      resp = await http.post(url, body: json.encode(item.toMap()));
+    }
+    final decodedData = json.decode(resp!.body);
+    item.id = decodedData["name"];
+    list.add(item);
+    return false;
   }
 }

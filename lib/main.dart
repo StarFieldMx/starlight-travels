@@ -7,17 +7,17 @@ import 'package:starlight/providers/providers.dart';
 import 'package:starlight/router/guards/guards.dart';
 import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/services/hotels_services.dart';
+import 'package:starlight/services/my_buys_services.dart';
 import 'package:starlight/services/services.dart';
 import 'package:starlight/styles/theme_starlight.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 
 GetIt getIt = GetIt.instance;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
-  Stripe.publishableKey = dotenv.env['STRIPEPUBLICKEY']!;
+  // Stripe.publishableKey = dotenv.env['STRIPEPUBLICKEY']!;
 
   await Firebase.initializeApp(
     // Replace with actual values
@@ -52,6 +52,7 @@ class MyApp extends StatelessWidget {
   List<SingleChildWidget> provider() {
     return [
       ChangeNotifierProvider(
+        lazy: false,
         create: (_) => FlightsServices(),
       ),
       ChangeNotifierProvider(
@@ -68,6 +69,9 @@ class MyApp extends StatelessWidget {
       ),
       ChangeNotifierProvider(
         create: (_) => AuthChecker(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => MyBuysServices(),
       ),
     ];
   }

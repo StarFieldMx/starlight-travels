@@ -75,6 +75,9 @@ class HotelDetailsView extends StatelessWidget {
               PrimaryButton(
                 labelText: "Seleccionar cuarto",
                 onTap: () => context.router.pushNamed("rooms"),
+              ),
+              const SizedBox(
+                height: 20,
               )
             ],
           )),

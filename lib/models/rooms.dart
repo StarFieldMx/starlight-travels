@@ -19,8 +19,9 @@ class Rooms {
     this.breakfast = false,
     this.parking = false,
     required this.roomAmenities,
+    this.id,
   });
-
+  String? id;
   String type;
   int price;
   int size;

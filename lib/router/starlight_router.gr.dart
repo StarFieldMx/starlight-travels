@@ -16,7 +16,8 @@ import 'package:auto_route/empty_router_widgets.dart' as _i3;
 import 'package:flutter/material.dart' as _i7;
 
 import '../models/flights.dart' as _i10;
-import '../models/hotels.dart' as _i9;
+import '../models/hotels.dart' as _i11;
+import '../models/rooms.dart' as _i9;
 import '../views/home/home_page.dart' as _i4;
 import '../views/hotels/rooms_view.dart' as _i5;
 import '../views/main_views.dart' as _i1;
@@ -64,7 +65,7 @@ class AppRouter extends _i6.RootStackRouter {
         routeData: routeData,
         child: _i2.PaymentScreen(
           key: args.key,
-          hotel: args.hotel,
+          room: args.room,
           flight: args.flight,
         ),
       );
@@ -329,14 +330,14 @@ class MainViewRoute extends _i6.PageRouteInfo<void> {
 class PaymentViewRoute extends _i6.PageRouteInfo<PaymentViewRouteArgs> {
   PaymentViewRoute({
     _i7.Key? key,
-    _i9.Hotel? hotel,
+    _i9.Rooms? room,
     _i10.Flight? flight,
   }) : super(
           PaymentViewRoute.name,
           path: 'payment',
           args: PaymentViewRouteArgs(
             key: key,
-            hotel: hotel,
+            room: room,
             flight: flight,
           ),
         );
@@ -347,19 +348,19 @@ class PaymentViewRoute extends _i6.PageRouteInfo<PaymentViewRouteArgs> {
 class PaymentViewRouteArgs {
   const PaymentViewRouteArgs({
     this.key,
-    this.hotel,
+    this.room,
     this.flight,
   });
 
   final _i7.Key? key;
 
-  final _i9.Hotel? hotel;
+  final _i9.Rooms? room;
 
   final _i10.Flight? flight;
 
   @override
   String toString() {
-    return 'PaymentViewRouteArgs{key: $key, hotel: $hotel, flight: $flight}';
+    return 'PaymentViewRouteArgs{key: $key, room: $room, flight: $flight}';
   }
 }
 
@@ -492,7 +493,7 @@ class HotelDetailsViewRoute
     extends _i6.PageRouteInfo<HotelDetailsViewRouteArgs> {
   HotelDetailsViewRoute({
     _i7.Key? key,
-    required _i9.Hotel hotel,
+    required _i11.Hotel hotel,
   }) : super(
           HotelDetailsViewRoute.name,
           path: 'hotel_details',
@@ -513,7 +514,7 @@ class HotelDetailsViewRouteArgs {
 
   final _i7.Key? key;
 
-  final _i9.Hotel hotel;
+  final _i11.Hotel hotel;
 
   @override
   String toString() {
