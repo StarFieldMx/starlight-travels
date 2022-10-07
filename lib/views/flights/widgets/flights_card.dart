@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:starlight/models/flights.dart';
+import 'package:starlight/providers/user_state.dart';
 import 'package:starlight/router/starlight_router.gr.dart';
+import 'package:starlight/services/notification_service.dart';
 import 'package:starlight/utils/parse_time.dart';
 import 'package:starlight/widgets/buttons/primary_button.dart';
 import 'package:starlight/widgets/multiply_text.dart';
@@ -13,6 +16,8 @@ class FlightsCard extends StatelessWidget {
   final bool isBuying;
   @override
   Widget build(BuildContext context) {
+    final userState = Provider.of<UserState>(context);
+    final bool isAuth = userState.authentication;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
@@ -54,9 +59,17 @@ class FlightsCard extends StatelessWidget {
                         height: 40,
                         width: 130,
                         child: PrimaryButton(
-                            labelText: "Comprar",
-                            onTap: () => context.router
-                                .push(PaymentViewRoute(flight: flight)))))
+                          labelText: "Comprar",
+                          onTap: () {
+                            if (isAuth) {
+                              context.router
+                                  .push(PaymentViewRoute(flight: flight));
+                            } else {
+                              NotificationsService.showSnackbar(
+                                  "Necesitas estar registrado");
+                            }
+                          },
+                        )))
                 : Container()
           ],
         ),

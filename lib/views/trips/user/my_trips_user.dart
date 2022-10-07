@@ -23,31 +23,34 @@ class _MyTripsViewUserState extends State<MyTripsViewUser> {
       );
     }
     if (myServices.flights.isNotEmpty || myServices.rooms.isNotEmpty) {
-      return Column(
-        children: [
-          if (myServices.flights.isNotEmpty)
-            SizedBox(
-              width: double.infinity,
-              height: 300,
-              child: ListView.builder(
-                  itemCount: myServices.flights.length,
-                  itemBuilder: ((context, index) => FlightsCard(
-                        flight: myServices.flights[index],
-                        isBuying: false,
-                      ))),
-            ),
-          if (myServices.rooms.isNotEmpty)
-            SizedBox(
-              width: double.infinity,
-              height: 300,
-              child: ListView.builder(
-                  itemCount: myServices.rooms.length,
-                  itemBuilder: ((context, index) => Room(
-                        room: myServices.rooms[index],
-                        isBuying: false,
-                      ))),
-            ),
-        ],
+      return SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 30),
+            if (myServices.flights.isNotEmpty)
+              SizedBox(
+                width: double.infinity,
+                height: 300,
+                child: ListView.builder(
+                    itemCount: myServices.flights.length,
+                    itemBuilder: ((context, index) => FlightsCard(
+                          flight: myServices.flights[index],
+                          isBuying: false,
+                        ))),
+              ),
+            if (myServices.rooms.isNotEmpty)
+              SizedBox(
+                width: double.infinity,
+                height: 500,
+                child: ListView.builder(
+                    itemCount: myServices.rooms.length,
+                    itemBuilder: ((context, index) => Room(
+                          room: myServices.rooms[index],
+                          isBuying: false,
+                        ))),
+              ),
+          ],
+        ),
       );
     }
     return const LoadinStarlight();
