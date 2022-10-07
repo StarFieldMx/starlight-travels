@@ -75,13 +75,12 @@ class HttpResponse {
   Future<bool> buyFlightOrRoom(dynamic item, List<dynamic> list) async {
     Uri? url;
     http.Response? resp;
+    String? token = await storage.read(key: 'token');
     if (item is Flight) {
-      url = Uri.https(dataBase!, "myFlights.json",
-          {'auth': await storage.read(key: 'token') ?? ''});
+      url = Uri.https(dataBase!, "myFlights.json", {'auth': token});
       resp = await http.post(url, body: json.encode(item.toMap()));
     } else if (item is Rooms) {
-      url = Uri.https(dataBase!, "myRooms.json",
-          {'auth': await storage.read(key: 'token') ?? ''});
+      url = Uri.https(dataBase!, "myRooms.json", {'auth': token});
       resp = await http.post(url, body: json.encode(item.toMap()));
     }
     final decodedData = json.decode(resp!.body);

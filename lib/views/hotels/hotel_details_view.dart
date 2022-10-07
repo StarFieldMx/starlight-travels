@@ -2,14 +2,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:starlight/models/hotels.dart';
+import 'package:starlight/views/hotels/widgets/card_hotels.dart';
 import 'package:starlight/widgets/buttons/primary_button.dart';
 
 import '../../widgets/widgets.dart';
 import 'widgets/details.dart';
 
 class HotelDetailsView extends StatelessWidget {
-  const HotelDetailsView({super.key, required this.hotel});
+  const HotelDetailsView({super.key, required this.hotel, required this.index});
   final Hotel hotel;
+  final int index;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -20,7 +22,12 @@ class HotelDetailsView extends StatelessWidget {
             sliver: SliverAppBar(
               expandedHeight: size.height * 0.2,
               flexibleSpace: FlexibleSpaceBar(
-                background: BackgroundImage(hotel.picture),
+                background: ImageHotel(
+                  heightImage: size.height * 0.2,
+                  size: size,
+                  index: index,
+                  name: hotel.name,
+                ), //,
               ),
             ),
           ),
@@ -65,7 +72,6 @@ class HotelDetailsView extends StatelessWidget {
                   ],
                 ),
               ),
-              // Dos mounstros separados
               if (hotel.amenties.listAmenties.isNotEmpty)
                 ConstrainedBoxStarlight(
                   maxHeight: size.height * 0.3,

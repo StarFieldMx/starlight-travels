@@ -137,6 +137,7 @@ class AppRouter extends _i6.RootStackRouter {
         child: _i1.HotelDetailsView(
           key: args.key,
           hotel: args.hotel,
+          index: args.index,
         ),
       );
     },
@@ -494,12 +495,14 @@ class HotelDetailsViewRoute
   HotelDetailsViewRoute({
     _i7.Key? key,
     required _i11.Hotel hotel,
+    required int index,
   }) : super(
           HotelDetailsViewRoute.name,
           path: 'hotel_details',
           args: HotelDetailsViewRouteArgs(
             key: key,
             hotel: hotel,
+            index: index,
           ),
         );
 
@@ -510,15 +513,18 @@ class HotelDetailsViewRouteArgs {
   const HotelDetailsViewRouteArgs({
     this.key,
     required this.hotel,
+    required this.index,
   });
 
   final _i7.Key? key;
 
   final _i11.Hotel hotel;
 
+  final int index;
+
   @override
   String toString() {
-    return 'HotelDetailsViewRouteArgs{key: $key, hotel: $hotel}';
+    return 'HotelDetailsViewRouteArgs{key: $key, hotel: $hotel, index: $index}';
   }
 }
 

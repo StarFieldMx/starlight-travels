@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:starlight/models/flights.dart';
 import 'package:starlight/services/my_buys_services.dart';
 import 'package:starlight/views/flights/widgets/flights_card.dart';
 import 'package:starlight/views/hotels/rooms_items.dart';
@@ -23,35 +24,51 @@ class _MyTripsViewUserState extends State<MyTripsViewUser> {
       );
     }
     if (myServices.flights.isNotEmpty || myServices.rooms.isNotEmpty) {
-      return SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 30),
-            if (myServices.flights.isNotEmpty)
-              SizedBox(
-                width: double.infinity,
-                height: 300,
-                child: ListView.builder(
-                    itemCount: myServices.flights.length,
-                    itemBuilder: ((context, index) => FlightsCard(
-                          flight: myServices.flights[index],
-                          isBuying: false,
-                        ))),
-              ),
-            if (myServices.rooms.isNotEmpty)
-              SizedBox(
-                width: double.infinity,
-                height: 500,
-                child: ListView.builder(
-                    itemCount: myServices.rooms.length,
-                    itemBuilder: ((context, index) => Room(
-                          room: myServices.rooms[index],
-                          isBuying: false,
-                        ))),
-              ),
-          ],
-        ),
-      );
+      if (myServices.flights.isNotEmpty || myServices.rooms.isNotEmpty) {
+        return ListView.builder(
+          itemCount: myServices.myServices.length,
+          itemBuilder: ((context, index) {
+            if (myServices.myServices[index] is Flight) {
+              return Column(
+                children: [
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  const Divider(
+                    color: Colors.white,
+                    thickness: 2,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  FlightsCard(
+                    flight: myServices.myServices[index],
+                    isBuying: false,
+                  ),
+                ],
+              );
+            }
+            return Column(
+              children: [
+                const SizedBox(
+                  height: 25,
+                ),
+                const Divider(
+                  color: Colors.white,
+                  thickness: 2,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Room(
+                  room: myServices.myServices[index],
+                  isBuying: false,
+                ),
+              ],
+            );
+          }),
+        );
+      }
     }
     return const LoadinStarlight();
   }

@@ -34,7 +34,8 @@ class HotelsView extends StatelessWidget {
               return GestureDetector(
                 onTap: () {
                   if (isAuth) {
-                    context.router.push(HotelDetailsViewRoute(hotel: hotel));
+                    context.router.push(
+                        HotelDetailsViewRoute(hotel: hotel, index: index));
                   } else {
                     NotificationsService.showSnackbar(
                         "Necesitas estar registrado");

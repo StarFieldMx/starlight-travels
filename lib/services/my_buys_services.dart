@@ -11,8 +11,12 @@ class MyBuysServices extends ChangeNotifier {
   }
 
   final httpReponse = HttpResponse();
-  List<Rooms> rooms = [];
-  List<Flight> flights = [];
+  final List<Rooms> rooms = [];
+  final List<Flight> flights = [];
+  final List<dynamic> _myServices = [];
+
+  List<dynamic> get myServices => _listServices();
+
   bool isLoading = false;
   Future<bool> buyFlight(Flight flight, BuildContext context) async {
     isLoading = true;
@@ -45,5 +49,12 @@ class MyBuysServices extends ChangeNotifier {
         "myRooms.json", Rooms.fromMap, rooms);
     isLoading = false;
     notifyListeners();
+  }
+
+  List<dynamic> _listServices() {
+    _myServices.clear();
+    _myServices.insertAll(0, rooms);
+    _myServices.insertAll(0, flights);
+    return _myServices;
   }
 }

@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: provider(),
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         scaffoldMessengerKey: NotificationsService.messengerKey,
         theme: theme.starDark,
         routeInformationParser: starLightRouter.defaultRouteParser(),
@@ -68,7 +69,7 @@ class MyApp extends StatelessWidget {
         create: (_) => HotelsServices(),
       ),
       ChangeNotifierProvider(
-        create: (_) => AuthChecker(),
+        create: (BuildContext context) => AuthChecker(context),
       ),
       ChangeNotifierProvider(
         create: (_) => MyBuysServices(),
