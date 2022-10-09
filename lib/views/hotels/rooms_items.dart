@@ -11,6 +11,7 @@ import 'package:starlight/views/hotels/widgets/details.dart';
 import 'package:starlight/widgets/background_image.dart';
 import 'package:starlight/widgets/buttons/primary_button.dart';
 
+import '../../services/my_buys_services.dart';
 import '../../utils/money.dart';
 
 class RoomsItems extends StatelessWidget {
@@ -43,8 +44,9 @@ class Room extends StatelessWidget {
   Widget build(BuildContext context) {
     final userState = Provider.of<UserState>(context);
     final size = MediaQuery.of(context).size;
-    final String buyOrCancel = isBuying ? "Comprar" : "Cancelar";
+    final String buyOrCancel = isBuying ? "Reservar" : "Cancelar";
     final bool isAuth = userState.authentication;
+    final myServices = Provider.of<MyServices>(context);
     return Container(
       margin: const EdgeInsets.only(bottom: 30),
       child: Stack(
@@ -111,7 +113,8 @@ class Room extends StatelessWidget {
                               question: '¿Deseas continuar con la reservación?')
                           // ! Implement cancel action
                           : CoolNotifications.confirmationAlert(context,
-                              onTap: () {},
+                              onTap: () =>
+                                  myServices.deleteServices(room, context),
                               question: '¿Deseas cancelar tu reservación?');
                     } else {
                       CoolNotifications.infoAlert(context,

@@ -17,7 +17,7 @@ class _MyTripsViewUserState extends State<MyTripsViewUser> {
   List<Widget> list = [];
   @override
   Widget build(BuildContext context) {
-    final myServices = Provider.of<MyBuysServices>(context);
+    final myServices = Provider.of<MyServices>(context);
     if (myServices.flights.isEmpty && myServices.rooms.isEmpty) {
       return const Center(
         child: Text("No tienes servicios comprados vamos a comprar algunos!"),

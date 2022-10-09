@@ -12,9 +12,18 @@ class MyTripsViewInvited extends StatelessWidget {
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text('My Trips'),
+        // ignore: prefer_const_constructors
+        const Text(
+          'Para comprar viajes y hoteles registrate!',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 20),
         PrimaryButton(
-            labelText: "Para comprar viajes y hoteles registrate!",
+            labelText: "Registrarse",
             onTap: () {
               context.router.pushNamed('sign_in');
             })

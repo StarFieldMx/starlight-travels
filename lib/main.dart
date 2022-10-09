@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
         create: (BuildContext context) => AuthChecker(context),
       ),
       ChangeNotifierProvider(
-        create: (_) => MyBuysServices(),
+        create: (_) => MyServices(),
       ),
     ];
   }

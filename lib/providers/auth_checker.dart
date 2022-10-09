@@ -20,7 +20,7 @@ class AuthChecker extends ChangeNotifier {
   void _checkerAuth(BuildContext context) {
     final userState = Provider.of<UserState>(context, listen: false);
     FirebaseAuth.instance.authStateChanges().listen((User? stateUser) {
-      assert(stateUser == null);
+      // assert(stateUser == null);
       if (stateUser == null) {
         user = stateUser;
       } else {
