@@ -1,15 +1,24 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:starlight/models/flights.dart';
+import 'package:starlight/providers/user_state.dart';
+import 'package:starlight/router/starlight_router.gr.dart';
+import 'package:starlight/services/notification_service.dart';
 import 'package:starlight/utils/parse_time.dart';
+import 'package:starlight/widgets/buttons/primary_button.dart';
 import 'package:starlight/widgets/multiply_text.dart';
 import 'package:starlight/widgets/widgets.dart';
 
-class MyFlightsCard extends StatelessWidget {
-  const MyFlightsCard({super.key, required this.flight});
+class FlightsCard extends StatelessWidget {
+  const FlightsCard({super.key, required this.flight, this.isBuying = true});
   final Flight flight;
-
+  final bool isBuying;
   @override
   Widget build(BuildContext context) {
+    final userState = Provider.of<UserState>(context);
+    final bool isAuth = userState.authentication;
+    final String buyOrCancel = isBuying ? "Comprar" : "Cancelar";
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
@@ -43,10 +52,35 @@ class MyFlightsCard extends StatelessWidget {
                   price: flight.price.toDouble(),
                   typeTrip: flight.type.name,
                 )),
+            Positioned(
+                bottom: 15,
+                right: 15,
+                child: SizedBox(
+                    height: 35,
+                    width: 120,
+                    child: PrimaryButton(
+                      color: isBuying ? null : Colors.red,
+                      labelText: buyOrCancel,
+                      onTap: () {
+                        if (isBuying) {
+                          _buyFlight(isAuth, context);
+                        } else {
+                          // ! Cancelar el vuelo,
+                        }
+                      },
+                    )))
           ],
         ),
       ),
     );
+  }
+
+  void _buyFlight(bool isAuth, BuildContext context) {
+    if (isAuth) {
+      context.router.push(PaymentViewRoute(flight: flight));
+    } else {
+      NotificationsService.showSnackbar("Necesitas estar registrado");
+    }
   }
 
   BoxDecoration _cardBorders() => BoxDecoration(

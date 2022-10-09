@@ -26,7 +26,7 @@ class Flight {
     required this.arrTime,
     required this.flighTime,
     required this.price,
-    required this.details,
+    this.details,
   });
 
   String? id;
@@ -40,29 +40,35 @@ class Flight {
   String arrTime;
   int flighTime;
   int price;
-  FlightDetails details;
+  FlightDetails? details;
 
   factory Flight.fromMap(Map<String, dynamic> json) => Flight(
         id: json["id"],
         airline: Airline.starlight,
         type: Type.redondo,
-        from: Country(code: json["from"]),
-        to: Country(code: json["to"]),
+        from: json["from"] is String
+            ? Country(code: json["from"])
+            : Country(code: json["from"]["code"]),
+        to: json["to"] is String
+            ? Country(code: json["to"])
+            : Country(code: json["to"]["code"]),
         departure: json["Departure"],
         arrival: json["Arrival"],
         depTime: json["depTime"],
         arrTime: json["arrTime"],
         flighTime: json["flighTime"],
         price: json["price"],
-        details: FlightDetails.fromMap(json["flights_details"]),
+        details: json["flights_details"] != null
+            ? FlightDetails.fromMap(json["flights_details"])
+            : null,
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
-        "Airline": airline,
-        "type": type,
-        "from": from,
-        "to": to,
+        "Airline": airline.name,
+        "type": type.name,
+        "from": from.toMap(),
+        "to": to.toMap(),
         "Departure": departure,
         "Arrival": arrival,
         "depTime": depTime,
@@ -70,6 +76,9 @@ class Flight {
         "flighTime": flighTime,
         "price": price,
       };
+  factory Flight.fromJson(String str) => Flight.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
 }
 
 enum Airline { starlight }

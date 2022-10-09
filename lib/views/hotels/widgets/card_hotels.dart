@@ -37,7 +37,7 @@ class HotelItem extends StatelessWidget {
             ),
             Positioned(
               top: 0,
-              child: _ImageHotel(
+              child: ImageHotel(
                 heightImage: heightImage,
                 size: size,
                 index: imageIndexHotel,
@@ -121,8 +121,8 @@ class _BottomDetails extends StatelessWidget {
   } //
 }
 
-class _ImageHotel extends StatelessWidget {
-  const _ImageHotel({
+class ImageHotel extends StatelessWidget {
+  const ImageHotel({
     Key? key,
     required this.heightImage,
     required this.size,

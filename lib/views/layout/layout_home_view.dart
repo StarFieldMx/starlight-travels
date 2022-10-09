@@ -33,12 +33,12 @@ class _LayoutHomeViewState extends State<LayoutHomeView>
       GestureDetector(
         child: const Icon(Icons.hotel, size: 25),
         onTap: () => context.router
-            .push(const ServicesViewRoute(children: [HotelsViewRoute()])),
+            .push(const ServicesViewRoute(children: [HotelsRoute()])),
       ),
       GestureDetector(
         child: const Icon(Icons.flight_land_rounded, size: 25),
         onTap: () => context.router
-            .push(const ServicesViewRoute(children: [FlightsViewRoute()])),
+            .push(const ServicesViewRoute(children: [FlightsRoute()])),
       ),
       // GestureDetector(
       //   child: const Icon(Icons.today_rounded, size: 25),
@@ -74,6 +74,7 @@ class _CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return SliverAppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: StarLightColors.starSecondaryBlue,
       expandedHeight: width * 0.13,
       floating: false,

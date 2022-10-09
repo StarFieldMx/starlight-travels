@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:starlight/services/flights_services.dart';
-import 'package:starlight/views/trips/widgets/my_flights_card.dart';
+import 'package:starlight/views/flights/flights_view.dart';
 import 'package:starlight/widgets/loading_starlight.dart';
 
 class LayoutFlightsView extends StatelessWidget {
@@ -20,28 +20,5 @@ class LayoutFlightsView extends StatelessWidget {
       );
     }
     return const LoadinStarlight();
-  }
-}
-
-class FlightView extends StatelessWidget {
-  const FlightView({
-    Key? key,
-    required this.provider,
-  }) : super(key: key);
-
-  final FlightsServices provider;
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: ListView.builder(
-        itemCount: provider.flights.length,
-        itemBuilder: (_, int item) {
-          return MyFlightsCard(
-            flight: provider.flights[item],
-          );
-        },
-      ),
-    );
   }
 }

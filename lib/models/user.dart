@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:starlight/models/user_details.dart';
 
 UserStarlight userFromString(String str) =>
@@ -33,6 +34,16 @@ class UserStarlight {
         photoUrl: json["photoURL"],
         uid: json["uid"],
       );
+  factory UserStarlight.fromUserFirebase(User? user) {
+    return UserStarlight(
+      email: user?.email ?? '',
+      displayName: user?.displayName,
+      emailVerified: user?.emailVerified ?? false,
+      phoneNumber: user?.phoneNumber,
+      photoUrl: user?.photoURL,
+      uid: user?.uid,
+    );
+  }
   Map<String, dynamic> toMap() => {
         "displayName": displayName,
         "email": email,

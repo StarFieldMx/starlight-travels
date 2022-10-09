@@ -12,7 +12,7 @@ String countryToMap(Country data) => json.encode(data.toMap());
 
 class Country {
   Country({
-    this.name,
+    this.name = "",
     required this.code,
   });
 
@@ -35,8 +35,8 @@ class Country {
         "name": name,
         "code": code,
       };
-  Future<void> updateCountry() async {
-    final newCountry = await ParseCountryCode.byCode(code);
-    name = newCountry.name;
-  }
+  // Future<void> updateCountry() async {
+  //   final newCountry = await ParseCountryCode.byCode(code);
+  //   name = newCountry.name;
+  // }
 }

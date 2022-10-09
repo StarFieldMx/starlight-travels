@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:starlight/services/flights_services.dart';
 
-class FlightsView extends StatelessWidget {
-  const FlightsView({super.key});
+import 'widgets/flights_card.dart';
+
+class FlightView extends StatelessWidget {
+  const FlightView({
+    Key? key,
+    required this.provider,
+  }) : super(key: key);
+
+  final FlightsServices provider;
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return SafeArea(
+      child: ListView.builder(
+        itemCount: provider.flights.length,
+        itemBuilder: (_, int item) {
+          return FlightsCard(
+            flight: provider.flights[item],
+          );
+        },
+      ),
+    );
   }
 }

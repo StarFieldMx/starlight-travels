@@ -47,7 +47,7 @@ class FormSignUp extends StatelessWidget {
           controller: signUpProvider.passwordController,
         ),
         PrimaryButton(
-          labelText: "labelText",
+          labelText: "Registrarse",
           onTap: () => signUpProvider.signUp(context),
         )
       ],

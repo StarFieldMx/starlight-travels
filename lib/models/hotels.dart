@@ -57,7 +57,7 @@ class Hotel {
         "hotel": name,
         "rate": rate,
         "direction": direction.toMap(),
-        "amenties": amenties.toMap(),
+        "amenties": amenties,
         "internet": List<dynamic>.from(internet.map((x) => x.toMap())),
         "foodDrink": foodDrink.toMap(),
         "thingsToDo": thingsToDo == null
@@ -88,56 +88,40 @@ class Accessibility {
       };
 }
 
+enum AmentiesType {
+  internet,
+  pool,
+  air,
+  pet,
+  parking,
+  breakfast,
+  restaurant,
+  bar,
+  housekeeping,
+  frontDesk,
+  none
+}
+
 class Amenties {
-  Amenties({
-    required this.internet,
-    required this.pool,
-    required this.air,
-    required this.pet,
-    required this.parking,
-    required this.breakfast,
-    required this.restaurant,
-    required this.bar,
-    required this.housekeeping,
-    required this.frontDesk,
-  });
+  Amenties(this.listAmenties);
 
-  bool internet;
-  bool pool;
-  bool air;
-  bool pet;
-  bool parking;
-  bool breakfast;
-  bool restaurant;
-  bool bar;
-  bool housekeeping;
-  bool frontDesk;
+  List<AmentiesType> listAmenties = [];
 
-  factory Amenties.fromMap(Map<String, dynamic> json) => Amenties(
-        internet: json["internet"],
-        pool: json["pool"],
-        air: json["air"],
-        pet: json["pet"],
-        parking: json["parking"],
-        breakfast: json["breakfast"],
-        restaurant: json["restaurant"],
-        bar: json["bar"],
-        housekeeping: json["housekeeping"],
-        frontDesk: json["frontDesk"],
-      );
+  factory Amenties.fromMap(Map<String, dynamic> json) {
+    List<AmentiesType> newAms = [];
+    if (json["internet"]) newAms.add(AmentiesType.internet);
+    if (json["pool"]) newAms.add(AmentiesType.pool);
+    if (json["air"]) newAms.add(AmentiesType.air);
+    if (json["pet"]) newAms.add(AmentiesType.pet);
+    if (json["parking"]) newAms.add(AmentiesType.parking);
+    if (json["breakfast"]) newAms.add(AmentiesType.breakfast);
+    if (json["restaurant"]) newAms.add(AmentiesType.restaurant);
+    if (json["bar"]) newAms.add(AmentiesType.bar);
+    if (json["housekeeping"]) newAms.add(AmentiesType.housekeeping);
+    if (json["frontDesk"]) newAms.add(AmentiesType.frontDesk);
 
-  Map<String, dynamic> toMap() => {
-        "internet": internet,
-        "pool": pool,
-        "air": air,
-        "pet": pet,
-        "parking": parking,
-        "breakfast": breakfast,
-        "restaurant": restaurant,
-        "bar": bar,
-        "housekeeping": housekeeping,
-        "frontDesk": frontDesk,
-      };
+    return Amenties(newAms);
+  }
 }
 
 class Direction {
@@ -156,6 +140,11 @@ class Direction {
   String state;
   String municipality;
   String postalCode;
+
+  String get direction => getString();
+  String getString() {
+    return "$street $colony $number, $municipality, $state, $postalCode";
+  }
 
   factory Direction.fromMap(Map<String, dynamic> json) => Direction(
         street: json["street"],
@@ -215,7 +204,7 @@ class Internet {
 
   factory Internet.fromMap(Map<String, dynamic> json) => Internet(
         rooms: json["rooms"],
-        places: json["places"] == null ? null : Places.fromMap(json["places"]),
+        places: json["places"] != null ? Places.fromMap(json["places"]) : null,
       );
 
   Map<String, dynamic> toMap() => {

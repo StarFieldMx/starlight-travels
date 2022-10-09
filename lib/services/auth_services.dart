@@ -84,14 +84,7 @@ class AuthServices extends ChangeNotifier {
     final User googleUser = _auth.currentUser!;
     assert(user?.uid == googleUser.uid);
     storage.write(key: 'token', value: idToken);
-    final userStarlight = UserStarlight(
-      email: user?.email ?? '',
-      displayName: user?.displayName,
-      emailVerified: user?.emailVerified ?? false,
-      phoneNumber: user?.phoneNumber,
-      photoUrl: user?.photoURL,
-      uid: user?.uid,
-    );
+    final userStarlight = UserStarlight.fromUserFirebase(user);
     // !change
     userStarlight.userDetails = null;
     await storage.write(key: 'user', value: userStarlight.toJson().toString());
