@@ -20,16 +20,16 @@ class AuthChecker extends ChangeNotifier {
   void _checkerAuth(BuildContext context) {
     final userState = Provider.of<UserState>(context, listen: false);
     FirebaseAuth.instance.authStateChanges().listen((User? stateUser) {
+      // assert(stateUser == null);
       if (stateUser == null) {
         user = stateUser;
-        userState.logOut();
       } else {
         user = stateUser;
         userState.user = UserStarlight.fromUserFirebase(user);
       }
     });
     FirebaseAuth.instance.idTokenChanges().listen((event) {
-      String token = user!.refreshToken ?? '';
+      String token = user?.refreshToken ?? '';
       if (token.isNotEmpty) {
         storage.write(key: 'token', value: token);
       }

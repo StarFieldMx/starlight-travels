@@ -91,11 +91,11 @@ class AuthServices extends ChangeNotifier {
     return userStarlight;
   }
 
-  void signOutGoogle(BuildContext context) async {
+  void signOutGeneral(BuildContext context) async {
     if (googleUser != null) {
       await googleSignIn.signOut();
+      FirebaseAuth.instance.signOut();
     }
-    // googleSignIn.disconnect();
     logOut();
     context.router.replaceNamed('main');
   }

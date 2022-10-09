@@ -47,69 +47,68 @@ class HttpResponse {
       dataBase!,
       path,
     );
-    final user = await storage.read(key: 'user');
     final response = await http.get(url);
-    final decode = json.decode(response.body);
-    if (decode == null) return;
-    if (decode is String) {
+    final decodeMap = await json.decode(response.body);
+    if (decodeMap == null) return;
+    if (decodeMap is String) {
       return;
     }
-    final Map<String, dynamic> map = decode;
-    map.forEach(
-      (key, value) {
-        if (user != null) {
-          if (UserStarlight.fromMap(json.decode(user)).uid != key) {
-            final tempData = parseFrom(value);
-            if (tempData is Flight) {
-              tempData.id = key;
-              list.add(tempData);
-            } else if (tempData is Hotel) {
-              tempData.id = key;
-              list.add(tempData);
-              // ! Settear imagen??
-            } else if (tempData is Rooms) {
-              tempData.id = key;
-              list.add(tempData);
-            }
+    final map = decodeMap as Map<String, dynamic>;
+    if (map.isNotEmpty) {
+      map.forEach(
+        (key, value) {
+          final tempData = parseFrom(value);
+          if (tempData is Flight) {
+            tempData.id = key;
+            list.add(tempData);
+          } else if (tempData is Hotel) {
+            tempData.id = key;
+            list.add(tempData);
+            // ! Settear imagen??
+          } else if (tempData is Rooms) {
+            tempData.id = key;
+            list.add(tempData);
           }
-        }
-      },
-    );
+        },
+      );
+    }
   }
 
-  // void _addMyFlights(
-  //     String user, Map<String, dynamic> map, List<dynamic> list, key) {
-  //   final tempUser = UserStarlight.fromMap(json.decode(user));
-  //   if (tempUser.uid != null) {
-  //     if (tempUser.uid == key) {
-  //       if (map.isNotEmpty) {
-  //         map[key].forEach((keyFlight, value) {
-  //           final myFlight = MyFlights.fromMap(value);
-  //           myFlight.userId = tempUser.uid;
-  //           myFlight.flight.id = keyFlight;
-  //           list.add(myFlight);
-  //         });
-  //       }
-  //     }
-  //   }
-  // }
+/*
+  void _addMyFlights(
+      String user, Map<String, dynamic> map, List<dynamic> list, key) {
+    final tempUser = UserStarlight.fromMap(json.decode(user));
+    if (tempUser.uid != null) {
+      if (tempUser.uid == key) {
+        if (map.isNotEmpty) {
+          map[key].forEach((keyFlight, value) {
+            final myFlight = MyFlights.fromMap(value);
+            myFlight.userId = tempUser.uid;
+            myFlight.flight.id = keyFlight;
+            list.add(myFlight);
+          });
+        }
+      }
+    }
+  }
 
-  // void _addMyRooms(
-  //     String user, Map<String, dynamic> map, List<dynamic> list, key) {
-  //   final tempUser = UserStarlight.fromMap(json.decode(user));
-  //   if (tempUser.uid != null) {
-  //     if (tempUser.uid == key) {
-  //       if (map.isNotEmpty) {
-  //         map[key].forEach((keyFlight, value) {
-  //           final myFlight = MyRooms.fromMap(value);
-  //           myFlight.userId = tempUser.uid;
-  //           myFlight.room.id = keyFlight;
-  //           list.add(myFlight);
-  //         });
-  //       }
-  //     }
-  //   }
-  // }
+  void _addMyRooms(
+      String user, Map<String, dynamic> map, List<dynamic> list, key) {
+    final tempUser = UserStarlight.fromMap(json.decode(user));
+    if (tempUser.uid != null) {
+      if (tempUser.uid == key) {
+        if (map.isNotEmpty) {
+          map[key].forEach((keyFlight, value) {
+            final myFlight = MyRooms.fromMap(value);
+            myFlight.userId = tempUser.uid;
+            myFlight.room.id = keyFlight;
+            list.add(myFlight);
+          });
+        }
+      }
+    }
+  }
+*/
 
   static Future<Map<String, dynamic>> getAuthReponse(
     Map<String, dynamic> authData,
@@ -129,21 +128,57 @@ class HttpResponse {
     String? user = await storage.read(key: 'user');
     if (user != null) {
       final userStarlight = UserStarlight.fromMap(json.decode(user));
-      if (userStarlight.uid != null) {}
-      if (item is Rooms) {
-        url = Uri.https(
-            dataBase!, "myRooms/${userStarlight.uid}.json", {'auth': token});
-        resp = await http.post(url, body: json.encode(item.toMap()));
-      } else if (item is Flight) {
-        url = Uri.https(
-            dataBase!, "myFlights/${userStarlight.uid}.json", {'auth': token});
-        resp = await http.post(url, body: json.encode(item.toMap()));
+      if (userStarlight.uid != null) {
+        if (item is Rooms) {
+          url = Uri.https(
+              dataBase!, "myRooms/${userStarlight.uid}.json", {'auth': token});
+          resp = await http.post(url, body: json.encode(item.toMap()));
+        } else if (item is Flight) {
+          url = Uri.https(dataBase!, "myFlights/${userStarlight.uid}.json",
+              {'auth': token});
+          resp = await http.post(url, body: json.encode(item.toMap()));
+        }
+        final decodedData = json.decode(resp!.body);
+        if (decodedData["error"] != null) {
+          NotificationsService.showSnackbar(decodedData["error"]);
+          return;
+        }
+        item.id = decodedData["name"];
+        list.add(item);
       }
-      final decodedData = json.decode(resp!.body);
-      if (decodedData["error"] != null) {
-        NotificationsService.showSnackbar(decodedData["error"]);
-      }
-      list.add(item);
     }
+  }
+
+  Future<String?> deleteFlightOrRoom(dynamic item) async {
+    Uri? url;
+    http.Response? resp;
+    String? token = await storage.read(key: 'token');
+    String? user = await storage.read(key: 'user');
+    if (user != null) {
+      final userStarlight = UserStarlight.fromMap(json.decode(user));
+      if (userStarlight.uid != null) {
+        if (item is Rooms) {
+          url = Uri.https(dataBase!,
+              "myRooms/${userStarlight.uid}/${item.id}.json", {'auth': token});
+          resp = await http.post(url, body: json.encode(item.toMap()));
+        } else if (item is Flight) {
+          url = Uri.https(
+              dataBase!,
+              "myFlights/${userStarlight.uid}/${item.id}.json",
+              {'auth': token});
+          resp = await http.delete(url, headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+          });
+        }
+        final decodedData = json.decode(resp!.body);
+        if (decodedData == null) {
+          return null;
+        }
+        if (decodedData["error"] != null) {
+          return decodedData["error"];
+        }
+      }
+    }
+    return null;
   }
 }

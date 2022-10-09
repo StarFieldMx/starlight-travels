@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:starlight/models/rooms.dart';
+import 'package:starlight/notifications/cool_alerts.dart';
+import 'package:starlight/providers/user_state.dart';
 import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/services/hotels_services.dart';
 import 'package:starlight/styles/starlight_colors.dart';
@@ -9,6 +11,7 @@ import 'package:starlight/views/hotels/widgets/details.dart';
 import 'package:starlight/widgets/background_image.dart';
 import 'package:starlight/widgets/buttons/primary_button.dart';
 
+import '../../services/my_buys_services.dart';
 import '../../utils/money.dart';
 
 class RoomsItems extends StatelessWidget {
@@ -39,8 +42,11 @@ class Room extends StatelessWidget {
   final bool isBuying;
   @override
   Widget build(BuildContext context) {
+    final userState = Provider.of<UserState>(context);
     final size = MediaQuery.of(context).size;
-    final String buyOrCancel = isBuying ? "Comprar" : "Cancelar";
+    final String buyOrCancel = isBuying ? "Reservar" : "Cancelar";
+    final bool isAuth = userState.authentication;
+    final myServices = Provider.of<MyServices>(context);
     return Container(
       margin: const EdgeInsets.only(bottom: 30),
       child: Stack(
@@ -100,16 +106,31 @@ class Room extends StatelessWidget {
                   labelText: buyOrCancel,
                   color: isBuying ? null : Colors.red,
                   onTap: () {
-                    isBuying
-                        ? context.router.push(PaymentViewRoute(room: room))
-                        // ! Implement cancel action
-                        : "Cancelar";
+                    if (isAuth) {
+                      isBuying
+                          ? CoolNotifications.confirmationAlert(context,
+                              onTap: _isBuying(context),
+                              question: '¿Deseas continuar con la reservación?')
+                          // ! Implement cancel action
+                          : CoolNotifications.confirmationAlert(context,
+                              onTap: () =>
+                                  myServices.deleteServices(room, context),
+                              question: '¿Deseas cancelar tu reservación?');
+                    } else {
+                      CoolNotifications.infoAlert(context,
+                          infoMessage: "Necesitas estar registrado");
+                    }
                   }),
             ),
           ),
         ],
       ),
     );
+  }
+
+  _isBuying(BuildContext context) {
+    CoolNotifications.buySuccess(
+        () => context.router.push(PaymentViewRoute(room: room)), context);
   }
 }
 

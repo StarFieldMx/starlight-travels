@@ -9,9 +9,11 @@ import 'package:starlight/models/user.dart';
 import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/services/http_reponse.dart';
 
-class MyBuysServices extends ChangeNotifier {
+import '../notifications/cool_alerts.dart';
+
+class MyServices extends ChangeNotifier {
   final storage = const FlutterSecureStorage();
-  MyBuysServices() {
+  MyServices() {
     _loadMyFlights();
   }
 
@@ -75,5 +77,22 @@ class MyBuysServices extends ChangeNotifier {
     _myServices.insertAll(0, rooms);
     _myServices.insertAll(0, flights);
     return _myServices;
+  }
+
+  Future<void> deleteServices(dynamic service, BuildContext context) async {
+    final String? response = await httpReponse.deleteFlightOrRoom(service);
+    if (response != null) {
+      // ignore: use_build_context_synchronously
+      CoolNotifications.onError(context, errorMessage: response);
+      return;
+    }
+    if (service is Flight) {
+      final flight = flights.firstWhere((element) => element.id == service.id);
+      flights.remove(flight);
+    } else if (service is Rooms) {
+      final room = rooms.firstWhere((element) => element.id == service.id);
+      rooms.remove(room);
+    }
+    notifyListeners();
   }
 }

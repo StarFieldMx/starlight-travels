@@ -23,7 +23,7 @@ class _CardFormStarlightState extends State<CardFormStarlight> {
   Widget build(BuildContext context) {
     // ! adapt to recieve info from somewhere?
     final userState = Provider.of<UserState>(context);
-    final buyServices = Provider.of<MyBuysServices>(context, listen: false);
+    final buyServices = Provider.of<MyServices>(context, listen: false);
     return SingleChildScrollView(
       child: Column(
         children: [

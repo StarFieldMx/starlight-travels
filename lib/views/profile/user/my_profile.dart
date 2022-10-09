@@ -23,8 +23,7 @@ class MyProfileView extends StatelessWidget {
         PrimaryButton(
           labelText: 'cerrar sesión',
           onTap: () {
-            userState.logOut();
-            authServices.signOutGoogle(context);
+            authServices.signOutGeneral(context);
           },
         )
       ],

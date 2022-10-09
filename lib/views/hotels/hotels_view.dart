@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:starlight/notifications/cool_alerts.dart';
 import 'package:starlight/providers/user_state.dart';
 import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/services/hotels_services.dart';
@@ -32,15 +33,8 @@ class HotelsView extends StatelessWidget {
             itemBuilder: (_, int index) {
               final hotel = hotels.hotels[index];
               return GestureDetector(
-                onTap: () {
-                  if (isAuth) {
-                    context.router.push(
-                        HotelDetailsViewRoute(hotel: hotel, index: index));
-                  } else {
-                    NotificationsService.showSnackbar(
-                        "Necesitas estar registrado");
-                  }
-                },
+                onTap: () => context.router
+                    .push(HotelDetailsViewRoute(hotel: hotel, index: index)),
                 child: HotelItem(
                   hotel: hotel,
                   imageIndexHotel: index,
