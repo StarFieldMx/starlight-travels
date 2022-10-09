@@ -15,7 +15,7 @@ class CheckStatusProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isLoading) return const LoadinStarlight();
-    if (isEmpty) return NotAvailable(message: emptyMessage);
+    if (isEmpty) return Center(child: NotAvailable(message: emptyMessage));
     return child;
   }
 }

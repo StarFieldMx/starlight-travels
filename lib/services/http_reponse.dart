@@ -47,34 +47,31 @@ class HttpResponse {
       dataBase!,
       path,
     );
-    final user = await storage.read(key: 'user');
     final response = await http.get(url);
-    final decode = json.decode(response.body);
-    if (decode == null) return;
-    if (decode is String) {
+    final decodeMap = await json.decode(response.body);
+    if (decodeMap == null) return;
+    if (decodeMap is String) {
       return;
     }
-    final Map<String, dynamic> map = decode;
-    map.forEach(
-      (key, value) {
-        if (user != null) {
-          if (UserStarlight.fromMap(json.decode(user)).uid != key) {
-            final tempData = parseFrom(value);
-            if (tempData is Flight) {
-              tempData.id = key;
-              list.add(tempData);
-            } else if (tempData is Hotel) {
-              tempData.id = key;
-              list.add(tempData);
-              // ! Settear imagen??
-            } else if (tempData is Rooms) {
-              tempData.id = key;
-              list.add(tempData);
-            }
+    final map = decodeMap as Map<String, dynamic>;
+    if (map.isNotEmpty) {
+      map.forEach(
+        (key, value) {
+          final tempData = parseFrom(value);
+          if (tempData is Flight) {
+            tempData.id = key;
+            list.add(tempData);
+          } else if (tempData is Hotel) {
+            tempData.id = key;
+            list.add(tempData);
+            // ! Settear imagen??
+          } else if (tempData is Rooms) {
+            tempData.id = key;
+            list.add(tempData);
           }
-        }
-      },
-    );
+        },
+      );
+    }
   }
 
 /*

@@ -11,14 +11,6 @@ class LayoutHotelsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final hotels = Provider.of<HotelsServices>(context);
     hotels.context;
-    if (hotels.isLoading) return const LoadinStarlight();
-    if (hotels.hotels.isEmpty) {
-      return const Material(
-        child: Center(
-          child: Text('No Data'),
-        ),
-      );
-    }
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

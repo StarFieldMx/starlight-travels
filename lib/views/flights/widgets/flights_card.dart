@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:starlight/models/flights.dart';
+import 'package:starlight/notifications/cool_alerts.dart';
 import 'package:starlight/providers/user_state.dart';
 import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/services/notification_service.dart';
@@ -62,9 +63,12 @@ class FlightsCard extends StatelessWidget {
                       color: isBuying ? null : Colors.red,
                       labelText: buyOrCancel,
                       onTap: () {
-                        if (isBuying) {
-                          _buyFlight(isAuth, context);
-                        } else {
+                        if (isBuying && isAuth) {
+                          CoolNotifications.confirmationAlert(context,
+                              onTap: () => _buyFlight(isAuth, context, flight),
+                              question: '¿Deseas continuar con la compra?');
+                          _buyFlight(isAuth, context, flight);
+                        } else if (isAuth) {
                           // ! Cancelar el vuelo,
                         }
                       },
@@ -75,11 +79,14 @@ class FlightsCard extends StatelessWidget {
     );
   }
 
-  void _buyFlight(bool isAuth, BuildContext context) {
+  void _buyFlight(bool isAuth, BuildContext context, dynamic flight) {
     if (isAuth) {
-      context.router.push(PaymentViewRoute(flight: flight));
+      CoolNotifications.buySuccess(
+          () => context.router.push(PaymentViewRoute(flight: flight)), context);
     } else {
-      NotificationsService.showSnackbar("Necesitas estar registrado");
+      // ! Change notifications
+      CoolNotifications.infoAlert(context,
+          infoMessage: "Necesitas estar registrado");
     }
   }
 
