@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 import 'package:starlight/models/flights.dart';
 import 'package:starlight/models/rooms.dart';
+import 'package:starlight/notifications/cool_alerts.dart';
 import 'package:starlight/providers/user_state.dart';
+import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/services/my_buys_services.dart';
 import 'package:starlight/services/notification_service.dart';
 import 'package:starlight/utils/money.dart';
@@ -18,6 +21,12 @@ class CardFormStarlight extends StatefulWidget {
 }
 
 class _CardFormStarlightState extends State<CardFormStarlight> {
+  bought() {
+    CoolNotifications.buySuccess(context,
+        succesAction: () => context.router.replace(const StarLightFlowUser()));
+  }
+
+  bool isBuyed = false;
   bool isComplete = false;
   @override
   Widget build(BuildContext context) {
@@ -98,14 +107,27 @@ class _CardFormStarlightState extends State<CardFormStarlight> {
           ),
           PrimaryButton(
               labelText: "Pagar",
-              onTap: () {
+              onTap: () async {
                 if (isComplete) {
                   if (widget.flight != null) {
-                    buyServices.buyFlight(widget.flight!, context);
+                    isBuyed = await buyServices.buyFlight(
+                      widget.flight!,
+                      context,
+                    );
+                    setState(() {});
+                    if (isBuyed) {
+                      bought();
+                    }
                   } else if (widget.room != null) {
-                    buyServices.buyRoom(widget.room!, context);
+                    isBuyed = await buyServices.buyRoom(
+                      widget.room!,
+                      context,
+                    );
+                    setState(() {});
+                    if (isBuyed) {
+                      bought();
+                    }
                   }
-                  print("funca");
                 } else {
                   NotificationsService.showSnackbar(
                       "Todos los datos de pago son necesarios");

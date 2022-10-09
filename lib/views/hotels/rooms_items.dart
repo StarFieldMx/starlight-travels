@@ -14,21 +14,23 @@ import 'package:starlight/widgets/buttons/primary_button.dart';
 import '../../services/my_buys_services.dart';
 import '../../utils/money.dart';
 
-class RoomsItems extends StatelessWidget {
-  const RoomsItems({super.key});
+class RoomList extends StatelessWidget {
+  const RoomList({super.key, required this.hotelName});
+  final String hotelName;
 
   @override
   Widget build(BuildContext context) {
     final hotelServices = Provider.of<HotelsServices>(context);
-    hotelServices.rooms;
     return Column(
       children: [
         Expanded(
           child: ListView.builder(
             scrollDirection: Axis.vertical,
             itemCount: hotelServices.rooms.length,
-            itemBuilder: ((context, index) =>
-                Room(room: hotelServices.rooms[index])),
+            itemBuilder: ((context, index) {
+              hotelServices.rooms[index].hotelName = hotelName;
+              return RoomItem(room: hotelServices.rooms[index]);
+            }),
           ),
         ),
       ],
@@ -36,8 +38,8 @@ class RoomsItems extends StatelessWidget {
   }
 }
 
-class Room extends StatelessWidget {
-  const Room({super.key, required this.room, this.isBuying = true});
+class RoomItem extends StatelessWidget {
+  const RoomItem({super.key, required this.room, this.isBuying = true});
   final Rooms room;
   final bool isBuying;
   @override
@@ -46,7 +48,6 @@ class Room extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final String buyOrCancel = isBuying ? "Reservar" : "Cancelar";
     final bool isAuth = userState.authentication;
-    final myServices = Provider.of<MyServices>(context);
     return Container(
       margin: const EdgeInsets.only(bottom: 30),
       child: Stack(
@@ -66,8 +67,25 @@ class Room extends StatelessWidget {
                   height: size.width * 0.4,
                   width: size.width,
                   child: BackgroundImage(room.pictures[0]))),
+          if (room.hotelName != null)
+            Positioned(
+                bottom: 120,
+                left: 15,
+                child: SizedBox(
+                  width: size.width * 0.99,
+                  height: size.width * 0.5,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Flexible(
+                        child: Text("Hotel: Gran Hotel ${room.hotelName!}",
+                            style: Theme.of(context).textTheme.headline5),
+                      ),
+                    ],
+                  ),
+                )),
           Positioned(
-              bottom: 110,
+              bottom: 90,
               left: 15,
               child: SizedBox(
                 width: size.width * 0.8,
@@ -82,7 +100,7 @@ class Room extends StatelessWidget {
                 ),
               )),
           Positioned(
-            bottom: 60,
+            bottom: 50,
             left: 15,
             child: SizedBox(
                 height: size.width * 0.55,
@@ -109,12 +127,14 @@ class Room extends StatelessWidget {
                     if (isAuth) {
                       isBuying
                           ? CoolNotifications.confirmationAlert(context,
-                              onTap: _isBuying(context),
+                              onTap: () => context.router
+                                  .push(PaymentViewRoute(room: room)),
                               question: '¿Deseas continuar con la reservación?')
                           // ! Implement cancel action
                           : CoolNotifications.confirmationAlert(context,
-                              onTap: () =>
-                                  myServices.deleteServices(room, context),
+                              onTap: () => Provider.of<MyServices>(context,
+                                      listen: false)
+                                  .deleteServices(room, context),
                               question: '¿Deseas cancelar tu reservación?');
                     } else {
                       CoolNotifications.infoAlert(context,
@@ -126,11 +146,6 @@ class Room extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  _isBuying(BuildContext context) {
-    CoolNotifications.buySuccess(
-        () => context.router.push(PaymentViewRoute(room: room)), context);
   }
 }
 

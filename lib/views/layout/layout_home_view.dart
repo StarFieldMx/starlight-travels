@@ -21,13 +21,6 @@ class _LayoutHomeViewState extends State<LayoutHomeView>
   @override
   Widget build(BuildContext context) {
     final userState = Provider.of<UserState>(context);
-    final authChecker = Provider.of<AuthChecker>(context);
-    // ? CHECK USER UID From firebase
-    if (authChecker.user != null &&
-        userState.user != null &&
-        userState.user!.uid == null) {
-      userState.user!.uid = authChecker.user!.uid;
-    }
     bool hasUser = userState.user == null ? false : true;
     final upperTab = [
       GestureDetector(

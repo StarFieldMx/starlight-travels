@@ -20,8 +20,10 @@ class Rooms {
     this.parking = false,
     required this.roomAmenities,
     this.id,
+    this.hotelName,
   });
   String? id;
+  String? hotelName;
   String type;
   int price;
   int size;
@@ -42,6 +44,7 @@ class Rooms {
         breakfast: json["breakfast"],
         parking: json["parking"],
         roomAmenities: RoomAmenities.fromMap(json["roomAmenities"]),
+        hotelName: json["hotelName"] ?? json["hotelName"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -54,6 +57,7 @@ class Rooms {
         "breakfast": breakfast,
         "parking": parking,
         "roomAmenities": roomAmenities.toMap(),
+        "hotelName": "$hotelName",
       };
 }
 

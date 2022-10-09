@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 import 'package:starlight/models/user.dart';
+import 'package:starlight/providers/user_state.dart';
 import 'package:starlight/services/http_reponse.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -97,6 +99,9 @@ class AuthServices extends ChangeNotifier {
       FirebaseAuth.instance.signOut();
     }
     logOut();
+    // ignore: use_build_context_synchronously
+    final userState = Provider.of<UserState>(context);
+    userState.logOut();
     context.router.replaceNamed('main');
   }
 
