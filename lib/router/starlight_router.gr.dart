@@ -142,9 +142,13 @@ class AppRouter extends _i6.RootStackRouter {
       );
     },
     RoomsView.name: (routeData) {
+      final args = routeData.argsAs<RoomsViewArgs>();
       return _i6.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i5.RoomsView(),
+        child: _i5.RoomsView(
+          key: args.key,
+          hotelName: args.hotelName,
+        ),
       );
     },
     FlightsViewRoute.name: (routeData) {
@@ -530,14 +534,36 @@ class HotelDetailsViewRouteArgs {
 
 /// generated route for
 /// [_i5.RoomsView]
-class RoomsView extends _i6.PageRouteInfo<void> {
-  const RoomsView()
-      : super(
+class RoomsView extends _i6.PageRouteInfo<RoomsViewArgs> {
+  RoomsView({
+    _i7.Key? key,
+    required String hotelName,
+  }) : super(
           RoomsView.name,
           path: 'rooms',
+          args: RoomsViewArgs(
+            key: key,
+            hotelName: hotelName,
+          ),
         );
 
   static const String name = 'RoomsView';
+}
+
+class RoomsViewArgs {
+  const RoomsViewArgs({
+    this.key,
+    required this.hotelName,
+  });
+
+  final _i7.Key? key;
+
+  final String hotelName;
+
+  @override
+  String toString() {
+    return 'RoomsViewArgs{key: $key, hotelName: $hotelName}';
+  }
 }
 
 /// generated route for

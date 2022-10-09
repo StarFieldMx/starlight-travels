@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:starlight/models/hotels.dart';
+import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/views/hotels/widgets/card_hotels.dart';
 import 'package:starlight/widgets/buttons/primary_button.dart';
 
@@ -79,7 +80,8 @@ class HotelDetailsView extends StatelessWidget {
               Details(size: size, hotel: hotel),
               PrimaryButton(
                 labelText: "Seleccionar cuarto",
-                onTap: () => context.router.pushNamed("rooms"),
+                onTap: () =>
+                    context.router.push(RoomsView(hotelName: hotel.name)),
               ),
               const SizedBox(
                 height: 20,

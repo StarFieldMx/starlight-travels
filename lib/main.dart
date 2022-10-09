@@ -68,9 +68,9 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(
         create: (_) => HotelsServices(),
       ),
-      ChangeNotifierProvider(
-        create: (BuildContext context) => AuthChecker(context),
-      ),
+      // ChangeNotifierProvider(
+      //   create: (BuildContext context) => AuthChecker(context),
+      // ),
       ChangeNotifierProvider(
         create: (_) => MyServices(),
       ),

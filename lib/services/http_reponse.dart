@@ -7,8 +7,6 @@ import 'package:starlight/models/flights.dart' show Flight;
 import 'package:starlight/models/hotels.dart' show Hotel;
 import 'package:starlight/models/rooms.dart' show Rooms;
 import 'package:starlight/models/user.dart' show UserStarlight;
-import 'package:starlight/services/notification_service.dart'
-    show NotificationsService;
 
 final baseAuth = dotenv.env['BASE_URL_AUTH'];
 final firebaseToken = dotenv.env['FIREBASE_TOKEN'];
@@ -41,14 +39,20 @@ class HttpResponse {
     return map;
   }
 
-  Future<void> getHttpReponseFromList(String path,
-      Function(Map<String, dynamic>) parseFrom, List<dynamic> list) async {
+  Future<void> getHttpReponseFromList(
+      String path, Function(Map<String, dynamic>) parseFrom, List<dynamic> list,
+      {bool isMyServices = false}) async {
     final url = Uri.https(
       dataBase!,
       path,
     );
+    UserStarlight? userStarlight;
     final response = await http.get(url);
     final decodeMap = await json.decode(response.body);
+    final user = await storage.read(key: 'user');
+    if (user != null) {
+      userStarlight = UserStarlight.fromMap(json.decode(user));
+    }
     if (decodeMap == null) return;
     if (decodeMap is String) {
       return;
@@ -57,20 +61,36 @@ class HttpResponse {
     if (map.isNotEmpty) {
       map.forEach(
         (key, value) {
-          final tempData = parseFrom(value);
-          if (tempData is Flight) {
-            tempData.id = key;
-            list.add(tempData);
-          } else if (tempData is Hotel) {
-            tempData.id = key;
-            list.add(tempData);
-            // ! Settear imagen??
-          } else if (tempData is Rooms) {
-            tempData.id = key;
-            list.add(tempData);
+          if (isMyServices && user != null) {
+            _parseMyServices(list, value, parseFrom, key);
+          } else {
+            final tempData = parseFrom(value);
+            if (tempData is Flight) {
+              tempData.id = key;
+              list.add(tempData);
+            } else if (tempData is Hotel) {
+              tempData.id = key;
+              list.add(tempData);
+              // ! Settear imagen??
+            } else if (tempData is Rooms) {
+              tempData.id = key;
+              list.add(tempData);
+            }
           }
         },
       );
+    }
+  }
+
+  _parseMyServices(List<dynamic> list, Map<String, dynamic> mapServices,
+      Function(Map<String, dynamic>) parseFrom, String key) {
+    final tempData = parseFrom(mapServices);
+    if (tempData is Flight) {
+      tempData.id = key;
+      list.add(tempData);
+    } else if (tempData is Rooms) {
+      tempData.id = key;
+      list.add(tempData);
     }
   }
 
@@ -121,7 +141,7 @@ class HttpResponse {
     return map;
   }
 
-  Future<void> buyFlightOrRoom(dynamic item, List<dynamic> list) async {
+  Future<String?> buyFlightOrRoom(dynamic item, List<dynamic> list) async {
     Uri? url;
     http.Response? resp;
     String? token = await storage.read(key: 'token');
@@ -139,14 +159,18 @@ class HttpResponse {
           resp = await http.post(url, body: json.encode(item.toMap()));
         }
         final decodedData = json.decode(resp!.body);
+        if (decodedData == null) {
+          return null;
+        }
         if (decodedData["error"] != null) {
-          NotificationsService.showSnackbar(decodedData["error"]);
-          return;
+          final String error = decodedData["error"];
+          return error;
         }
         item.id = decodedData["name"];
         list.add(item);
       }
     }
+    return null;
   }
 
   Future<String?> deleteFlightOrRoom(dynamic item) async {

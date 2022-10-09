@@ -10,13 +10,19 @@ class CoolNotifications {
   CoolNotifications(BuildContext context) {
     context = context;
   }
-  static void buySuccess(void Function() onTap, BuildContext context) {
-    CoolAlert.show(
+  static void buySuccess(BuildContext context,
+      {void Function()? succesAction}) async {
+    await CoolAlert.show(
       context: context,
       type: CoolAlertType.success,
       text: "¡Su transacción fue exitosa!",
-      confirmBtnText: "Siguiente",
-      onConfirmBtnTap: onTap,
+      title: "Perfecto!",
+      confirmBtnText: "Aceptar",
+      onConfirmBtnTap: () {
+        if (succesAction != null) {
+          succesAction();
+        }
+      },
       animType: animType,
     );
   }

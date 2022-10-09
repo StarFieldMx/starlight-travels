@@ -60,7 +60,7 @@ class _MyTripsViewUserState extends State<MyTripsViewUser> {
                 const SizedBox(
                   height: 10,
                 ),
-                Room(
+                RoomItem(
                   room: myServices.myServices[index],
                   isBuying: false,
                 ),

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:auto_route/auto_route.dart';
@@ -25,19 +27,38 @@ class MyServices extends ChangeNotifier {
   List<dynamic> get myServices => _listServices();
 
   bool isLoading = false;
-  Future<bool> buyFlight(Flight flight, BuildContext context) async {
+  Future<bool> buyFlight(
+    Flight flight,
+    BuildContext context,
+  ) async {
     isLoading = true;
-    httpReponse.buyFlightOrRoom(flight, flights);
+    final response = await httpReponse.buyFlightOrRoom(
+      flight,
+      flights,
+    );
+    if (response != null) {
+      CoolNotifications.onError(context, errorMessage: response);
+      return false;
+    }
     notifyListeners();
-    context.router.replace(const StarLightFlowUser());
     return true;
   }
 
-  Future<bool> buyRoom(Rooms room, BuildContext context) async {
+  Future<bool> buyRoom(
+    Rooms room,
+    BuildContext context,
+  ) async {
     isLoading = true;
-    httpReponse.buyFlightOrRoom(room, rooms);
+    final response = await httpReponse.buyFlightOrRoom(
+      room,
+      rooms,
+    );
+    if (response != null) {
+      CoolNotifications.onError(context, errorMessage: response);
+      return false;
+    }
     notifyListeners();
-    context.router.replace(const StarLightFlowUser());
+    // await context.router.replace(const StarLightFlowUser());
     return true;
   }
 
@@ -51,7 +72,8 @@ class MyServices extends ChangeNotifier {
         path = "myFlights/${starUser.uid}.json";
       }
     }
-    await httpReponse.getHttpReponseFromList(path, Flight.fromMap, flights);
+    await httpReponse.getHttpReponseFromList(path, Flight.fromMap, flights,
+        isMyServices: true);
     await _loadMyRooms();
     flights;
     isLoading = false;
@@ -67,7 +89,8 @@ class MyServices extends ChangeNotifier {
         path = "myRooms/${starUser.uid}.json";
       }
     }
-    await httpReponse.getHttpReponseFromList(path, Rooms.fromMap, rooms);
+    await httpReponse.getHttpReponseFromList(path, Rooms.fromMap, rooms,
+        isMyServices: true);
     isLoading = false;
     notifyListeners();
   }
@@ -82,7 +105,6 @@ class MyServices extends ChangeNotifier {
   Future<void> deleteServices(dynamic service, BuildContext context) async {
     final String? response = await httpReponse.deleteFlightOrRoom(service);
     if (response != null) {
-      // ignore: use_build_context_synchronously
       CoolNotifications.onError(context, errorMessage: response);
       return;
     }
