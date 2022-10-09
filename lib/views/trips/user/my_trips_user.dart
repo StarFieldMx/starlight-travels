@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:starlight/models/flights.dart';
-import 'package:starlight/models/my_flight.dart';
 import 'package:starlight/services/my_buys_services.dart';
 import 'package:starlight/views/flights/widgets/flights_card.dart';
 import 'package:starlight/views/hotels/rooms_items.dart';

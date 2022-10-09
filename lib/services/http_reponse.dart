@@ -77,39 +77,41 @@ class HttpResponse {
     );
   }
 
-  // void _addMyFlights(
-  //     String user, Map<String, dynamic> map, List<dynamic> list, key) {
-  //   final tempUser = UserStarlight.fromMap(json.decode(user));
-  //   if (tempUser.uid != null) {
-  //     if (tempUser.uid == key) {
-  //       if (map.isNotEmpty) {
-  //         map[key].forEach((keyFlight, value) {
-  //           final myFlight = MyFlights.fromMap(value);
-  //           myFlight.userId = tempUser.uid;
-  //           myFlight.flight.id = keyFlight;
-  //           list.add(myFlight);
-  //         });
-  //       }
-  //     }
-  //   }
-  // }
+/*
+  void _addMyFlights(
+      String user, Map<String, dynamic> map, List<dynamic> list, key) {
+    final tempUser = UserStarlight.fromMap(json.decode(user));
+    if (tempUser.uid != null) {
+      if (tempUser.uid == key) {
+        if (map.isNotEmpty) {
+          map[key].forEach((keyFlight, value) {
+            final myFlight = MyFlights.fromMap(value);
+            myFlight.userId = tempUser.uid;
+            myFlight.flight.id = keyFlight;
+            list.add(myFlight);
+          });
+        }
+      }
+    }
+  }
 
-  // void _addMyRooms(
-  //     String user, Map<String, dynamic> map, List<dynamic> list, key) {
-  //   final tempUser = UserStarlight.fromMap(json.decode(user));
-  //   if (tempUser.uid != null) {
-  //     if (tempUser.uid == key) {
-  //       if (map.isNotEmpty) {
-  //         map[key].forEach((keyFlight, value) {
-  //           final myFlight = MyRooms.fromMap(value);
-  //           myFlight.userId = tempUser.uid;
-  //           myFlight.room.id = keyFlight;
-  //           list.add(myFlight);
-  //         });
-  //       }
-  //     }
-  //   }
-  // }
+  void _addMyRooms(
+      String user, Map<String, dynamic> map, List<dynamic> list, key) {
+    final tempUser = UserStarlight.fromMap(json.decode(user));
+    if (tempUser.uid != null) {
+      if (tempUser.uid == key) {
+        if (map.isNotEmpty) {
+          map[key].forEach((keyFlight, value) {
+            final myFlight = MyRooms.fromMap(value);
+            myFlight.userId = tempUser.uid;
+            myFlight.room.id = keyFlight;
+            list.add(myFlight);
+          });
+        }
+      }
+    }
+  }
+*/
 
   static Future<Map<String, dynamic>> getAuthReponse(
     Map<String, dynamic> authData,
