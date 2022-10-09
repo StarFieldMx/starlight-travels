@@ -1,13 +1,18 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:starlight/providers/user_state.dart';
 import 'package:starlight/services/auth_services.dart';
+import 'package:starlight/services/notification_service.dart';
 
 class SignInProvider extends ChangeNotifier {
   final AuthServices authServices;
   final UserState userState;
+  final BuildContext context;
   SignInProvider({
     required this.authServices,
     required this.userState,
+    required this.context,
   });
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -17,27 +22,31 @@ class SignInProvider extends ChangeNotifier {
     return formKey.currentState?.validate() ?? false;
   }
 
-  void tryLogin() async {
+  void tryLogin(BuildContext context) async {
+    FocusScope.of(context).requestFocus(FocusNode());
     if (!isValidForm()) return;
+    isLoading = true;
     final response =
         await authServices.login(emailController.text, passwordController.text);
     if (response == null) {
-      _successResponse();
+      isLoading = false;
+      _successResponse(context);
     } else {
-      //  * HAS ERROR
-      print(response);
+      NotificationsService.showSnackbar(response);
     }
   }
 
-  void loginWithGoogle() async {
+  void loginWithGoogle(BuildContext context) async {
     isLoading = true;
     final userResponse = await authServices.signInWithGoogle();
     if (userResponse != null) {
       userState.user = userResponse;
-      // Implement change view state of trips
+      _successResponse(context);
     }
     isLoading = false;
   }
 
-  void _successResponse() {}
+  void _successResponse(BuildContext context) {
+    userState.login(context);
+  }
 }

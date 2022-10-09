@@ -1,35 +1,60 @@
+import 'dart:async';
+
+import 'package:after_layout/after_layout.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:starlight/providers/providers.dart';
+import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/styles/starlight_colors.dart';
 
-class LayoutHomeView extends StatelessWidget {
+class LayoutHomeView extends StatefulWidget {
   const LayoutHomeView({super.key, required this.child});
   final Widget child;
+
+  @override
+  State<LayoutHomeView> createState() => _LayoutHomeViewState();
+}
+
+class _LayoutHomeViewState extends State<LayoutHomeView>
+    with AfterLayoutMixin<LayoutHomeView> {
   @override
   Widget build(BuildContext context) {
+    final userState = Provider.of<UserState>(context);
+    bool hasUser = userState.user == null ? false : true;
     final upperTab = [
       GestureDetector(
         child: const Icon(Icons.hotel, size: 25),
-        onTap: () {},
+        onTap: () => context.router
+            .push(const ServicesViewRoute(children: [HotelsRoute()])),
       ),
       GestureDetector(
         child: const Icon(Icons.flight_land_rounded, size: 25),
-        onTap: () {},
+        onTap: () => context.router
+            .push(const ServicesViewRoute(children: [FlightsRoute()])),
       ),
-      GestureDetector(
-        child: const Icon(Icons.today_rounded, size: 25),
-        onTap: () {},
-      ),
+      // GestureDetector(
+      //   child: const Icon(Icons.today_rounded, size: 25),
+      //   onTap: () {},
+      // ),
     ];
     return Scaffold(
       backgroundColor: StarLightColors.starPrimaryBlue,
       body: CustomScrollView(
         slivers: [
-          _CustomAppBar(upperTab),
+          if (hasUser) _CustomAppBar(upperTab),
           SliverSafeArea(
-              sliver: SliverList(delegate: SliverChildListDelegate([child])))
+              sliver:
+                  SliverList(delegate: SliverChildListDelegate([widget.child])))
         ],
       ),
     );
+  }
+
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context) {
+    final userState = Provider.of<UserState>(context, listen: false);
+    userState.context ??= context;
   }
 }
 
@@ -42,6 +67,7 @@ class _CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return SliverAppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: StarLightColors.starSecondaryBlue,
       expandedHeight: width * 0.13,
       floating: false,

@@ -45,7 +45,7 @@ class _FieldFormPasswordState extends State<PasswordField> {
     return FieldFormStarlight(
       decoration: _getEyeDecoration(),
       keyboardType: TextInputType.text,
-      // validator: passwordValidator,
+      validator: passwordValidator,
       obscureText: isObscured,
       controller: widget.controller,
       initialValue: widget.controller == null ? widget.initialValue : null,

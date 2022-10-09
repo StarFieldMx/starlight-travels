@@ -1,0 +1,22 @@
+{
+    "home": {
+        "becomeMember":  {
+            "title": "Hermosos lugares por visitar te estan esperando ¿Qué esperas?",
+            "imageUrl": "https://www.teflcourse.net/cimage/webroot/img.php?src=/uploads/pakistan-featured-image.jpg&width=1000&q=80&sharpen",
+            "info": "Lo mas emocionante de estas epocas del año es disfrutar las fiestas con las personas que más amas y que mejor que viajar al mejor precio. Registrate y disfruta de nuestras promociones."
+           },
+        "nextTrip": [
+            {
+                "title": "Descubre sitios nuevos y mágicos",
+                "imageUrl": "https://www.zonamovilidad.es/fotos/2/Austin-jobs.jpg",
+                "info": "Lo mas emocionante de estas epocas del año es disfrutar las fiestas con las personas que más amas y que mejor que viajar al mejor precio."
+            },
+            {
+                "title": "No sabes donde hospedarte. Ven nosotros te decimos!",
+                "imageUrl": "https://www.yosoypuebla.com/wp-content/uploads/2019/05/huauchinango-puebla.jpg",
+                "info": "¿Cansado de no encontrar un lugar bueno, bonito y barato?. Aquí puedes encontrar los hoteles que tanto has estado buscando."
+            }
+        ]
+    }
+    
+}

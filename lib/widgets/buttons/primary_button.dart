@@ -7,18 +7,26 @@ class PrimaryButton extends StatelessWidget {
     Key? key,
     required this.labelText,
     required this.onTap,
+    this.isLoading = false,
+    this.color,
   }) : super(key: key);
   final String labelText;
   final void Function() onTap;
+  final bool isLoading;
+  final Color? color;
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      colorBrightness: Brightness.light,
-      onPressed: onTap,
-      color: StarLightColors.lightBlue,
-      minWidth: 150,
-      child: Text(labelText, style: StarLightTextStyles.primaryButton),
-      // minHeight: 200,
+    final width = MediaQuery.of(context).size.width;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(25),
+      child: MaterialButton(
+        onPressed: !isLoading ? onTap : null,
+        color: color ?? StarLightColors.lightBlue,
+        minWidth: width * 0.5,
+        height: 50,
+        child: Text(labelText, style: StarLightTextStyles.primaryButton),
+        // minHeight: 200,
+      ),
     );
   }
 }

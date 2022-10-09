@@ -12,7 +12,8 @@ class ThemeDataStarLight {
 
     /// * Change color of Scaffold
     scaffoldBackgroundColor: StarLightColors.starPrimaryBlue,
-
+    snackBarTheme:
+        SnackBarThemeData(backgroundColor: StarLightColors.starThirdBlue),
     appBarTheme: AppBarTheme(
       backgroundColor: StarLightColors.starSecondaryBlue,
     ),

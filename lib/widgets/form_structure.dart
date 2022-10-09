@@ -12,6 +12,7 @@ class FormStructure extends StatelessWidget {
         key: formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: _formatterList(childrens),
         ));
   }
@@ -34,7 +35,7 @@ List<Widget> _formatterList(List<Widget> childrens) {
 
 Widget _adaptativeField(Widget field) {
   return Flexible(
-    flex: 9,
+    flex: 4,
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
       child: field,

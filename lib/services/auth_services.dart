@@ -1,35 +1,40 @@
-import 'dart:convert';
-
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 import 'package:starlight/models/user.dart';
+import 'package:starlight/providers/user_state.dart';
+import 'package:starlight/services/http_reponse.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AuthServices extends ChangeNotifier {
-  final _baseUrl = "identitytoolkit.googleapis.com";
-  final _firebaseToken = "AIzaSyBsXjft_FDGmBIwlV1Snbh_tnmVq6DKoHM";
-  final _endpintURLLogin = "/v1/accounts:signInWithPassword";
-  final _endpintURLRegister = "/v1/accounts:signUp";
+  final _endpintURLLogin = dotenv.env['ENDPURLLOGIN'];
+  final _endpintURLRegister = dotenv.env['ENDPURLREGISTER'];
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
+  User? googleUser;
 
   // storage
   final storage = const FlutterSecureStorage();
   // Login and Register
 
-  Future<String?> createUser(String email, String password) async {
+  Future<String?> createUser(
+      {required String email,
+      required String password,
+      required String name,
+      required String lastName}) async {
     final Map<String, dynamic> authData = {
       'email': email,
       "password": password,
       'returnSecureToken': false
     };
-    final url =
-        Uri.https(_baseUrl, _endpintURLRegister, {'key': _firebaseToken});
-    final data = json.encode(authData);
-    final resp = await http.post(url, body: data);
-    final Map<String, dynamic> decodeResponse = json.decode(resp.body);
+    final Map<String, dynamic> decodeResponse =
+        await HttpResponse.getAuthReponse(
+      authData,
+      _endpintURLRegister!,
+    );
     return decodeResponse.toString();
   }
 
@@ -39,13 +44,17 @@ class AuthServices extends ChangeNotifier {
       'password': password,
       'returnSecureToken': true
     };
-    final url = Uri.https(_baseUrl, _endpintURLLogin, {'key': _firebaseToken});
-    final response = await http.post(url, body: json.encode(authData));
-    final Map<String, dynamic> decodeResponse = json.decode(response.body);
-    print(decodeResponse);
+    final Map<String, dynamic> decodeResponse =
+        await HttpResponse.getAuthReponse(
+      authData,
+      _endpintURLLogin!,
+    );
     if (decodeResponse.containsKey('idToken')) {
-      // TODO: Guardarlo en un lugar seguro
+      final UserStarlight tempUser = UserStarlight.fromMap(decodeResponse);
+      // !change
+      tempUser.userDetails = null;
       await storage.write(key: 'token', value: decodeResponse['idToken']);
+      await storage.write(key: 'user', value: tempUser.toJson().toString());
       return null;
     } else {
       return decodeResponse['error']['message'];
@@ -53,9 +62,6 @@ class AuthServices extends ChangeNotifier {
   }
 
   Future<UserStarlight?> signInWithGoogle() async {
-    String name;
-    String email;
-    String imageUrl;
     final GoogleSignInAccount? googleSignInAccount =
         await googleSignIn.signIn();
     final GoogleSignInAuthentication? googleSignInAuthentication =
@@ -73,28 +79,35 @@ class AuthServices extends ChangeNotifier {
     assert(user?.email != null);
     assert(user?.displayName != null);
     assert(user?.photoURL != null);
-    name = user?.displayName ?? '';
-    email = user?.email ?? '';
-    imageUrl = user?.photoURL ?? '';
-    // Checar solo devuelve el primer nombre (Frausto)
-    if (name.contains(" ")) {
-      name = name.substring(0, name.indexOf(" "));
-    }
     final isValid = user != null ? !user.isAnonymous : false;
     assert(isValid);
     assert(await user?.getIdToken() != null);
-    final _idToken = await user?.getIdToken();
-    final User currentUser = await _auth.currentUser!;
-    assert(user?.uid == currentUser.uid);
-    return userFromString(user.toString());
+    final idToken = await user?.getIdToken();
+    final User googleUser = _auth.currentUser!;
+    assert(user?.uid == googleUser.uid);
+    storage.write(key: 'token', value: idToken);
+    final userStarlight = UserStarlight.fromUserFirebase(user);
+    // !change
+    userStarlight.userDetails = null;
+    await storage.write(key: 'user', value: userStarlight.toJson().toString());
+    return userStarlight;
   }
 
-  void signOutGoogle() async {
-    await googleSignIn.signOut();
+  void signOutGeneral(BuildContext context) async {
+    if (googleUser != null) {
+      await googleSignIn.signOut();
+      FirebaseAuth.instance.signOut();
+    }
     logOut();
+    // ignore: use_build_context_synchronously
+    final userState = Provider.of<UserState>(context);
+    userState.logOut();
+    context.router.replaceNamed('main');
   }
 
   void logOut() {
     storage.deleteAll();
   }
+
+  Future<void> getUserDetails() async {}
 }

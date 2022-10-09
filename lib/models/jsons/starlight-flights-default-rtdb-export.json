@@ -1,0 +1,883 @@
+{
+  "flights": {
+    "0430638407393936": {
+      "Airline": "Viva Aerobus",
+      "Arrival": "19 Jun 2019",
+      "Departure": "19 Jun 2019",
+      "arrTime": "11:05 AM",
+      "depTime": "09:05 AM",
+      "flighTime": 120,
+      "flights_details": {
+        "Airline": "Viva Aerobus",
+        "Departure": "19 jun",
+        "flightTime": 120,
+        "price": 160,
+        "travel": {
+          "Airline": "Viva Aerobus",
+          "AirportName": "Kansas International",
+          "arrTime": "11:05 AM",
+          "depTime": "09:05 AM",
+          "flightTime": 120,
+          "from": "KS",
+          "to": "FL"
+        },
+        "travelers": 1
+      },
+      "from": "KE",
+      "price": 160,
+      "to": "UA",
+      "type": "redondo"
+    },
+    "1574769970553785": {
+      "Airline": "Viva Aerobus",
+      "Arrival": "30 Jun 2019",
+      "Departure": "30 Jun 2019",
+      "arrTime": "09:39 AM",
+      "depTime": "07:05 AM",
+      "flighTime": 154,
+      "flights_details": {
+        "Airline": "Viva Aerobus",
+        "Departure": "25 jun",
+        "flightTime": 154,
+        "price": 200,
+        "travel": {
+          "Airline": "Viva Aerobus",
+          "AirportName": "Montana International",
+          "arrTime": "09:39 AM",
+          "depTime": "07:05 AM",
+          "flightTime": 154,
+          "from": "MT",
+          "to": "LAX"
+        },
+        "travelers": 1
+      },
+      "from": "MX",
+      "price": 200,
+      "to": "NI",
+      "type": "redondo"
+    },
+    "2464082191415511": {
+      "Airline": "Viva Aerobus",
+      "Arrival": "1 Aug 2019",
+      "Departure": "1 Aug 2019",
+      "arrTime": "1:41 PM",
+      "depTime": "10:05 AM",
+      "flighTime": 216,
+      "flights_details": {
+        "Airline": "Viva Aerobus",
+        "Departure": "1 Aug",
+        "flightTime": 216,
+        "price": 210,
+        "travel": {
+          "Airline": "Viva Aerobus",
+          "AirportName": "Michigan International Airlines",
+          "arrTime": "01:41 PM",
+          "depTime": "10:05 AM",
+          "flightTime": 216,
+          "from": "MI",
+          "to": "MT"
+        },
+        "travelers": 1
+      },
+      "from": "PT",
+      "price": 210,
+      "to": "MT",
+      "type": "redondo"
+    },
+    "4165156156156165": {
+      "Airline": "Viva Aerobus",
+      "Arrival": "25 Jun 2019",
+      "Departure": "25 Jun 2019",
+      "arrTime": "2:05 AM",
+      "depTime": "1:05 AM",
+      "flighTime": 60,
+      "flights_details": {
+        "Airline": "Viva Aerobus",
+        "Departure": "25 jun",
+        "flightTime": 60,
+        "price": 183,
+        "travel": {
+          "Airline": "Viva Aerobus",
+          "AirportName": "Los Angeles",
+          "arrTime": "2:05 AM",
+          "depTime": "1:05 AM",
+          "flightTime": 60,
+          "from": "LAX",
+          "to": "AUS"
+        },
+        "travelers": 1
+      },
+      "from": "BR",
+      "price": 183,
+      "to": "AU",
+      "type": "redondo"
+    },
+    "5529240020921645": {
+      "Airline": "Viva Aerobus",
+      "Arrival": "22 Jun 2019",
+      "Departure": "22 Jun 2019",
+      "arrTime": "08:41 AM",
+      "depTime": "07:05 AM",
+      "flighTime": 96,
+      "flights_details": {
+        "Airline": "Viva Aerobus",
+        "Departure": "22 jun",
+        "flightTime": 96,
+        "price": 174,
+        "travel": {
+          "Airline": "Viva Aerobus",
+          "AirportName": "Florida International",
+          "arrTime": "08:41 AM",
+          "depTime": "07:05 AM",
+          "flightTime": 96,
+          "from": "FL",
+          "to": "AUS"
+        },
+        "travelers": 1
+      },
+      "from": "NL",
+      "price": 174,
+      "to": "AU",
+      "type": "redondo"
+    },
+    "6374576331467435": {
+      "Airline": "Viva Aerobus",
+      "Arrival": "13 Aug 2019",
+      "Departure": "13 Aug 2019",
+      "arrTime": "3:05 PM",
+      "depTime": "11:05 AM",
+      "flighTime": 240,
+      "flights_details": {
+        "Airline": "Viva Aerobus",
+        "Departure": "13 jun",
+        "flightTime": 240,
+        "price": 240,
+        "travel": {
+          "Airline": "Viva Aerobus",
+          "AirportName": "Air Canada",
+          "arrTime": "3:05 PM",
+          "depTime": "11:05 AM",
+          "flightTime": 240,
+          "from": "ON",
+          "to": "OH"
+        },
+        "travelers": 1
+      },
+      "from": "FR",
+      "price": 240,
+      "to": "AL",
+      "type": "redondo"
+    },
+    "6795908536750427": {
+      "Airline": "Viva Aerobus",
+      "Arrival": "15 Jun 2019",
+      "Departure": "15 Jun 2019",
+      "arrTime": "3:35 PM",
+      "depTime": "10:05 AM",
+      "flighTime": 220,
+      "flights_details": {
+        "Airline": "Viva Aerobus",
+        "Departure": "15 jun",
+        "flightTime": 220,
+        "price": 233,
+        "travel": {
+          "Airline": "Viva Aerobus",
+          "AirportName": "California",
+          "arrTime": "3:35 PM",
+          "depTime": "10:05 AM",
+          "flightTime": 220,
+          "from": "CAL",
+          "to": "NY"
+        },
+        "travelers": 1
+      },
+      "from": "CA",
+      "price": 233,
+      "to": "CN",
+      "type": "redondo"
+    },
+    "7097871195103926": {
+      "Airline": "Viva Aerobus",
+      "Arrival": "15 Aug 2019",
+      "Departure": "15 Aug 2019",
+      "arrTime": "11:05 AM",
+      "depTime": "09:05 AM",
+      "flighTime": 120,
+      "flights_details": {
+        "Airline": "Viva Aerobus",
+        "Departure": "15 Aug",
+        "flightTime": 120,
+        "price": 160,
+        "travel": {
+          "Airline": "Viva Aerobus",
+          "AirportName": "New York Airport",
+          "arrTime": "2:05 AM",
+          "depTime": "1:05 AM",
+          "flightTime": 120,
+          "from": "NY",
+          "to": "AL"
+        },
+        "travelers": 1
+      },
+      "from": "CO",
+      "price": 160,
+      "to": "MX",
+      "type": "redondo"
+    },
+    "8380569873706784": {
+      "Airline": "Viva Aerobus",
+      "Arrival": "22 Jun 2019",
+      "Departure": "22 Jun 2019",
+      "arrTime": "09:24 AM",
+      "depTime": "08:00 AM",
+      "flighTime": 84,
+      "flights_details": {
+        "Airline": "Viva Aerobus",
+        "Departure": "25 jun",
+        "flightTime": 84,
+        "price": 140,
+        "travel": {
+          "Airline": "Viva Aerobus",
+          "AirportName": "Illinois Airlines",
+          "arrTime": "09:24 AM",
+          "depTime": "08:00 AM",
+          "flightTime": 84,
+          "from": "IL",
+          "to": "KS"
+        },
+        "travelers": 1
+      },
+      "from": "DE",
+      "price": 140,
+      "to": "IQ",
+      "type": "redondo"
+    }
+  },
+  "hotels": {
+    "9PdqX": {
+      "accessibility": {
+        "elevator": false,
+        "ramps": false
+      },
+      "amenties": {
+        "air": true,
+        "bar": true,
+        "breakfast": true,
+        "frontDesk": true,
+        "housekeeping": true,
+        "internet": true,
+        "parking": true,
+        "pet": true,
+        "pool": true,
+        "restaurant": true
+      },
+      "direction": {
+        "colony": " COLONIA DOCTORES",
+        "municipality": "Cancun",
+        "number": "M 402 L1",
+        "postalCode": "77560",
+        "state": "QROO",
+        "street": "Calle BUTRON CASAS"
+      },
+      "foodDrink": {
+        "availableTime": "7:30 AM - 10:00 AM",
+        "bars": 1,
+        "freeDailyReception": false,
+        "restaurants": 1
+      },
+      "hotel": "Villa palmeras",
+      "internet": [
+        {
+          "rooms": true
+        },
+        {
+          "places": {
+            "bar": true,
+            "pool": false,
+            "public": true,
+            "restaurant": false
+          }
+        }
+      ],
+      "more": [
+        {
+          "activity": "Designed smoking areas"
+        },
+        {
+          "activity": "soccer field"
+        }
+      ],
+      "price": 390,
+      "rate": 4.5,
+      "thingsToDo": [
+        {
+          "activity": "Billiards/pool table"
+        },
+        {
+          "activity": "Outdoor Pool"
+        }
+      ]
+    },
+    "I6WJD": {
+      "accessibility": {
+        "elevator": false,
+        "ramps": false
+      },
+      "amenties": {
+        "air": false,
+        "bar": true,
+        "breakfast": true,
+        "frontDesk": false,
+        "housekeeping": true,
+        "internet": true,
+        "parking": false,
+        "pet": true,
+        "pool": true,
+        "restaurant": true
+      },
+      "direction": {
+        "colony": "Corn",
+        "municipality": "Tombogtu",
+        "number": "M 111 L2",
+        "postalCode": "99503",
+        "state": "TOM",
+        "street": "Republic of  Tombogtu"
+      },
+      "foodDrink": {
+        "availableTime": "7:00 AM - 8:00 AM",
+        "bars": 3,
+        "freeDailyReception": true,
+        "restaurants": 1
+      },
+      "hotel": "Victory",
+      "internet": [
+        {
+          "rooms": false
+        },
+        {
+          "places": {
+            "bar": true,
+            "pool": false,
+            "public": true,
+            "restaurant": true
+          }
+        }
+      ],
+      "more": [
+        {
+          "activity": "Designed smoking areas"
+        }
+      ],
+      "price": 250,
+      "rate": 3.4,
+      "thingsToDo": [
+        {
+          "activity": "Billiards/pool table"
+        },
+        {
+          "activity": "Music Show"
+        },
+        {
+          "activity": "Stand up Comedy Show"
+        }
+      ]
+    },
+    "JW03x": {
+      "accessibility": {
+        "elevator": false,
+        "ramps": false
+      },
+      "amenties": {
+        "air": true,
+        "bar": false,
+        "breakfast": true,
+        "frontDesk": false,
+        "housekeeping": false,
+        "internet": false,
+        "parking": false,
+        "pet": false,
+        "pool": true,
+        "restaurant": true
+      },
+      "direction": {
+        "colony": "Metrallo",
+        "municipality": "Gotica",
+        "number": "M 877 L2",
+        "postalCode": "86570",
+        "state": "PET",
+        "street": "Rafael Martinez"
+      },
+      "foodDrink": {
+        "availableTime": "07:00 AM - 08:00 AM",
+        "bars": 0,
+        "freeDailyReception": true,
+        "restaurants": 2
+      },
+      "hotel": "Gustavo Petro",
+      "internet": [
+        {
+          "rooms": false
+        },
+        {
+          "places": {
+            "bar": false,
+            "pool": false,
+            "public": false,
+            "restaurant": false
+          }
+        }
+      ],
+      "more": [
+        {
+          "activity": "Designed smoking areas"
+        },
+        {
+          "activity": "Open mic night"
+        }
+      ],
+      "price": 279,
+      "rate": 2.5,
+      "thingsToDo": [
+        {
+          "activity": "Foosball table"
+        },
+        {
+          "activity": "Karaoke night"
+        }
+      ]
+    },
+    "c1Zjt": {
+      "accessibility": {
+        "elevator": true,
+        "ramps": false
+      },
+      "amenties": {
+        "air": true,
+        "bar": true,
+        "breakfast": true,
+        "frontDesk": false,
+        "housekeeping": false,
+        "internet": true,
+        "parking": true,
+        "pet": false,
+        "pool": true,
+        "restaurant": true
+      },
+      "direction": {
+        "colony": "Pope",
+        "municipality": "Tamagochi",
+        "number": "M 342 L1",
+        "postalCode": "55715",
+        "state": "LA",
+        "street": "Elm´s street"
+      },
+      "foodDrink": {
+        "availableTime": "10:00 AM - 11:00 AM",
+        "bars": 1,
+        "freeDailyReception": false,
+        "restaurants": 2
+      },
+      "hotel": "Silver",
+      "internet": [
+        {
+          "rooms": true
+        },
+        {
+          "places": {
+            "bar": true,
+            "pool": true,
+            "public": false,
+            "restaurant": true
+          }
+        }
+      ],
+      "more": [
+        {
+          "activity": "Designed smoking areas"
+        },
+        {
+          "activity": "Outdoor Pool"
+        }
+      ],
+      "price": 189,
+      "rate": 4,
+      "thingsToDo": [
+        {
+          "activity": "Billiards/pool table"
+        },
+        {
+          "activity": "Stand up Comedy Show"
+        }
+      ]
+    },
+    "deM8r": {
+      "accessibility": {
+        "elevator": false,
+        "ramps": false
+      },
+      "amenties": {
+        "air": true,
+        "bar": true,
+        "breakfast": true,
+        "frontDesk": false,
+        "housekeeping": true,
+        "internet": true,
+        "parking": true,
+        "pet": false,
+        "pool": true,
+        "restaurant": true
+      },
+      "direction": {
+        "colony": "Citizens",
+        "municipality": "Perú",
+        "number": "M 666 L1",
+        "postalCode": "64817",
+        "state": "MAN",
+        "street": "White Claw"
+      },
+      "foodDrink": {
+        "availableTime": "8:00 AM - 9:00 AM",
+        "bars": 2,
+        "freeDailyReception": false,
+        "restaurants": 2
+      },
+      "hotel": "Etihad ",
+      "internet": [
+        {
+          "rooms": true
+        },
+        {
+          "places": {
+            "bar": true,
+            "pool": false,
+            "public": false,
+            "restaurant": true
+          }
+        }
+      ],
+      "more": [
+        {
+          "activity": "Designed smoking areas"
+        },
+        {
+          "activity": "Children area"
+        }
+      ],
+      "price": 199,
+      "rate": 4,
+      "thingsToDo": [
+        {
+          "activity": "Billiards/pool table"
+        },
+        {
+          "activity": "Enertainament secret show"
+        }
+      ]
+    },
+    "qCJhr": {
+      "accessibility": {
+        "elevator": true,
+        "ramps": false
+      },
+      "amenties": {
+        "air": true,
+        "bar": true,
+        "breakfast": true,
+        "frontDesk": true,
+        "housekeeping": true,
+        "internet": true,
+        "parking": true,
+        "pet": true,
+        "pool": true,
+        "restaurant": true
+      },
+      "direction": {
+        "colony": "Burbon",
+        "municipality": "La lomas",
+        "number": "M 554 L2",
+        "postalCode": "42421",
+        "state": "NY",
+        "street": "Green Dolphin Street"
+      },
+      "foodDrink": {
+        "availableTime": "9:00 AM - 11:00 AM",
+        "bars": 2,
+        "freeDailyReception": false,
+        "restaurants": 3
+      },
+      "hotel": "San Siro",
+      "internet": [
+        {
+          "rooms": true
+        },
+        {
+          "places": {
+            "bar": true,
+            "pool": true,
+            "public": true,
+            "restaurant": false
+          }
+        }
+      ],
+      "more": [
+        {
+          "activity": "Designed smoking areas"
+        },
+        {
+          "activity": "Golf field"
+        }
+      ],
+      "price": 399,
+      "rate": 4.9,
+      "thingsToDo": [
+        {
+          "activity": "Billiards/pool table"
+        },
+        {
+          "activity": "Outdoor Pool"
+        },
+        {
+          "activity": "Music Show"
+        }
+      ]
+    }
+  },
+  "userDetails": {
+    " 1QSIxUaaO4WrOxg8Y485sUESa7D3 ": {
+      "creditCard": 50000,
+      "gender": "male",
+      "likedHotels": {
+        "9PdqX": {
+          "like": false
+        },
+        "I6WJD": {
+          "like": false
+        },
+        "JW03x": {
+          "like": false
+        },
+        "c1Zjt": {
+          "like": false
+        },
+        "deM8r": {
+          "like": false
+        },
+        "qCJhr": {
+          "like": false
+        }
+      }
+    }
+  },
+  "rooms": {
+    "oECVk": {
+      "type": "Junior Suite",
+      "price": 220,
+      "size": 120,
+      "people": 2,
+      "pictures": [
+        "https://cache.marriott.com/is/image/marriotts7prod/fp-mtyfa-junior-suite-68306:Classic-Hor?output-quality=70&interpolation=progressive-bilinear&downsize=*:423px"
+      ],
+      "beds": [
+        {
+          "amount": 1,
+          "type": "double bed"
+        },
+        {
+          "amount": 1,
+          "type": "king bed"
+        }
+      ],
+      "breakfast": true,
+      "parking": true,
+      "roomAmenities": {
+        "bathroom": {
+          "toilets": true,
+          "private": true,
+          "shower": false
+        },
+        "internet": true,
+        "more": [{ "housekeeping": true, "wine": false }]
+      }
+    },
+    "125a0":{
+      "type": "Superior Room",
+      "price": 228,
+      "size": 120,
+      "people": 2,
+      "pictures": [
+        "https://www.casamaya.com/wp-content/uploads/2021/08/habitaciones-frente-al-mar-cancun-jr-suite.jpeg"
+      ],
+      "beds": [
+        {
+          "amount": 1,
+          "type": "double bed"
+        }
+      ],
+      "breakfast": true,
+      "parking": true,
+      "roomAmenities": {
+        "bathroom": {
+          "toilets": true,
+          "private": true,
+          "shower": false
+        },
+        "internet": true,
+        "more": [{ "housekeeping": true, "wine": false }]
+      }
+    },
+  
+    "rICia":{
+      "type": "Suite Starlight",
+      "price": 249,
+      "size": 140,
+      "people": 2,
+      "pictures": [
+        "https://imagenescityexpress.scdn6.secure.raxcdn.com/sites/default/files/styles/hotel_habitacion/public/2021-10/hotel-sullivan-city-express-junior-habitacion-sencilla-matrimonial-1.jpeg?itok=04FbFwwR"
+      ],
+      "beds": [
+        {
+          "amount": 2,
+          "type": "Matrimonial Junior Size Bed"
+        }
+      ],
+      "breakfast": true,
+      "parking": true,
+      "roomAmenities": {
+        "bathroom": {
+          "toilets": true,
+          "private": true,
+          "shower": false
+        },
+        "internet": true,
+        "more": [
+          {
+            "housekeeping": true,
+            "wine": false,
+            "food": false,
+            "tv services": false
+          }
+        ]
+      }
+    },
+  
+    "vL5O6":{
+      "type": "Golden Luxurious Room",
+      "price": 399,
+      "size": 200,
+      "people": 2,
+      "pictures": [
+        "https://thumbs.dreamstime.com/b/interior-del-dormitorio-hotel-de-la-cama-matrimonial-107686558.jpg"
+      ],
+      "beds": [
+        {
+          "amount": 1,
+          "type": "Matromonial Regular Size Bed"
+        }
+      ],
+      "breakfast": true,
+      "parking": true,
+      "roomAmenities": {
+        "bathroom": {
+          "toilets": true,
+          "private": true,
+          "shower": false
+        },
+        "internet": true,
+        "more": [
+          {
+            "housekeeping": true,
+            "wine": true,
+            "food": false,
+            "tv services": true
+          }
+        ]
+      }
+    },
+    "0d9c2":{
+      "type": "Platinum Luxurious Room",
+      "price": 289,
+      "size": 240,
+      "people": 4,
+      "pictures": [
+        "https://cdn.shopify.com/s/files/1/0079/1940/3075/products/208111F_720x.jpg?v=1571751252"
+      ],
+      "beds": [
+        {
+          "amount": 2,
+          "type": "Matromonial Platinum Size Bed"
+        }
+      ],
+      "breakfast": true,
+      "parking": true,
+      "roomAmenities": {
+        "bathroom": {
+          "toilets": true,
+          "private": true,
+          "shower": false
+        },
+        "internet": true,
+        "more": [
+          {
+            "housekeeping": true,
+            "wine": true,
+            "food": true,
+            "tv services": false
+          }
+        ]
+      }
+    },
+  
+    "yl79o": {
+      "type": "Golden Starlight Platinum Ultra Luxurious Room",
+      "price": 499,
+      "size": 300,
+      "people": 4,
+      "pictures": [
+        "https://publish.purewow.net/wp-content/uploads/sites/2/2019/08/peacock-suite.jpg?fit=728%2C524"
+      ],
+      "beds": [
+        {
+          "amount": 2,
+          "type": "Mega Matromonial Ultra Doble Luxurious Bed"
+        }
+      ],
+      "breakfast": true,
+      "parking": true,
+      "roomAmenities": {
+        "bathroom": {
+          "toilets": true,
+          "private": true,
+          "shower": true
+        },
+        "internet": true,
+        "more": [
+          {
+            "housekeeping": true,
+            "wine": true,
+            "food": true,
+            "tv services": true
+          }
+        ]
+      }
+    }
+  },
+    "home": {
+        "becomeMember":  {
+            "title": "Hermosos lugares por visitar te estan esperando ¿Qué esperas?",
+            "imageUrl": "https://www.teflcourse.net/cimage/webroot/img.php?src=/uploads/pakistan-featured-image.jpg&width=1000&q=80&sharpen",
+            "info": "Lo mas emocionante de estas epocas del año es disfrutar las fiestas con las personas que más amas y que mejor que viajar al mejor precio. Registrate y disfruta de nuestras promociones."
+           },
+        "nextTrip": [
+            {
+                "title": "Descubre sitios nuevos y mágicos",
+                "imageUrl": "https://www.zonamovilidad.es/fotos/2/Austin-jobs.jpg",
+                "info": "Lo mas emocionante de estas epocas del año es disfrutar las fiestas con las personas que más amas y que mejor que viajar al mejor precio."
+            },
+            {
+                "title": "No sabes donde hospedarte. Ven nosotros te decimos!",
+                "imageUrl": "https://www.yosoypuebla.com/wp-content/uploads/2019/05/huauchinango-puebla.jpg",
+                "info": "¿Cansado de no encontrar un lugar bueno, bonito y barato?. Aquí puedes encontrar los hoteles que tanto has estado buscando."
+            }
+        ]
+    }
+}

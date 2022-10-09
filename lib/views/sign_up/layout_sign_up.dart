@@ -9,7 +9,9 @@ class LayoutSignUp extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     // final inputDecoration = StarlightInputStyles(size: size);
 
-    return Stack(children: [
+    return Stack(
+      alignment: Alignment.center,
+      children: [
       Positioned(
         top: 30,
         left: size.width * 0.5 - 60,

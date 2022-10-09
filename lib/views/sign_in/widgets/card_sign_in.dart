@@ -12,14 +12,13 @@ class CardSignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           // decoration: BoxDecoration(
           //     color: Colors.white, borderRadius: BorderRadius.circular(15)),
           constraints: BoxConstraints(
             maxHeight: size.height * 0.4,
-            maxWidth: size.width * 0.9,
+            maxWidth: size.width * 0.8,
           ),
           margin: const EdgeInsets.symmetric(horizontal: 12),
           child: const FormSignIn(),

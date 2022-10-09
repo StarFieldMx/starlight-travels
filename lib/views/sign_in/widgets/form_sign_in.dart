@@ -4,7 +4,7 @@ import 'package:starlight/providers/sign_in_provider.dart';
 // STYLES
 import 'package:starlight/styles/starlight_inputs.dart';
 // WIDGETS
-import 'package:starlight/widgets/fields/index.dart';
+import 'package:starlight/widgets/fields/fields.dart';
 import 'package:starlight/widgets/buttons/primary_button.dart';
 import 'package:starlight/widgets/form_structure.dart';
 
@@ -18,8 +18,10 @@ class FormSignIn extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final inputDecoration = StarlightInputStyles(size: size);
     final signInProvider = Provider.of<SignInProvider>(context);
+    final signInProviderOff =
+        Provider.of<SignInProvider>(context, listen: false);
     return FormStructure(
-      formKey: signInProvider.formKey,
+      formKey: signInProviderOff.formKey,
       childrens: [
         EmailField(
           controller: signInProvider.emailController,
@@ -32,8 +34,9 @@ class FormSignIn extends StatelessWidget {
           // ! Implement provider
         ),
         PrimaryButton(
-          labelText: "SignIn",
-          onTap: () => signInProvider.tryLogin(),
+          labelText: "Iniciar sesión",
+          isLoading: signInProvider.isLoading,
+          onTap: () => signInProviderOff.tryLogin(context),
         ),
         const _GoogleSignIn(),
       ],
@@ -49,6 +52,11 @@ class _GoogleSignIn extends StatelessWidget {
     final signInProvider = Provider.of<SignInProvider>(context);
     return Center(
       child: GestureDetector(
+        onTap: signInProvider.isLoading
+            ? null
+            : () {
+                signInProvider.loginWithGoogle(context);
+              },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -70,9 +78,6 @@ class _GoogleSignIn extends StatelessWidget {
             ),
           ],
         ),
-        onTap: () {
-          signInProvider.loginWithGoogle();
-        },
       ),
     );
   }

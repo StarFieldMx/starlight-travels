@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:starlight/models/user_details.dart';
+
 UserStarlight userFromString(String str) =>
     UserStarlight.fromMap(json.decode(str));
 
@@ -9,43 +12,38 @@ class UserStarlight {
   UserStarlight({
     required this.email,
     this.displayName,
-    this.emailVerified,
+    this.emailVerified = false,
     this.phoneNumber,
     this.photoUrl,
     this.uid,
+    this.userDetails,
   });
   String email;
   String? displayName;
-  String? emailVerified;
+  bool emailVerified;
   String? phoneNumber;
   String? photoUrl;
   String? uid;
-
-  UserStarlight copyWith({
-    required String email,
-    String? displayName,
-    String? emailVerified,
-    String? phoneNumber,
-    String? photoUrl,
-    String? uid,
-  }) =>
-      UserStarlight(
-        displayName: displayName ?? this.displayName,
-        email: email,
-        emailVerified: emailVerified ?? this.emailVerified,
-        phoneNumber: phoneNumber ?? this.phoneNumber,
-        photoUrl: photoUrl ?? this.photoUrl,
-        uid: uid ?? this.uid,
-      );
+  UserDetails? userDetails;
 
   factory UserStarlight.fromMap(Map<String, dynamic> json) => UserStarlight(
         displayName: json["displayName"],
         email: json["email"],
-        emailVerified: json["emailVerified"],
+        emailVerified: json["emailVerified"] ?? false,
         phoneNumber: json["phoneNumber"],
         photoUrl: json["photoURL"],
         uid: json["uid"],
       );
+  factory UserStarlight.fromUserFirebase(User? user) {
+    return UserStarlight(
+      email: user?.email ?? '',
+      displayName: user?.displayName,
+      emailVerified: user?.emailVerified ?? false,
+      phoneNumber: user?.phoneNumber,
+      photoUrl: user?.photoURL,
+      uid: user?.uid,
+    );
+  }
   Map<String, dynamic> toMap() => {
         "displayName": displayName,
         "email": email,
@@ -54,4 +52,5 @@ class UserStarlight {
         "photoURL": photoUrl,
         "uid": uid,
       };
+  String toJson() => json.encode(toMap());
 }

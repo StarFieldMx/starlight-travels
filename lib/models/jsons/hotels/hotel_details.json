@@ -1,0 +1,329 @@
+{
+  "9PdqX": {
+    "picture" : null,
+    "hotel": "Villa palmeras",
+    "rate": 4.5,
+    "direction": {
+      "street": "Calle BUTRON CASAS",
+      "number": "M 402 L1",
+      "colony": " COLONIA DOCTORES",
+      "state": "QROO",
+      "municipality": "Cancun",
+      "postalCode": "77560"
+    },
+    "amenties": {
+      "internet": true,
+      "pool": true,
+      "air": true,
+      "pet": true,
+      "parking": true,
+      "breakfast": true,
+      "restaurant": true,
+      "bar": true,
+      "housekeeping": true,
+      "frontDesk": true
+    },
+    "internet": [
+      { "rooms": true },
+      {
+        "places": {
+          "public": true,
+          "pool": false,
+          "bar": true,
+          "restaurant": false
+        }
+      }
+    ],
+    "foodDrink": {
+      "availableTime": "7:30 AM - 10:00 AM",
+      "restaurants": 1,
+      "bars": 1,
+      "freeDailyReception": false
+    },
+    "thingsToDo": [
+      { "activity": "Billiards/pool table" },
+      { "activity": "Outdoor Pool" }
+    ],
+    "accessibility": {
+      "elevator": false,
+      "ramps": false
+    },
+    "more": [
+      { "activity": "Designed smoking areas" },
+      { "activity": "soccer field" }
+    ]
+  },
+
+  "qCJhr": {
+    "picture" : null,
+    "hotel": "San Siro",
+    "rate": 4.9,
+    "direction": {
+      "street": "Green Dolphin Street",
+      "number": "M 554 L2",
+      "colony": "Burbon",
+      "state": "NY",
+      "municipality": "La lomas",
+      "postalCode": "42421"
+    },
+    "amenties": {
+      "internet": true,
+      "pool": true,
+      "air": true,
+      "pet": true,
+      "parking": true,
+      "breakfast": true,
+      "restaurant": true,
+      "bar": true,
+      "housekeeping": true,
+      "frontDesk": true
+    },
+    "internet": [
+      { "rooms": true },
+      {
+        "places": {
+          "public": true,
+          "pool": true,
+          "bar": true,
+          "restaurant": false
+        }
+      }
+    ],
+    "foodDrink": {
+      "availableTime": "9:00 AM - 11:00 AM",
+      "restaurants": 3,
+      "bars": 2,
+      "freeDailyReception": false
+    },
+    "thingsToDo": [
+      { "activity": "Billiards/pool table" },
+      { "activity": "Outdoor Pool" },
+      { "activity": "Music Show" }
+    ],
+    "accessibility": {
+      "elevator": true,
+      "ramps": false
+    },
+    "more": [
+      { "activity": "Designed smoking areas" },
+      { "activity": "Golf field" }
+    ]
+  },
+  "deM8r": {
+    "picture" : null,
+    "hotel": "Etihad ",
+    "rate": 4,
+    "direction": {
+      "street": "White Claw",
+      "number": "M 666 L1",
+      "colony": "Citizens",
+      "state": "MAN",
+      "municipality": "Perú",
+      "postalCode": "64817"
+    },
+    "amenties": {
+      "internet": true,
+      "pool": true,
+      "air": true,
+      "pet": false,
+      "parking": true,
+      "breakfast": true,
+      "restaurant": true,
+      "bar": true,
+      "housekeeping": true,
+      "frontDesk": false
+    },
+    "internet": [
+      { "rooms": true },
+      {
+        "places": {
+          "public": false,
+          "pool": false,
+          "bar": true,
+          "restaurant": true
+        }
+      }
+    ],
+    "foodDrink": {
+      "availableTime": "8:00 AM - 9:00 AM",
+      "restaurants": 2,
+      "bars": 2,
+      "freeDailyReception": false
+    },
+    "thingsToDo": [
+      { "activity": "Billiards/pool table" },
+      { "activity": "Enertainament secret show" }
+    ],
+    "accessibility": {
+      "elevator": false,
+      "ramps": false
+    },
+    "more": [
+      { "activity": "Designed smoking areas" },
+      { "activity": "Children area" }
+    ]
+  },
+
+  "I6WJD" : {
+    "picture" : null,
+    "hotel": "Victory",
+    "rate": 3.4,
+    "direction": {
+      "street": "Republic of  Tombogtu",
+      "number": "M 111 L2",
+      "colony": "Corn",
+      "state": "TOM",
+      "municipality": "Tombogtu",
+      "postalCode": "99503"
+    },
+    "amenties": {
+      "internet": true,
+      "pool": true,
+      "air": false,
+      "pet": true,
+      "parking": false,
+      "breakfast": true,
+      "restaurant": true,
+      "bar": true,
+      "housekeeping": true,
+      "frontDesk": false
+    },
+    "internet": [
+      { "rooms": false },
+      {
+        "places": {
+          "public": true,
+          "pool": false,
+          "bar": true,
+          "restaurant": true
+        }
+      }
+    ],
+    "foodDrink": {
+      "availableTime": "7:00 AM - 8:00 AM",
+      "restaurants": 1,
+      "bars": 3,
+      "freeDailyReception": true
+    },
+    "thingsToDo": [
+      { "activity": "Billiards/pool table" },
+      { "activity": "Music Show" },
+      { "activity": "Stand up Comedy Show" }
+    ],
+    "accessibility": {
+      "elevator": false,
+      "ramps": false
+    },
+    "more": [{ "activity": "Designed smoking areas" }]
+  },
+
+  "c1Zjt" : {
+    "picture" : null,
+    "hotel": "Silver",
+    "rate": 4,
+    "direction": {
+      "street": "Elm´s street",
+      "number": "M 342 L1",
+      "colony": "Pope",
+      "state": "LA",
+      "municipality": "Tamagochi",
+      "postalCode": "55715"
+    },
+    "amenties": {
+      "internet": true,
+      "pool": true,
+      "air": true,
+      "pet": false,
+      "parking": true,
+      "breakfast": true,
+      "restaurant": true,
+      "bar": true,
+      "housekeeping": false,
+      "frontDesk": false
+    },
+    "internet": [
+      { "rooms": true },
+      {
+        "places": {
+          "public": false,
+          "pool": true,
+          "bar": true,
+          "restaurant": true
+        }
+      }
+    ],
+    "foodDrink": {
+      "availableTime": "10:00 AM - 11:00 AM",
+      "restaurants": 2,
+      "bars": 1,
+      "freeDailyReception": false
+    },
+    "thingsToDo": [
+      { "activity": "Billiards/pool table" },
+      { "activity": "Stand up Comedy Show" }
+    ],
+    "accessibility": {
+      "elevator": true,
+      "ramps": false
+    },
+    "more": [
+      { "activity": "Designed smoking areas" },
+      { "activity": "Outdoor Pool" }
+    ]
+  },
+
+  "JW03x" :{
+    "picture" : null,
+    "hotel": "Gustavo Petro",
+    "rate": 2.5,
+    "direction": {
+      "street": "Rafael Martinez",
+      "number": "M 877 L2",
+      "colony": "Metrallo",
+      "state": "PET",
+      "municipality": "Gotica",
+      "postalCode": "86570"
+    },
+    "amenties": {
+      "internet": false,
+      "pool": true,
+      "air": true,
+      "pet": false,
+      "parking": false,
+      "breakfast": true,
+      "restaurant": true,
+      "bar": false,
+      "housekeeping": false,
+      "frontDesk": false
+    },
+    "internet": [
+      { "rooms": false },
+      {
+        "places": {
+          "public": false,
+          "pool": false,
+          "bar": false,
+          "restaurant": false
+        }
+      }
+    ],
+    "foodDrink": {
+      "availableTime": "07:00 AM - 08:00 AM",
+      "restaurants": 2,
+      "bars": 0,
+      "freeDailyReception": true
+    },
+    "thingsToDo": [
+      { "activity": "Foosball table" },
+      { "activity": "Karaoke night" }
+    ],
+    "accessibility": {
+      "elevator": false,
+      "ramps": false
+    },
+    "more": [
+      { "activity": "Designed smoking areas" },
+      { "activity": "Open mic night" }
+    ]
+  }
+}

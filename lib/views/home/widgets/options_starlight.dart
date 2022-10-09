@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/styles/starlight_colors.dart';
 
 class OptionsStarlight extends StatelessWidget {
@@ -24,16 +26,19 @@ class OptionsStarlight extends StatelessWidget {
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             SizedBox(
               width: width * 0.8,
-              height: width * 0.11,
+              height: width * 0.14,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _RedirectToBrowse(
-                    icon: Icons.hotel,
-                    type: 'Hoteles',
-                    // TODO:
-                    // ! Redirect
-                    onTap: () {},
+                  GestureDetector(
+                    child: const _RedirectToBrowse(
+                      icon: Icons.hotel,
+                      type: 'Hoteles',
+                      // TODO:
+                      // ! Redirect
+                    ),
+                    onTap: () => context.router.push(
+                        const ServicesViewRoute(children: [HotelsRoute()])),
                   ),
                   VerticalDivider(
                     color: StarLightColors.starLight, //color of divider
@@ -42,30 +47,16 @@ class OptionsStarlight extends StatelessWidget {
                     indent: 0, //spacing at the start of divider
                     endIndent: 0, //spacing at the end of divider
                   ),
-                  _RedirectToBrowse(
-                    icon: Icons.airplane_ticket_rounded,
-                    type: 'Viajes',
-                    // TODO:
-                    // ! Redirect
-                    onTap: () {},
+                  GestureDetector(
+                    child: const _RedirectToBrowse(
+                      icon: Icons.airplane_ticket_rounded,
+                      type: 'Viajes',
+                      // ! Redirect
+                    ),
+                    onTap: () => context.router.push(
+                        const ServicesViewRoute(children: [FlightsRoute()])),
                   )
                 ],
-              ),
-            ),
-            Divider(
-              color: StarLightColors.starLight, //color of divider
-              thickness: 3, //thickness of divier line
-              indent: 0, //spacing at the start of divider
-              endIndent: 0, //spacing at the end of divider
-              height: 0,
-            ),
-            Center(
-              child: _RedirectToBrowse(
-                icon: Icons.assignment_sharp,
-                type: 'Cosas por hacer',
-                // TODO:
-                // ! Redirect
-                onTap: () {},
               ),
             ),
           ])),
@@ -74,27 +65,22 @@ class OptionsStarlight extends StatelessWidget {
 }
 
 class _RedirectToBrowse extends StatelessWidget {
-  const _RedirectToBrowse(
-      {required this.type, required this.icon, required this.onTap});
+  const _RedirectToBrowse({required this.type, required this.icon});
   final String type;
   final IconData icon;
-  final void Function() onTap;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 40),
-            const SizedBox(
-              width: 5,
-            ),
-            Text(type, style: const TextStyle(fontSize: 20)),
-          ],
-        ),
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, size: 40),
+          const SizedBox(
+            width: 5,
+          ),
+          Text(type, style: const TextStyle(fontSize: 20)),
+        ],
       ),
     );
   }

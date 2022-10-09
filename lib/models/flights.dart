@@ -2,17 +2,19 @@
 //
 //     final flights = flightsFromMap(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
-List<Flights> flightsFromMap(String str) =>
-    List<Flights>.from(json.decode(str).map((x) => Flights.fromMap(x)));
+import 'package:starlight/models/country.dart';
+import 'package:starlight/models/flights_details.dart';
 
-String flightsToMap(List<Flights> data) =>
+List<Flight> flightsFromMap(String str) =>
+    List<Flight>.from(json.decode(str).map((x) => Flight.fromMap(x)));
+
+String flightsToMap(List<Flight> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
 
-class Flights {
-  Flights({
+class Flight {
+  Flight({
     this.id,
     required this.airline,
     required this.type,
@@ -24,67 +26,49 @@ class Flights {
     required this.arrTime,
     required this.flighTime,
     required this.price,
+    this.details,
   });
 
   String? id;
   Airline airline;
   Type type;
-  String from;
-  String to;
+  Country from;
+  Country to;
   String departure;
   String arrival;
   String depTime;
   String arrTime;
   int flighTime;
   int price;
+  FlightDetails? details;
 
-  Flights copyWith({
-    required String id,
-    Airline? airline,
-    Type? type,
-    String? from,
-    String? to,
-    String? departure,
-    String? arrival,
-    String? depTime,
-    String? arrTime,
-    int? flighTime,
-    int? price,
-  }) =>
-      Flights(
-        id: id,
-        airline: airline ?? this.airline,
-        type: type ?? this.type,
-        from: from ?? this.from,
-        to: to ?? this.to,
-        departure: departure ?? this.departure,
-        arrival: arrival ?? this.arrival,
-        depTime: depTime ?? this.depTime,
-        arrTime: arrTime ?? this.arrTime,
-        flighTime: flighTime ?? this.flighTime,
-        price: price ?? this.price,
-      );
-
-  factory Flights.fromMap(Map<String, dynamic> json) => Flights(
+  factory Flight.fromMap(Map<String, dynamic> json) => Flight(
         id: json["id"],
-        airline: Airline.VIVA_AEROBUS,
-        type: Type.REDONDO,
-        from: json["from"],
-        to: json["to"],
+        airline: Airline.starlight,
+        type: Type.redondo,
+        from: json["from"] is String
+            ? Country(code: json["from"])
+            : Country(code: json["from"]["code"]),
+        to: json["to"] is String
+            ? Country(code: json["to"])
+            : Country(code: json["to"]["code"]),
         departure: json["Departure"],
         arrival: json["Arrival"],
         depTime: json["depTime"],
         arrTime: json["arrTime"],
         flighTime: json["flighTime"],
         price: json["price"],
+        details: json["flights_details"] != null
+            ? FlightDetails.fromMap(json["flights_details"])
+            : null,
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
-        "Airline": airline,
-        "type": type,
-        "from": from,
-        "to": to,
+        "Airline": airline.name,
+        "type": type.name,
+        "from": from.toMap(),
+        "to": to.toMap(),
         "Departure": departure,
         "Arrival": arrival,
         "depTime": depTime,
@@ -92,8 +76,11 @@ class Flights {
         "flighTime": flighTime,
         "price": price,
       };
+  factory Flight.fromJson(String str) => Flight.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
 }
 
-enum Airline { VIVA_AEROBUS }
+enum Airline { starlight }
 
-enum Type { REDONDO }
+enum Type { redondo }
