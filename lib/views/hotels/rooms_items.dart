@@ -18,21 +18,17 @@ class RoomsItems extends StatelessWidget {
   Widget build(BuildContext context) {
     final hotelServices = Provider.of<HotelsServices>(context);
     hotelServices.rooms;
-    final size = MediaQuery.of(context).size;
-    return ConstrainedBoxStarlight(
-      maxHeight: size.height,
-      child: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: hotelServices.rooms.length,
-              itemBuilder: ((context, index) =>
-                  Room(room: hotelServices.rooms[index])),
-            ),
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: hotelServices.rooms.length,
+            itemBuilder: ((context, index) =>
+                Room(room: hotelServices.rooms[index])),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -44,6 +40,7 @@ class Room extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final String buyOrCancel = isBuying ? "Comprar" : "Cancelar";
     return Container(
       margin: const EdgeInsets.only(bottom: 30),
       child: Stack(
@@ -93,18 +90,23 @@ class Room extends StatelessWidget {
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
-          isBuying
-              ? Positioned(
-                  bottom: 30,
-                  right: 15,
-                  child: SizedBox(
-                      height: 40,
-                      width: 130,
-                      child: PrimaryButton(
-                          labelText: "Comprar",
-                          onTap: () => context.router
-                              .push(PaymentViewRoute(room: room)))))
-              : Container(),
+          Positioned(
+            bottom: 30,
+            right: 15,
+            child: SizedBox(
+              height: 35,
+              width: 120,
+              child: PrimaryButton(
+                  labelText: buyOrCancel,
+                  color: isBuying ? null : Colors.red,
+                  onTap: () {
+                    isBuying
+                        ? context.router.push(PaymentViewRoute(room: room))
+                        // ! Implement cancel action
+                        : "Cancelar";
+                  }),
+            ),
+          ),
         ],
       ),
     );

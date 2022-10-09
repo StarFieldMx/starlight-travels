@@ -34,7 +34,7 @@ class FormSignIn extends StatelessWidget {
           // ! Implement provider
         ),
         PrimaryButton(
-          labelText: "SignIn",
+          labelText: "Iniciar sesión",
           isLoading: signInProvider.isLoading,
           onTap: () => signInProviderOff.tryLogin(context),
         ),

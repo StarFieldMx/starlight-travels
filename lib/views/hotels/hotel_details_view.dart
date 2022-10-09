@@ -5,7 +5,6 @@ import 'package:starlight/models/hotels.dart';
 import 'package:starlight/views/hotels/widgets/card_hotels.dart';
 import 'package:starlight/widgets/buttons/primary_button.dart';
 
-import '../../widgets/widgets.dart';
 import 'widgets/details.dart';
 
 class HotelDetailsView extends StatelessWidget {

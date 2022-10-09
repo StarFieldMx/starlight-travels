@@ -14,7 +14,7 @@ class MyTripsViewInvited extends StatelessWidget {
       children: [
         const Text('My Trips'),
         PrimaryButton(
-            labelText: "Go to sign_in",
+            labelText: "Para comprar viajes y hoteles registrate!",
             onTap: () {
               context.router.pushNamed('sign_in');
             })

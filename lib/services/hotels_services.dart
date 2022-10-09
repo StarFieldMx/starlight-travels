@@ -11,11 +11,11 @@ class HotelsServices extends ChangeNotifier {
   final httpReponse = HttpResponse();
   HotelsServices() {
     _loadHotels();
+    _loadRooms();
   }
   void _loadHotels() async {
     await httpReponse.getHttpReponseFromList(
         "hotels.json", Hotel.fromMap, hotels);
-    await _loadRooms();
     isLoading = false;
     notifyListeners();
   }
@@ -23,5 +23,7 @@ class HotelsServices extends ChangeNotifier {
   Future<void> _loadRooms() async {
     await httpReponse.getHttpReponseFromList(
         "rooms.json", Rooms.fromMap, rooms);
+    rooms;
+    notifyListeners();
   }
 }

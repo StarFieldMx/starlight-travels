@@ -18,6 +18,7 @@ class FlightsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final userState = Provider.of<UserState>(context);
     final bool isAuth = userState.authentication;
+    final String buyOrCancel = isBuying ? "Comprar" : "Cancelar";
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
@@ -51,30 +52,35 @@ class FlightsCard extends StatelessWidget {
                   price: flight.price.toDouble(),
                   typeTrip: flight.type.name,
                 )),
-            isBuying
-                ? Positioned(
-                    bottom: 10,
-                    right: 10,
-                    child: SizedBox(
-                        height: 40,
-                        width: 130,
-                        child: PrimaryButton(
-                          labelText: "Comprar",
-                          onTap: () {
-                            if (isAuth) {
-                              context.router
-                                  .push(PaymentViewRoute(flight: flight));
-                            } else {
-                              NotificationsService.showSnackbar(
-                                  "Necesitas estar registrado");
-                            }
-                          },
-                        )))
-                : Container()
+            Positioned(
+                bottom: 15,
+                right: 15,
+                child: SizedBox(
+                    height: 35,
+                    width: 120,
+                    child: PrimaryButton(
+                      color: isBuying ? null : Colors.red,
+                      labelText: buyOrCancel,
+                      onTap: () {
+                        if (isBuying) {
+                          _buyFlight(isAuth, context);
+                        } else {
+                          // ! Cancelar el vuelo,
+                        }
+                      },
+                    )))
           ],
         ),
       ),
     );
+  }
+
+  void _buyFlight(bool isAuth, BuildContext context) {
+    if (isAuth) {
+      context.router.push(PaymentViewRoute(flight: flight));
+    } else {
+      NotificationsService.showSnackbar("Necesitas estar registrado");
+    }
   }
 
   BoxDecoration _cardBorders() => BoxDecoration(

@@ -1,11 +1,16 @@
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:starlight/models/flights.dart';
 import 'package:starlight/models/rooms.dart';
+import 'package:starlight/models/user.dart';
 import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/services/http_reponse.dart';
 
 class MyBuysServices extends ChangeNotifier {
+  final storage = const FlutterSecureStorage();
   MyBuysServices() {
     _loadMyFlights();
   }
@@ -20,7 +25,7 @@ class MyBuysServices extends ChangeNotifier {
   bool isLoading = false;
   Future<bool> buyFlight(Flight flight, BuildContext context) async {
     isLoading = true;
-    isLoading = await httpReponse.buyFlightOrRoom(flight, flights);
+    httpReponse.buyFlightOrRoom(flight, flights);
     notifyListeners();
     context.router.replace(const StarLightFlowUser());
     return true;
@@ -28,7 +33,7 @@ class MyBuysServices extends ChangeNotifier {
 
   Future<bool> buyRoom(Rooms room, BuildContext context) async {
     isLoading = true;
-    isLoading = await httpReponse.buyFlightOrRoom(room, rooms);
+    httpReponse.buyFlightOrRoom(room, rooms);
     notifyListeners();
     context.router.replace(const StarLightFlowUser());
     return true;
@@ -36,7 +41,14 @@ class MyBuysServices extends ChangeNotifier {
 
   void _loadMyFlights() async {
     isLoading = true;
-    const path = "myFlights.json";
+    String path = "myFlights.json";
+    final user = await storage.read(key: 'user');
+    if (user != null) {
+      final starUser = UserStarlight.fromMap(json.decode(user));
+      if (starUser.uid != null) {
+        path = "myFlights/${starUser.uid}.json";
+      }
+    }
     await httpReponse.getHttpReponseFromList(path, Flight.fromMap, flights);
     await _loadMyRooms();
     flights;
@@ -45,8 +57,15 @@ class MyBuysServices extends ChangeNotifier {
   }
 
   Future<void> _loadMyRooms() async {
-    await httpReponse.getHttpReponseFromList(
-        "myRooms.json", Rooms.fromMap, rooms);
+    String path = "myRooms.json";
+    final user = await storage.read(key: 'user');
+    if (user != null) {
+      final starUser = UserStarlight.fromMap(json.decode(user));
+      if (starUser.uid != null) {
+        path = "myRooms/${starUser.uid}.json";
+      }
+    }
+    await httpReponse.getHttpReponseFromList(path, Rooms.fromMap, rooms);
     isLoading = false;
     notifyListeners();
   }

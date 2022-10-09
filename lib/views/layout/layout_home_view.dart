@@ -74,6 +74,7 @@ class _CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return SliverAppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: StarLightColors.starSecondaryBlue,
       expandedHeight: width * 0.13,
       floating: false,

@@ -76,6 +76,9 @@ class Flight {
         "flighTime": flighTime,
         "price": price,
       };
+  factory Flight.fromJson(String str) => Flight.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
 }
 
 enum Airline { starlight }
