@@ -6,6 +6,7 @@ import 'package:starlight/notifications/cool_alerts.dart';
 import 'package:starlight/providers/user_state.dart';
 import 'package:starlight/router/starlight_router.gr.dart';
 import 'package:starlight/services/notification_service.dart';
+import 'package:starlight/styles/starlight_colors.dart';
 import 'package:starlight/utils/parse_time.dart';
 import 'package:starlight/widgets/buttons/primary_button.dart';
 import 'package:starlight/widgets/multiply_text.dart';
@@ -13,25 +14,48 @@ import 'package:starlight/widgets/widgets.dart';
 
 import '../../../services/my_buys_services.dart';
 
-class FlightsCard extends StatelessWidget {
+class FlightsCard extends StatefulWidget {
   const FlightsCard({super.key, required this.flight, this.isBuying = true});
   final Flight flight;
   final bool isBuying;
+
+  @override
+  State<FlightsCard> createState() => _FlightsCardState();
+}
+
+class _FlightsCardState extends State<FlightsCard> {
+  bool state = false;
+  @override
+  void initState() {
+    Future.delayed(const Duration(milliseconds: 200), () {
+      state = true;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final userState = Provider.of<UserState>(context);
     final bool isAuth = userState.authentication;
-    final String buyOrCancel = isBuying ? "Comprar" : "Cancelar";
+    final String buyOrCancel = widget.isBuying ? "Comprar" : "Cancelar";
     final myServices = Provider.of<MyServices>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Container(
+      child: AnimatedContainer(
+        curve: Curves.fastOutSlowIn,
+        alignment: Alignment.center,
+        foregroundDecoration: _cardBorders(),
+        onEnd: () {
+          state = !state;
+          setState(() {});
+        },
+        duration: const Duration(seconds: 3),
         // ! Margi in view!!!
         margin: const EdgeInsets.only(top: 10, bottom: 20),
         width: double.infinity,
         // ! Change for dynamic value
         height: 150,
-        decoration: _cardBorders(),
+        // decoration: _cardBorders(),
         child: Stack(
           alignment: Alignment.bottomLeft,
           children: [
@@ -41,11 +65,11 @@ class FlightsCard extends StatelessWidget {
             DetailsText(
               child: MultiplyText(
                 textList: [
-                  {"time": "${flight.depTime}-${flight.arrTime}"},
-                  "${flight.from.name}(${flight.from.code})",
-                  "${flight.to.name}(${flight.to.code})",
-                  parseTime(flight.flighTime),
-                  flight.airline,
+                  {"time": "${widget.flight.depTime}-${widget.flight.arrTime}"},
+                  "${widget.flight.from.name}(${widget.flight.from.code})",
+                  "${widget.flight.to.name}(${widget.flight.to.code})",
+                  parseTime(widget.flight.flighTime),
+                  widget.flight.airline,
                 ],
               ),
             ),
@@ -53,8 +77,8 @@ class FlightsCard extends StatelessWidget {
                 top: 0,
                 right: 0,
                 child: PriceTag(
-                  price: flight.price.toDouble(),
-                  typeTrip: flight.type.name,
+                  price: widget.flight.price.toDouble(),
+                  typeTrip: widget.flight.type.name,
                 )),
             Positioned(
                 bottom: 15,
@@ -63,7 +87,7 @@ class FlightsCard extends StatelessWidget {
                     height: 35,
                     width: 120,
                     child: PrimaryButton(
-                      color: isBuying ? null : Colors.red,
+                      color: widget.isBuying ? null : Colors.red,
                       labelText: buyOrCancel,
                       onTap: () {
                         if (!isAuth) {
@@ -71,17 +95,17 @@ class FlightsCard extends StatelessWidget {
                               infoMessage:
                                   "Necesitas estar registrado para comprar");
                         }
-                        if (isBuying && isAuth) {
+                        if (widget.isBuying && isAuth) {
                           CoolNotifications.confirmationAlert(context,
-                              onTap: () => context.router
-                                  .push(PaymentViewRoute(flight: flight)),
+                              onTap: () => context.router.push(
+                                  PaymentViewRoute(flight: widget.flight)),
                               question:
                                   '¿Deseas continuar con la reservación?');
                         }
-                        if (!isBuying && isAuth) {
+                        if (!widget.isBuying && isAuth) {
                           CoolNotifications.confirmationAlert(context,
-                              onTap: () =>
-                                  myServices.deleteServices(flight, context),
+                              onTap: () => myServices.deleteServices(
+                                  widget.flight, context),
                               question: '¿Deseas continuar cancelar tu vuelo?');
                         }
                       },
@@ -93,7 +117,9 @@ class FlightsCard extends StatelessWidget {
   }
 
   BoxDecoration _cardBorders() => BoxDecoration(
-          color: Colors.white,
+          color: state
+              ? StarLightColors.starLight.withOpacity(0.0)
+              : StarLightColors.lightBlue.withOpacity(0.2),
           borderRadius: BorderRadius.circular(25),
           boxShadow: const [
             BoxShadow(
